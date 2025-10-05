@@ -18,19 +18,12 @@
 </script>
 
 <svelte:head>
-  <title>Xenon Framework - Next-Generation Electron Alternative</title>
-  <meta name="description" content="Xenon is a modern Electron alternative with the Darc browser. Build secure, fast desktop applications with web technologies." />
+  <title>Xenon Framework • Darc browser built on Xenon</title>
+  <meta name="description" content="Xenon is a framework for desktop apps. Darc is a purpose-built browser engine that runs on top of Xenon for app-like UIs." />
 </svelte:head>
 
 <!-- Hero Section -->
 <section class="hero" style="position: relative; overflow: hidden; background: linear-gradient(180deg, #ffffff 0%, rgba(230,243,255,0.3) 100%);">
-  <!-- Plasma orbs and light beams -->
-  <div class="floating-orb orb-1"></div>
-  <div class="floating-orb orb-2"></div>
-  <div class="floating-orb orb-3"></div>
-  <div class="light-beam beam-1"></div>
-  <div class="light-beam beam-2"></div>
-  
   <div class="container hero-grid">
     <div>
       <div class="hero-eyebrow" style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
@@ -63,23 +56,20 @@
           </svg>
           <span style="width: 34px; height: 2px; background: linear-gradient(90deg, transparent, rgba(160,190,230,0.8)); box-shadow: 0 0 10px rgba(160,190,230,0.35);"></span>
         </div>
-        <span style="color: #5b6a7a; text-transform: uppercase; letter-spacing: .12em; font-size: .85rem; font-weight: 600;">Noble Gas Powered</span>
+        <span style="color: #5b6a7a; text-transform: uppercase; letter-spacing: .12em; font-size: .85rem; font-weight: 600;">User Agency First</span>
       </div>
       <h1 class="hero-title text-primary">
-        The Future of Desktop Applications
+        Build Browser and Connected Experiences With Xenon
       </h1>
       <p class="hero-desc">
-        Xenon is a next‑generation framework that replaces Electron with better performance,
-        security, and the powerful Darc browser at its core.
+        Xenon is a framework to build secure and powerful applications with browser-like capabilities based on web standards and backed by the chrome based browser you already have.
       </p>
       <div class="hero-ctas">
-        <a href="#download" class="btn btn-primary" aria-label="Download Xenon beta" style="position: relative; overflow: hidden;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-          </svg>
-          Download Beta
+        <a href="#features" class="btn btn-primary" aria-label="Get started with Xenon" style="position: relative; overflow: hidden;">
+          Get Started
         </a>
         <a href="#features" class="btn btn-secondary">Explore features</a>
+        <a href="/darc" class="btn btn-secondary">Learn About Darc</a>
       </div>
     </div>
     <div class="frame" aria-label="App screenshot placeholder" style="position: relative;">
@@ -108,8 +98,7 @@
         Built for Modern Development
       </h2>
       <p style="max-width: 640px; margin: 0 auto;">
-        Xenon combines the best of native performance with web development flexibility,
-        powered by the innovative Darc browser engine.
+        Xenon combines native performance with web flexibility. Darc runs on Xenon to provide a dedicated browser environment for your app UI.
       </p>
     </div>
     
@@ -211,11 +200,11 @@
     <div class="grid grid-2" style="align-items: center; gap: 4rem;">
       <div>
         <h2 class="text-primary" style="margin-bottom: 1.5rem;">
-          Powered by Darc Browser
+          Darc Browser, Built on Xenon
         </h2>
         <p style="margin-bottom: 2rem; font-size: 1.1rem;">
-          At the heart of Xenon lies Darc, a purpose-built browser engine designed for desktop applications. 
-          Unlike traditional web browsers, Darc is optimized for app-like experiences with enhanced security and performance.
+          Darc is a purpose‑built browser engine that runs on top of the Xenon framework. 
+          Unlike general‑purpose browsers, Darc is optimized for app‑like experiences with enhanced security and performance.
         </p>
         <div style="margin-bottom: 2rem;">
           <h3 style="margin-bottom: 1rem; color: var(--text-primary); font-size: 1.25rem;">Key Features:</h3>
@@ -246,8 +235,8 @@
             </li>
           </ul>
         </div>
-        <a href="#learn-more" class="btn btn-secondary">
-          Learn More About Darc
+        <a href="#features" class="btn btn-secondary">
+          Get Started with Xenon
         </a>
       </div>
       <div class="retro-terminal-container">
@@ -332,17 +321,14 @@
     </div>
     
     <h2 class="text-primary" style="margin-bottom: 1rem;">
-      Ready to <span class="handcrafted-underline">Build</span> the Future?
+      Ready to <span class="handcrafted-underline">Build</span> with Xenon?
     </h2>
     <p style="margin-bottom: 3rem; font-size: 1.05rem; max-width: 600px; margin-left: auto; margin-right: auto;">
       Join developers who are already building next-generation desktop applications with Xenon and Darc.
     </p>
     <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="#download" class="btn btn-primary btn-compact">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-        </svg>
-        Download Beta
+      <a href="#features" class="btn btn-primary btn-compact">
+        Get Started
       </a>
       <a href="https://github.com/xenon-framework" class="btn btn-secondary btn-compact">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

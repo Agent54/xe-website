@@ -202,7 +202,7 @@ p { font-size: 1.08rem; color: var(--text-secondary); }
 .nav { display: flex; gap: 18px; align-items: center; }
 .nav a { color: var(--text-secondary); text-decoration: none; padding: 8px 10px; border-radius: 2px; }
 .nav a:hover { color: var(--text-primary); background: var(--bg-section); }
-.brand { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--text-primary); }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--text-primary); text-decoration: none; }
 .brand-mark { 
   width: 22px; 
   height: 22px; 
@@ -288,7 +288,7 @@ p { font-size: 1.08rem; color: var(--text-secondary); }
 }
 .hero-title { margin-bottom: 18px; }
 .hero-desc { font-size: 1.18rem; max-width: 620px; margin-bottom: 28px; }
-.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 
 /* Axolotl mascot emphasis */
 .axolotl {
@@ -301,24 +301,17 @@ p { font-size: 1.08rem; color: var(--text-secondary); }
 
 /* Screenshot frame */
 .frame {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-strong);
-  border-radius: 4px;
-  box-shadow: 0 8px 22px rgba(0,0,0,.10), 0 28px 64px rgba(0,0,0,.08);
-  overflow: hidden;
-  position: relative;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+  position: static;
 }
-.frame::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
-}
+.frame::before { content: none; }
 
 /* Screenshot sizing */
-.frame-body { padding: 10px; background: #111; aspect-ratio: 16/10; min-height: 280px; display: flex; align-items: center; justify-content: center; color: #eee; }
+.frame-body { padding: 0; background: transparent; aspect-ratio: auto; min-height: 0; display: block; color: inherit; }
 .frame-body img { max-width: 100%; max-height: 100%; width: 100%; height: auto; object-fit: contain; display: block; }
 /* Pixel Macintosh-style SVG container */
 .pixel-mac { width: 100%; height: auto; display: block; }
@@ -353,9 +346,9 @@ p { font-size: 1.08rem; color: var(--text-secondary); }
 
 /* Retro Terminal */
 .retro-terminal-container {
-  background: var(--bg-section);
-  border-radius: 16px;
-  padding: 2rem;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
   text-align: center;
 }
 
@@ -363,10 +356,8 @@ p { font-size: 1.08rem; color: var(--text-secondary); }
   background: #0d1117;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 
-    0 0 0 1px rgba(0,255,255,0.2),
-    0 8px 32px rgba(0,0,0,0.4),
-    inset 0 1px 0 rgba(255,255,255,0.1);
+  box-shadow: none;
+  border: none;
   position: relative;
   font-family: var(--font-mono);
 }
@@ -452,93 +443,6 @@ p { font-size: 1.08rem; color: var(--text-secondary); }
 @keyframes scanlines {
   0% { transform: translateY(0); }
   100% { transform: translateY(4px); }
-}
-
-/* Plasma orbs with neon glow */
-.floating-orb {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0.28;
-  filter: blur(40px);
-  animation: float 20s infinite ease-in-out;
-  mix-blend-mode: screen;
-}
-
-.orb-1 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle at 30% 30%, var(--xenon-blue), transparent 70%);
-  box-shadow: 0 0 40px rgba(180,220,255,0.35), 0 0 80px rgba(200,230,255,0.2);
-  top: 10%;
-  left: -10%;
-  animation-delay: 0s;
-}
-
-.orb-2 {
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle at 50% 50%, var(--xenon-blue), transparent 70%);
-  box-shadow: 0 0 40px rgba(180,220,255,0.35), 0 0 80px rgba(200,230,255,0.2);
-  top: 50%;
-  right: -5%;
-  animation-delay: -7s;
-}
-
-.orb-3 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle at 40% 40%, var(--xenon-blue), transparent 70%);
-  box-shadow: 0 0 40px rgba(180,220,255,0.35), 0 0 80px rgba(200,230,255,0.2);
-  bottom: 10%;
-  left: 10%;
-  animation-delay: -14s;
-}
-
-/* Light beam effects */
-.light-beam {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0.1;
-  mix-blend-mode: screen;
-}
-
-.beam-1 {
-  width: 2px;
-  height: 200%;
-  background: linear-gradient(180deg, transparent, var(--xenon-blue), transparent);
-  left: 20%;
-  top: -50%;
-  transform: rotate(15deg);
-  animation: beam-sweep 8s infinite ease-in-out;
-}
-
-.beam-2 {
-  width: 3px;
-  height: 200%;
-  background: linear-gradient(180deg, transparent, var(--neon-pink), transparent);
-  right: 30%;
-  top: -50%;
-  transform: rotate(-20deg);
-  animation: beam-sweep 10s infinite ease-in-out reverse;
-}
-
-@keyframes beam-sweep {
-  0%, 100% { 
-    opacity: 0.05;
-    transform: rotate(15deg) translateX(0);
-  }
-  50% { 
-    opacity: 0.15;
-    transform: rotate(15deg) translateX(50px);
-  }
-}
-
-@keyframes float {
-  0%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(30px, -40px); }
-  50% { transform: translate(-20px, 30px); }
-  75% { transform: translate(-30px, -20px); }
 }
 
 /* Neon text glow */
@@ -652,7 +556,6 @@ p { font-size: 1.08rem; color: var(--text-secondary); }
 @media (max-width: 980px) {
   .hero { padding-top: 96px; }
   .hero-grid { grid-template-columns: 1fr; gap: 28px; }
-  .floating-orb { display: none; }
 }
 @media (max-width: 768px) {
   .container { padding: 0 18px; }

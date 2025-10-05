@@ -4,13 +4,13 @@
 
 <header class="header">
   <div class="container header-inner">
-    <div class="brand">
+    <a href="/" class="brand">
       <span aria-label="Xenon">Xenon</span>
-    </div>
+    </a>
     <nav class="nav" aria-label="Primary">
-      <a href="#features">Features</a>
-      <a href="#learn-more">Darc</a>
-      <a href="#download" class="btn btn-secondary">Download</a>
+      <a href="/#features">Framework</a>
+      <a href="/darc">Darc</a>
+      <a href="/#features" class="btn btn-secondary">Get Started</a>
     </nav>
   </div>
 </header>

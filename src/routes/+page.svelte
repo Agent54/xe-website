@@ -56,10 +56,10 @@
           </svg>
           <span style="width: 34px; height: 2px; background: linear-gradient(90deg, transparent, rgba(160,190,230,0.8)); box-shadow: 0 0 10px rgba(160,190,230,0.35);"></span>
         </div>
-        <span style="color: #5b6a7a; text-transform: uppercase; letter-spacing: .12em; font-size: .85rem; font-weight: 600;">User Agency First</span>
+        <span style="color: #5b6a7a; text-transform: uppercase; letter-spacing: .12em; font-size: .85rem; font-weight: 600;">agency for super human computing</span>
       </div>
       <h1 class="hero-title text-primary">
-        Build Browser and Connected Experiences With Xenon
+        Build Browsers and Beyond
       </h1>
       <p class="hero-desc">
         Xenon is a framework to build secure and powerful applications with browser-like capabilities based on web standards and backed by the chrome based browser you already have.

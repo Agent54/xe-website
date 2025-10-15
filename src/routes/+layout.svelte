@@ -10,6 +10,7 @@
     <nav class="nav" aria-label="Primary">
       <a href="/#features">Framework</a>
       <a href="/darc">Darc</a>
+      <a href="/posts">Posts</a>
       <a href="/#features" class="btn btn-secondary">Get Started</a>
     </nav>
   </div>

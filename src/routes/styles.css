@@ -49,6 +49,7 @@ body {
   color: var(--text-primary);
   background: #ffffff;
   position: relative;
+  transition: background-color 0.6s ease, color 0.6s ease;
 }
 
 /* Analog film grain effect */
@@ -88,13 +89,14 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sans);
   line-height: 1.2;
   letter-spacing: -0.02em;
+  transition: color 0.6s ease;
 }
 
 h1 { font-size: clamp(2.8rem, 6vw, 4.25rem); font-weight: 700; }
 h2 { font-size: clamp(2.1rem, 4.5vw, 3.1rem); }
 h3 { font-size: clamp(1.45rem, 3.2vw, 2rem); }
 
-p { font-size: 1.08rem; color: var(--text-secondary); }
+p { font-size: 1.08rem; color: var(--text-secondary); transition: color 0.6s ease; }
 
 /* Utilities */
 .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
@@ -119,7 +121,7 @@ p { font-size: 1.08rem; color: var(--text-secondary); }
   border: 1.5px solid var(--border-light);
   border-radius: 4px;
   line-height: 1.1;
-  transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow .18s ease;
   cursor: pointer;
 }
 
@@ -260,9 +262,9 @@ p { font-size: 1.08rem; color: var(--text-secondary); }
 }
 
 /* Sections */
-.section { padding: 92px 0; }
-.section-tight { padding: 54px 0; }
-.section-alt { background: var(--bg-section); }
+.section { padding: 92px 0; transition: background-color 0.6s ease; }
+.section-tight { padding: 54px 0; transition: background-color 0.6s ease; }
+.section-alt { background: var(--bg-section); transition: background-color 0.6s ease; }
 
 /* Hero */
 .hero { padding: 120px 0 72px; }
@@ -288,7 +290,7 @@ p { font-size: 1.08rem; color: var(--text-secondary); }
 }
 .hero-title { margin-bottom: 18px; }
 .hero-desc { font-size: 1.18rem; max-width: 620px; margin-bottom: 28px; }
-.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-start; }
 
 /* Axolotl mascot emphasis */
 .axolotl {
@@ -327,7 +329,7 @@ p { font-size: 1.08rem; color: var(--text-secondary); }
   border: 1px solid var(--border-light);
   border-radius: 4px;
   background: white;
-  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, background-color 0.6s ease;
   box-shadow: 0 2px 8px rgba(0,0,0,.05), 0 10px 20px rgba(0,0,0,.06);
   position: relative;
 }
@@ -519,7 +521,7 @@ p { font-size: 1.08rem; color: var(--text-secondary); }
   background: white;
   border-radius: 4px;
   padding: 32px;
-  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, background-color 0.6s ease;
   border: 1px solid var(--border-light);
 }
 
@@ -556,9 +558,14 @@ p { font-size: 1.08rem; color: var(--text-secondary); }
 @media (max-width: 980px) {
   .hero { padding-top: 96px; }
   .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+  .hero-ctas { justify-content: center; }
 }
 @media (max-width: 768px) {
   .container { padding: 0 18px; }
   .section { padding: 72px 0; }
   .btn { padding: 10px 16px; font-size: .95rem; }
 }
+
+/* Blog preview link styles */
+.post-card .preview a { text-decoration: none; color: inherit; }
+.post-card .preview a:hover { text-decoration: underline; }

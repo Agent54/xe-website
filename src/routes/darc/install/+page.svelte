@@ -196,20 +196,24 @@
 <style>
   :global(body:has(.darc-page)) {
     background: #0f0f0f;
+    transition: background-color 0.6s ease;
   }
   
   :global(body:has(.darc-page) .header) {
     background: rgba(18, 18, 18, 0.85);
     border-bottom-color: rgba(255, 255, 255, 0.08);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
+    transition: background-color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
   }
   
   :global(body:has(.darc-page) .brand) {
     color: #e8e8e8;
+    transition: color 0.6s ease;
   }
   
   :global(body:has(.darc-page) .nav a) {
     color: rgba(232, 232, 232, 0.7);
+    transition: color 0.6s ease, background-color 0.6s ease;
   }
   
   :global(body:has(.darc-page) .nav a:hover) {
@@ -221,6 +225,7 @@
     background: rgba(255, 255, 255, 0.05);
     color: #e8e8e8;
     border-color: rgba(255, 255, 255, 0.15);
+    transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease;
   }
   
   :global(body:has(.darc-page) .btn-secondary:hover) {
@@ -233,6 +238,7 @@
     background: #0f0f0f;
     color: #e8e8e8;
     min-height: 100vh;
+    transition: background-color 0.6s ease, color 0.6s ease;
   }
   
   .darc-page :global(.hero) {
@@ -241,10 +247,12 @@
   
   .darc-page :global(.section) {
     background: #0f0f0f;
+    transition: background-color 0.6s ease;
   }
   
   .darc-page :global(.section-alt) {
     background: #151515;
+    transition: background-color 0.6s ease;
   }
   
   .darc-page :global(.hero-title),
@@ -252,17 +260,20 @@
   .darc-page :global(h3),
   .darc-page :global(strong) {
     color: #e8e8e8;
+    transition: color 0.6s ease;
   }
   
   .darc-page :global(.hero-desc),
   .darc-page :global(p) {
     color: rgba(232, 232, 232, 0.75);
+    transition: color 0.6s ease;
   }
   
   .darc-page :global(.feature-card-enhanced) {
     background: #1a1a1a;
     border-color: rgba(255, 255, 255, 0.08);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.6s ease, border-color 0.6s ease, box-shadow 0.3s ease;
   }
   
   .darc-page :global(.feature-card-enhanced:hover) {
@@ -276,6 +287,7 @@
     color: #e8e8e8;
     border-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    transition: background 0.6s ease, color 0.6s ease, border-color 0.6s ease, box-shadow 0.3s ease;
   }
   
   .darc-page :global(.btn-primary:hover) {
@@ -289,6 +301,7 @@
     color: #e8e8e8;
     border-color: rgba(255, 255, 255, 0.12);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, box-shadow 0.3s ease;
   }
   
   .darc-page :global(.btn-secondary:hover) {

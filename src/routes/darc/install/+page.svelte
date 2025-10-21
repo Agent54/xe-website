@@ -97,7 +97,7 @@
       </ol>
       
       <div style="text-align: center; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-        <a href="#download" class="btn btn-primary">
+        <a href="#" class="btn btn-primary">
           Download for {selectedOS === 'mac' ? 'macOS' : selectedOS === 'windows' ? 'Windows' : 'Linux'}
         </a>
       </div>

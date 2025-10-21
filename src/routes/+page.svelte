@@ -350,10 +350,10 @@
       <p style="color: var(--text-muted);">The next-generation desktop application framework</p>
     </div>
     <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
-      <a href="#docs" style="color: var(--text-secondary); text-decoration: none;">Documentation</a>
-      <a href="#community" style="color: var(--text-secondary); text-decoration: none;">Community</a>
-      <a href="#blog" style="color: var(--text-secondary); text-decoration: none;">Blog</a>
-      <a href="#support" style="color: var(--text-secondary); text-decoration: none;">Support</a>
+      <a href="#" style="color: var(--text-secondary); text-decoration: none;">Documentation</a>
+      <a href="#" style="color: var(--text-secondary); text-decoration: none;">Community</a>
+      <a href="/posts" style="color: var(--text-secondary); text-decoration: none;">Posts</a>
+      <a href="#" style="color: var(--text-secondary); text-decoration: none;">Support</a>
     </div>
     <p style="color: var(--text-muted); font-size: 0.9rem;">
       © 2025 Xenon Framework. Built with passion for better desktop applications.

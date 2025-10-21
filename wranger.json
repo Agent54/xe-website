@@ -1,0 +1,7 @@
+{
+ "name": "xenon-website",
+ "compatibility_date": "2025-10-21",
+ "assets": {
+   "directory": "./build"
+ }
+}

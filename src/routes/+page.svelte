@@ -22,7 +22,6 @@
   <meta name="description" content="Xenon is a framework for desktop apps. Darc is a purpose-built browser engine that runs on top of Xenon for app-like UIs." />
 </svelte:head>
 
-<!-- Hero Section -->
 <section class="hero" style="position: relative; overflow: hidden; background: linear-gradient(180deg, #ffffff 0%, rgba(230,243,255,0.3) 100%);">
   <div class="container hero-grid">
     <div>
@@ -250,7 +249,7 @@
             <div class="terminal-title">xenon-app.js</div>
           </div>
           <div class="terminal-content">
-            <pre><code><span class="terminal-comment">// Xenon app with Darc</span>
+            <pre><code><span class="terminal-comment">// Xenon app</span>
             <span class="terminal-import">import</span> <span class="terminal-bracket">&#123; createApp &#125;</span> <span class="terminal-import">from</span> <span class="terminal-string">'xenon'</span>
 
             <span class="terminal-keyword">const</span> app = <span class="terminal-function">createApp</span>(<span class="terminal-bracket">&#123;</span>
@@ -270,7 +269,6 @@
   </div>
 </section>
 
-<!-- Interactive Features -->
 <section class="section section-alt">
   <div class="container">
     <div class="text-center" style="margin-bottom: 3rem;">
@@ -302,7 +300,6 @@
   </div>
 </section>
 
-<!-- Call to Action -->
 <section class="section" style="position: relative; overflow: hidden;">
   <div class="container text-center" style="position: relative; z-index: 1;">
     <!-- Quote with plasma glow -->
@@ -338,11 +335,8 @@
       </a>
     </div>
   </div>
-  
-  
 </section>
 
-<!-- Footer -->
 <footer style="background: var(--bg-section); padding: 3rem 0; border-top: 1px solid var(--border-light);">
   <div class="container text-center">
     <div style="margin-bottom: 2rem;">

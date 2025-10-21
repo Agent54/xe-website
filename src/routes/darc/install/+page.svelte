@@ -31,13 +31,23 @@
         'For Fedora/RHEL: sudo rpm -i darc.rpm',
         'Launch Darc from your application menu'
       ]
+    },
+    chromeos: {
+      title: 'ChromeOS Installation',
+      steps: [
+        'Download the Darc Linux package (.deb)',
+        'Enable Linux (Beta) in ChromeOS Settings if not already enabled',
+        'Open the Files app and move the .deb file to the Linux files folder',
+        'Double-click the .deb file to install',
+        'Launch Darc from the app launcher'
+      ]
     }
   }
 </script>
 
 <svelte:head>
   <title>Install Darc Browser • Built on Xenon Framework</title>
-  <meta name="description" content="Install Darc browser on macOS, Windows, or Linux. Choose between Chrome or Helium browser engines." />
+  <meta name="description" content="Install Darc browser on macOS, Windows, Linux, or ChromeOS. Choose between Chrome or Helium browser engines." />
 </svelte:head>
 
 <div class="darc-page">
@@ -83,6 +93,15 @@
         </svg>
         Linux
       </button>
+      <button 
+        class="btn {selectedOS === 'chromeos' ? 'btn-primary' : 'btn-secondary'}"
+        onmousedown={() => selectedOS = 'chromeos'}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.14-7-7 3.14-7 7-7zm0 2c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/>
+        </svg>
+        ChromeOS
+      </button>
     </div>
     
     <div class="feature-card-enhanced" style="max-width: 800px; margin: 0 auto; padding: 3rem;">
@@ -98,7 +117,7 @@
       
       <div style="text-align: center; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
         <a href="#" class="btn btn-primary">
-          Download for {selectedOS === 'mac' ? 'macOS' : selectedOS === 'windows' ? 'Windows' : 'Linux'}
+          Download for {selectedOS === 'mac' ? 'macOS' : selectedOS === 'windows' ? 'Windows' : selectedOS === 'linux' ? 'Linux' : 'ChromeOS'}
         </a>
       </div>
     </div>

@@ -34,6 +34,27 @@
   --shadow-plasma: 0 0 26px rgba(245,248,250,0.7), 0 0 50px rgba(248,250,252,0.5), 0 0 70px rgba(250,252,254,0.3);
 }
 
+.darc-theme {
+  --grain-opacity: 0.045;
+  --text-primary: #e8e8e8;
+  --text-secondary: #b0b0b0;
+  --text-muted: #787878;
+  --border-light: #252525;
+  --border-strong: #353535;
+  --bg-section: #0a0a0a;
+  --bg-elevated: #151515;
+  --xenon-blue: #1a2530;
+  --xenon-purple: #1a1a20;
+  --shadow-soft: 0 1px 1px rgba(0,0,0,.2), 0 8px 20px rgba(0,0,0,.3);
+  --shadow-elev: 0 1px 1px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.4), 0 24px 60px rgba(0,0,0,.3);
+}
+
+.darc-theme body,
+.darc-theme {
+  background: #0d0d0d;
+  color: var(--text-primary);
+}
+
 * {
   margin: 0;
   padding: 0;

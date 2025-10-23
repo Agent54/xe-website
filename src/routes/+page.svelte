@@ -1,5 +1,9 @@
 <script>
+  import { onMount } from 'svelte'
+
   let currentFeature = 'framework'
+  let currentScreenshot = 0
+  const screenshots = ['/main.png', '/canvas.png']
   
   const features = {
     framework: {
@@ -15,6 +19,18 @@
       description: 'Full compatibility with modern web APIs and standards.'
     }
   }
+
+  function nextScreenshot() {
+    currentScreenshot = (currentScreenshot + 1) % screenshots.length
+  }
+
+  onMount(() => {
+    const interval = setInterval(() => {
+      nextScreenshot()
+    }, 10000)
+    
+    return () => clearInterval(interval)
+  })
 </script>
 
 <svelte:head>
@@ -22,7 +38,7 @@
   <meta name="description" content="Xenon is a framework for desktop apps. Darc is a purpose-built browser engine that runs on top of Xenon for app-like UIs." />
 </svelte:head>
 
-<section class="hero" style="position: relative; overflow: hidden; background: linear-gradient(180deg, #ffffff 0%, rgba(230,243,255,0.3) 100%);">
+<section class="hero" style="position: relative; overflow: hidden; background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);">
   <div class="container hero-grid">
     <div>
       <div class="hero-eyebrow" style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
@@ -71,9 +87,26 @@
         <a href="/darc" class="btn btn-secondary">Learn About Darc</a>
       </div>
     </div>
-    <div class="frame" aria-label="App screenshot placeholder" style="position: relative;">
-      <div class="frame-body" role="img" aria-label="Xenon and Darc application screenshot">
-        <img src="https://github.com/user-attachments/assets/b9ae22fa-a370-4d88-bd84-aaac4e13a9f1" alt="Xenon with Darc browser UI screenshot" />
+    <div class="frame" aria-label="App screenshot placeholder" style="position: relative; padding-bottom: 24px; padding-right: 24px;">
+      <div class="screenshot-stack" onmousedown={nextScreenshot}>
+        <!-- Background cards showing inactive screenshots -->
+        {#each screenshots as screenshot, i}
+          {#if i !== currentScreenshot}
+            <img 
+              src={screenshot} 
+              alt="Background screenshot" 
+              style="position: absolute; top: 12px; left: 12px; width: 100%; border-radius: 6px; display: block; z-index: {i}; box-shadow: 0 4px 8px rgba(0,0,0,0.1); box-shadow: 0 0 2px 0px white;"
+            />
+          {/if}
+        {/each}
+        
+        <!-- Front card showing current screenshot -->
+        <img 
+          src={screenshots[currentScreenshot]} 
+          alt="Xenon with Darc browser UI screenshot" 
+          style="position: relative; width: 100%; border-radius: 6px; display: block; z-index: 10; box-shadow: 0 4px 12px rgba(0,0,0,0.12); box-shadow: 0 0 2px 0px white;transition: transform 0.3s ease;"
+          class="screenshot-zoom"
+        />
       </div>
     </div>
   </div>
@@ -282,7 +315,7 @@
       {#each Object.keys(features) as key}
         <button 
           class="btn {currentFeature === key ? 'btn-primary' : 'btn-secondary'}"
-          on:mousedown={() => currentFeature = key}
+          onmousedown={() => currentFeature = key}
         >
           {key === 'framework' ? 'Performance' : key === 'security' ? 'Security' : 'Standards'}
         </button>

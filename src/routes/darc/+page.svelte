@@ -61,7 +61,7 @@
     </div>
     <div class="frame" aria-label="Darc browser screenshot" style="position: relative;">
       <div class="frame-body" role="img" aria-label="Darc browser UI screenshot">
-        <img src="https://github.com/user-attachments/assets/b9ae22fa-a370-4d88-bd84-aaac4e13a9f1" alt="Darc browser UI screenshot" />
+        <img src="/main.png" alt="Darc browser UI screenshot" />
       </div>
     </div>
   </div>

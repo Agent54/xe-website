@@ -120,7 +120,7 @@
   <div class="container text-center">
     <h2 class="text-primary" style="margin-bottom: 1rem;">What to build with Xenon?</h2>
     <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem;">
-      Build agentic, experimental, niche or totally personal browser experiences without sacrificing performance or security — and without rebuilding everything from scratch.
+      Build agentic, experimental, niche or fully personal browser experiences without sacrificing performance or security — and without rebuilding everything from scratch.
     </p>
   </div>
 </section>

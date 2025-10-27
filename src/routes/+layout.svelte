@@ -5,10 +5,19 @@
   let brandName
   let brandLink
   let isDarc
+  let currentPath
   $: {
     isDarc = $page.url.pathname.startsWith('/darc')
     brandName = isDarc ? 'Darc' : 'Xenon'
     brandLink = isDarc ? '/darc' : '/'
+    currentPath = $page.url.pathname
+  }
+
+  function isActive(path) {
+    if (path === '/') {
+      return currentPath === '/'
+    }
+    return currentPath.startsWith(path)
   }
 </script>
 
@@ -22,11 +31,11 @@
         <span aria-label={brandName}>{brandName}</span>
       </a>
       <nav class="nav" aria-label="Primary">
-        <a href="/#features">Xenon Framework</a>
-        <a href="/darc">Darc Browser</a>
-        <a href="/about">About Us</a>
-        <a href="/posts">Posts</a>
-        <a href="/#features" class="btn btn-secondary">Get Started</a>
+        <a href="/" class:active={isActive('/')} aria-current={isActive('/') ? 'page' : undefined}>Xenon Framework</a>
+        <a href="/darc" class:active={isActive('/darc')} aria-current={isActive('/darc') ? 'page' : undefined}>Darc Browser</a>
+        <a href="/about" class:active={isActive('/about')} aria-current={isActive('/about') ? 'page' : undefined}>About Us</a>
+        <a href="/posts" class:active={isActive('/posts')} aria-current={isActive('/posts') ? 'page' : undefined}>Posts</a>
+        <a href="https://github.com/agent54" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
       </nav>
     </div>
   </header>

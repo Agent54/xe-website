@@ -44,6 +44,10 @@ Xenon is built in a way to make a move in this direction at least possible. If y
   }
 
   function nextScreenshot() {
+    clearInterval(interval)
+    interval = setInterval(() => {
+      nextScreenshot()
+    }, 5000)
     currentScreenshot = (currentScreenshot + 1) % screenshots.length
   }
 
@@ -53,11 +57,11 @@ Xenon is built in a way to make a move in this direction at least possible. If y
       nextScreenshot()
     }
   }
-
+  let interval = null
   onMount(() => {
-    const interval = setInterval(() => {
+    interval = setInterval(() => {
       nextScreenshot()
-    }, 10000)
+    }, 5000)
     
     return () => clearInterval(interval)
   })

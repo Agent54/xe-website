@@ -34,7 +34,7 @@
         <a href="/" class:active={isActive('/')} aria-current={isActive('/') ? 'page' : undefined}>Xenon Framework</a>
         <a href="/darc" class:active={isActive('/darc')} aria-current={isActive('/darc') ? 'page' : undefined}>Darc Browser</a>
         <a href="/about" class:active={isActive('/about')} aria-current={isActive('/about') ? 'page' : undefined}>About Us</a>
-        <a href="/posts" class:active={isActive('/posts')} aria-current={isActive('/posts') ? 'page' : undefined}>Posts</a>
+        <!-- <a href="/posts" class:active={isActive('/posts')} aria-current={isActive('/posts') ? 'page' : undefined}>Posts</a> -->
         <a href="https://github.com/agent54" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
       </nav>
     </div>

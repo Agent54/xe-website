@@ -31,15 +31,15 @@ To keep this sustainable, we employ multiple layers of defense:
 Locked down mode is the default where everything is cryptographically signed, unmodified, tested, audited and used by the core dev team. This includes the small app catalog of officially supported apps and defaults for agent capabilities.
 All configurations that change this balance will have detailed visibility in what aspects are impacted and what worst case risks are associated.
 Applications and extensions have fine-grained permissions that give access to powerful features but with visibility and control.
-Shared apps have a web of trust based trust that is augmented by automatic code scanning, security agent audits and social feedback.
-Lastly it is possible to run in unlocked mode, essentially opening the whole system to ad hoc mutation and experiments or development. This can be done on a per window basis and is comparable to running as root.`
+Shared apps have a web of trust based model that is augmented by automatic code scanning, security agent audits and social feedback.
+It is possible to run in unlocked mode, essentially opening the whole system to ad -hoc mutation and experiments or development. This can be done on a per window basis and is comparable to having sudo access to your computer.`
     },
     compatibility: {
       title: 'Web Standards',
       description: `While Xenon only works in Chromium-based browsers at the moment, we are working on either bringing support for the APIs and standards Xenon needs to Electron and Firefox or adding a compatibility layer that would allow running Xenon apps on those engines too.
 We believe that a layer between engine and browser UI that is under the user's control is needed to sustain the evolution of an open software landscape.
 The alternative is a plethora of Electron and Chromium fork-based browsers that take up gigabytes on our machines and have horrific/outdated security as well as wasting years of developer time rebuilding the shared features from scratch every time.
-Xenon is built in a way to make a move in this direction at least possible. If you believe in this vision, please support us.`
+Xenon is built in a way to make a move in this direction possible. If you believe in this vision, please support us.`
     }
   }
 

@@ -3,16 +3,16 @@
   
   const features = {
     browsing: {
-      title: 'Real Browsing Experience',
-      description: 'Full-featured browser built for humans, not just AI agents.'
+      title: 'Full Browsing Experience',
+      description: 'Full-featured browser built for human power users, not just AI agents.'
     },
     agents: {
       title: 'AI That Works For You',
-      description: 'Agent features that enhance your workflow without taking control.'
+      description: 'Agent features that enhance your workflow without taking agency from users. Everything transparent, opt in and optional.'
     },
     security: {
       title: 'Privacy First',
-      description: 'Your data stays yours with granular permissions and sandboxing.'
+      description: `Your data stays yours with granular permissions and sandboxing as well as latest security pracices. We don't rush to be first, thanks to your donations, we have the time to make it open and make it right.`
     }
   }
   
@@ -34,7 +34,7 @@
 
 <svelte:head>
   <title>Darc Browser • Built on Xenon Framework</title>
-  <meta name="description" content="Darc is a purpose-built browser running on Xenon. Built for browsing, not just AI. Agent features that work for you. Security and privacy first." />
+  <meta name="description" content="Darc is a purpose-built browser for power users and developers running on Xenon. Built for browsing, and trustable AI. Agent features that work for you. Security and privacy first." />
 </svelte:head>
 
 <div class="darc-page">
@@ -50,7 +50,7 @@
         Darc Browser
       </h1>
       <p class="hero-desc">
-        A purpose-built browser running on the Xenon framework. Designed for real browsing experiences with agent features that enhance rather than replace human control.
+        A purpose-built browser running on the Xenon framework. Designed for real browsing experiences with agent features that enhance and empower rather than replace human control. All the power features you come to expect. And the ones you can imagine.
       </p>
       <div class="hero-ctas">
         <a href="#browsing" class="btn btn-primary" aria-label="Learn about Darc browsing" style="position: relative; overflow: hidden;">
@@ -76,35 +76,29 @@
           Built for Browsing, Not Just AI
         </h2>
         <p style="margin-bottom: 2rem; font-size: 1.1rem;">
-          Darc is a real browser first. While AI agents are powerful tools, they shouldn't be the only way to interact with the web. 
-          Darc provides a full-featured browsing experience designed for humans.
+          Darc is a real web browser first. While AI agents are powerful tools, they shouldn't be the only way to interact with the web. 
+          Darc provides a full-featured browsing experience designed for human agency.
         </p>
         <div style="margin-bottom: 2rem;">
-          <h3 style="margin-bottom: 1rem; color: var(--text-primary); font-size: 1.25rem;">Why Browsing Matters:</h3>
+          <h3 style="margin-bottom: 1rem; color: var(--text-primary); font-size: 1.25rem;">Power Features:</h3>
           <ul style="list-style: none; padding: 0;">
-            <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
                 <polyline points="20,6 9,17 4,12"/>
               </svg>
-              Direct interaction with web content
+             <div> Horizontal Tab groups, Spaces Sidebar and Zen Mode give you the power to use the optimal organization tools no matter if you have on tab, ten or thousands. A unified data model combine tabs and bookmarks so you have to never think about sessions or window restore again. Never lose a tab, close windows and reusume where you left off at any time.</div>
             </li>
-            <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
                 <polyline points="20,6 9,17 4,12"/>
               </svg>
-              Visual feedback and spatial navigation
+              Innovative view modes let you organize and view tabs, apps and content views in the optimal way for your current task. Resarch and annotate on a canvas, scroll seamlessly through your reading list, quickly find what you are looking for with a tile view or get back into your work with advaced history overview. Create your own: You are not a passive consumer but can change and create views.
             </li>
-            <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
                 <polyline points="20,6 9,17 4,12"/>
               </svg>
-              Full control over your browsing experience
-            </li>
-            <li style="display: flex; align-items: center; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-              Modern web standards and APIs
+              Link previews, gestures and Lightbox views allow you to browse smarter without even leaving your tab.
             </li>
           </ul>
         </div>
@@ -112,15 +106,15 @@
       <div class="feature-card-enhanced" style="padding: 3rem;">
         <h3 style="margin-bottom: 1.5rem; color: var(--text-primary); text-align: center;">Real Browser Features</h3>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px;">
+          <div style="border-left: 1px solid var(--text-primary); padding: 1rem; background: var(--bg-section); border-radius: 4px;">
             <strong style="display: block; margin-bottom: 0.5rem;">Tabs & Windows</strong>
             <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Multi-tab browsing with full window management</p>
           </div>
-          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px;">
+          <div style="border-left: 1px solid var(--text-primary); padding: 1rem; background: var(--bg-section); border-radius: 4px;">
             <strong style="display: block; margin-bottom: 0.5rem;">DevTools</strong>
             <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Built-in developer tools for debugging</p>
           </div>
-          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px;">
+          <div style="border-left: 1px solid var(--text-primary); padding: 1rem; background: var(--bg-section); border-radius: 4px;">
             <strong style="display: block; margin-bottom: 0.5rem;">Extensions</strong>
             <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Support for browser extensions and customization</p>
           </div>
@@ -130,7 +124,6 @@
   </div>
 </section>
 
-<!-- Agent Features That Work For You -->
 <section id="agents" class="section section-alt">
   <div class="container">
     <div class="text-center" style="margin-bottom: 3.5rem;">
@@ -138,13 +131,13 @@
         Agent Features That Work For You
       </h2>
       <p style="max-width: 640px; margin: 0 auto;">
-        AI agents should enhance your browsing, not replace it. Darc provides intelligent assistance while keeping you in control.
+        Agents should elevate your browsing, not take control over you.
       </p>
     </div>
     
     <div class="grid grid-3">
       <div class="feature-card-enhanced">
-        <div style="margin-bottom: 1.5rem; position: relative;">
+        <!-- <div style="margin-bottom: 1.5rem; position: relative;">
           <div style="width: 64px; height: 64px; background: #fafafa; border: 1px solid var(--border-light); border-radius: 2px; display: flex; align-items: center; justify-content: center;">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="6" y="10" width="20" height="2" fill="black"/>
@@ -152,26 +145,26 @@
               <rect x="6" y="20" width="18" height="2" fill="black"/>
             </svg>
           </div>
-        </div>
+        </div> -->
         <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Smart Suggestions</h3>
         <p style="line-height: 1.7;">Context-aware suggestions that help you navigate and complete tasks faster without interrupting your flow.</p>
       </div>
       
       <div class="feature-card-enhanced">
-        <div style="margin-bottom: 1.5rem; position: relative;">
+        <!-- <div style="margin-bottom: 1.5rem; position: relative;">
           <div style="width: 64px; height: 64px; background: #fafafa; border: 1px solid var(--border-light); border-radius: 2px; display: flex; align-items: center; justify-content: center;">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="8" y="8" width="16" height="16" fill="none" stroke="black" stroke-width="2"/>
               <rect x="12" y="12" width="8" height="8" fill="black"/>
             </svg>
           </div>
-        </div>
+        </div> -->
         <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Automation Assist</h3>
         <p style="line-height: 1.7;">Automate repetitive tasks with your explicit permission. You decide what runs and when.</p>
       </div>
       
       <div class="feature-card-enhanced">
-        <div style="margin-bottom: 1.5rem; position: relative;">
+        <!-- <div style="margin-bottom: 1.5rem; position: relative;">
           <div style="width: 64px; height: 64px; background: #fafafa; border: 1px solid var(--border-light); border-radius: 2px; display: flex; align-items: center; justify-content: center;">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <circle cx="16" cy="16" r="10" fill="none" stroke="black" stroke-width="2"/>
@@ -179,7 +172,7 @@
               <rect x="15" y="18" width="2" height="2" fill="black"/>
             </svg>
           </div>
-        </div>
+        </div> -->
         <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Transparent Actions</h3>
         <p style="line-height: 1.7;">Every agent action is visible and auditable. No hidden behavior or unexpected surprises.</p>
       </div>
@@ -194,19 +187,19 @@
       <div class="feature-card-enhanced" style="padding: 3rem;">
         <h3 style="margin-bottom: 1.5rem; color: var(--text-primary); text-align: center;">Security Layers</h3>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px; border-left: 3px solid var(--text-primary);">
+          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px; border-left: 1px solid var(--text-primary);">
             <strong style="display: block; margin-bottom: 0.5rem;">Process Isolation</strong>
             <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Each tab runs in its own sandboxed process</p>
           </div>
-          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px; border-left: 3px solid var(--text-primary);">
+          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px; border-left: 1px solid var(--text-primary);">
             <strong style="display: block; margin-bottom: 0.5rem;">Permission System</strong>
             <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Granular control over what sites can access</p>
           </div>
-          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px; border-left: 3px solid var(--text-primary);">
+          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px; border-left: 1px solid var(--text-primary);">
             <strong style="display: block; margin-bottom: 0.5rem;">Memory Safety</strong>
             <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Rust-based core prevents common vulnerabilities</p>
           </div>
-          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px; border-left: 3px solid var(--text-primary);">
+          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px; border-left: 1px solid var(--text-primary);">
             <strong style="display: block; margin-bottom: 0.5rem;">Local First</strong>
             <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Your data stays on your machine by default</p>
           </div>
@@ -405,10 +398,10 @@
       Experience a browser built for humans, powered by the Xenon framework.
     </p>
     <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://github.com/agent54" class="btn btn-primary btn-compact">
+      <a href="https://github.com/agent54/xe-darc" class="btn btn-primary btn-compact">
         View on GitHub
       </a>
-      <a href="https://github.com/agent54" class="btn btn-secondary btn-compact">
+      <a href="https://github.com/agent54/xe-darc" class="btn btn-secondary btn-compact">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
         </svg>

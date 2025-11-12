@@ -1,5 +1,30 @@
 <script>
+  import { onMount } from 'svelte';
+  
+  // Detect OS
+  function detectOS() {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    const platform = window.navigator.platform.toLowerCase();
+    
+    if (platform.includes('mac') || userAgent.includes('mac')) {
+      return 0; // macOS
+    } else if (platform.includes('win') || userAgent.includes('win')) {
+      return 1; // Windows
+    } else if (platform.includes('linux') || userAgent.includes('linux')) {
+      return 2; // Linux
+    } else if (userAgent.includes('cros')) {
+      return 3; // ChromeOS
+    }
+    return 0; // Default to macOS
+  }
+  
   let currentOS = 0
+  let selectedBrowserFeature = 'tabs'
+  let selectedSecurityFeature = 'permissions'
+  
+  onMount(() => {
+    currentOS = detectOS();
+  });
   
   const features = {
     browsing: {
@@ -16,12 +41,41 @@
     }
   }
   
+  const powerFeatures = [
+    { category: 'tabs', text: 'Horizontal Tab groups, Spaces Sidebar and Zen Mode give you optimal organization tools whether you have one tab, ten or thousands.' },
+    { category: 'tabs', text: 'Unified data model combines tabs and bookmarks—never think about sessions or window restore again. Never lose a tab, close windows and resume where you left off at any time.' },
+    { category: 'views', text: 'View modes let you organize tabs, apps and content in the optimal way for your current task.' },
+    { category: 'views', text: 'Research and annotate on a canvas, scroll through your reading list, find things with tile view, or get back into work with advanced history overview.' },
+    { category: 'views', text: "Create your own views—you're not a passive consumer but can change and create custom experiences." },
+    { category: 'productivity', text: 'Link previews, gestures and Lightbox views allow you to browse smarter without even leaving your tab.' }
+  ]
+  
+  const securityFeatures = [
+    { category: 'permissions', text: 'Unified permission layer across all resources that works the same way for agents, webapps, websites and extensions.' },
+    { category: 'permissions', text: 'See what permissions a site or agent has in an always available sidebar not hidden in popups and depths of settings pages.' },
+    { category: 'context', text: 'Advanced context management and visibility with indicators for sensitivity and trust scores for each item.' },
+    { category: 'context', text: 'Always know the risks. Never be in the dark about what an agent sees.' },
+    { category: 'auditing', text: 'Auditing from the ground up—not just a feature for enterprises but a basic need for everyone.' },
+    { category: 'auditing', text: 'Central database of every interaction including permission requests and browser history with user/agent attribution and filters.' },
+    { category: 'auditing', text: 'All data can stay fully local or in self-hosted databases.' }
+  ]
+  
   const operatingSystems = [
     { name: 'macOS', icon: 'M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z' },
     { name: 'Windows', icon: 'M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801' },
     { name: 'Linux', icon: 'M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.84-.41 1.684-.287 2.489.123.805.487 1.52 1.133 2.062.645.542 1.476.95 2.421 1.229.945.279 2.006.432 3.134.432 1.128 0 2.189-.153 3.134-.432.945-.279 1.776-.687 2.421-1.229.646-.542 1.01-1.257 1.133-2.062.123-.805-.009-1.649-.287-2.489-.589-1.771-1.831-3.47-2.716-4.521-.75-1.067-.974-1.928-1.05-3.02-.065-1.491 1.056-5.965-3.17-6.298-.165-.013-.325-.021-.48-.021zm-.005 2.024c.075 0 .15.003.224.009 2.438.195 1.688 3.235 1.734 4.31.054 1.257.367 2.32 1.285 3.629.918 1.309 2.053 2.863 2.564 4.403.192.578.292 1.14.207 1.615-.085.475-.346.851-.831 1.242-.485.391-1.184.732-2.002.972-.818.24-1.747.372-2.676.372-.929 0-1.858-.132-2.676-.372-.818-.24-1.517-.581-2.002-.972-.485-.391-.746-.767-.831-1.242-.085-.475.015-1.037.207-1.615.511-1.54 1.646-3.094 2.564-4.403.918-1.309 1.231-2.372 1.285-3.629.046-1.075-.704-4.115 1.734-4.31.074-.006.149-.009.224-.009z' },
-    { name: 'ChromeOS', icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.14-7-7 3.14-7 7-7zm0 2c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z' }
+    { name: 'ChromeOS', icon: 'M12 1.25C6.063 1.25 1.25 6.063 1.25 12S6.063 22.75 12 22.75 22.75 17.937 22.75 12 17.937 1.25 12 1.25zm0 2.5c4.825 0 8.75 3.925 8.75 8.75s-3.925 8.75-8.75 8.75S3.25 16.825 3.25 12 7.175 3.75 12 3.75zm0 2.5c-3.45 0-6.25 2.8-6.25 6.25S8.55 18.75 12 18.75s6.25-2.8 6.25-6.25S15.45 6.25 12 6.25zm0 2.5c2.07 0 3.75 1.68 3.75 3.75S14.07 16.25 12 16.25 8.25 14.57 8.25 12.5 9.93 8.75 12 8.75z' }
   ]
+  
+  $: filteredPowerFeatures = selectedBrowserFeature 
+    ? powerFeatures.filter(f => f.category === selectedBrowserFeature)
+    : powerFeatures
+  
+  $: filteredSecurityFeatures = selectedSecurityFeature 
+    ? securityFeatures.filter(f => f.category === selectedSecurityFeature)
+    : securityFeatures
+  
+  $: console.log('Selected:', selectedBrowserFeature, 'Filtered:', filteredPowerFeatures.length)
   
   function nextOS() {
     currentOS = (currentOS + 1) % operatingSystems.length
@@ -39,8 +93,7 @@
 
 <div class="darc-page">
 
-<!-- Hero Section -->
-<section class="hero" style="position: relative; overflow: hidden;">
+<section class="hero" style="position: relative; overflow: hidden; padding-top: 12rem; padding-bottom: 12rem;">
   <div class="container hero-grid">
     <div>
       <div class="hero-eyebrow" style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
@@ -67,10 +120,10 @@
   </div>
 </section>
 
-<!-- Build for Browsing, Not Just AI -->
-<section id="browsing" class="section">
+
+<section id="browsing" class="section section-alt">
   <div class="container">
-    <div class="grid grid-2" style="align-items: center; gap: 4rem;">
+    <div class="grid grid-2" style="padding-top: 2rem; align-items: flex-start; gap: 4rem;">
       <div>
         <h2 class="text-primary" style="margin-bottom: 1.5rem;">
           Built for Browsing, Not Just AI
@@ -79,70 +132,66 @@
           Darc is a real web browser first. While AI agents are powerful tools, they shouldn't be the only way to interact with the web. 
           Darc provides a full-featured browsing experience designed for human agency.
         </p>
-        <div style="margin-bottom: 2rem;">
-          <h3 style="margin-bottom: 1rem; color: var(--text-primary); font-size: 1.25rem;">Power Features:</h3>
-          <ul style="list-style: none; padding: 0;">
-            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-              <div>Horizontal Tab groups, Spaces Sidebar and Zen Mode give you optimal organization tools whether you have one tab, ten or thousands.</div>
-            </li>
-            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-              <div>Unified data model combines tabs and bookmarks—never think about sessions or window restore again. Never lose a tab, close windows and resume where you left off at any time.</div>
-            </li>
-            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-              <div>Innovative view modes let you organize tabs, apps and content in the optimal way for your current task.</div>
-            </li>
-            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-              <div>Research and annotate on a canvas, scroll through your reading list, find things with tile view, or get back into work with advanced history overview.</div>
-            </li>
-            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-              <div>Create your own views—you're not a passive consumer but can change and create custom experiences.</div>
-            </li>
-            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-              <div>Link previews, gestures and Lightbox views allow you to browse smarter without even leaving your tab.</div>
-            </li>
+        <div style="margin-bottom: 2rem; min-height: 250px;">
+          
+            <ul style="list-style: none; padding: 0;">
+            {#each filteredPowerFeatures as feature}
+              <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
+                  <polyline points="20,6 9,17 4,12"/>
+                </svg>
+                <div>{feature.text}</div>
+              </li>
+            {/each}
           </ul>
         </div>
       </div>
-      <div class="feature-card-enhanced" style="padding: 3rem;">
+      <div 
+        class="feature-card-enhanced" 
+        style="padding: 3rem;"
+      >
         <h3 style="margin-bottom: 1.5rem; color: var(--text-primary); text-align: center;">Browser Features</h3>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <div style="border-left: 1px solid var(--text-primary); padding: 1rem; background: var(--bg-section); border-radius: 4px;">
+          <button 
+            class="feature-selector" 
+            class:selected={selectedBrowserFeature === 'tabs'}
+            onmouseenter={() => {
+              console.log('Hovered tabs button');
+              selectedBrowserFeature = 'tabs';
+            }}
+          >
             <strong style="display: block; margin-bottom: 0.5rem;">Tabs & Windows</strong>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Multi-tab browsing with full window management</p>
-          </div>
-          <div style="border-left: 1px solid var(--text-primary); padding: 1rem; background: var(--bg-section); border-radius: 4px;">
+            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Tab groups, spaces, and unified bookmarks for seamless organization</p>
+          </button>
+          <button 
+            class="feature-selector" 
+            class:selected={selectedBrowserFeature === 'views'}
+            onmouseenter={() => {
+              console.log('Hovered views button');
+              selectedBrowserFeature = 'views';
+            }}
+          >
             <strong style="display: block; margin-bottom: 0.5rem;">View Modes</strong>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">...</p>
-          </div>
-          <div style="border-left: 1px solid var(--text-primary); padding: 1rem; background: var(--bg-section); border-radius: 4px;">
+            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Canvas, reading list, tile view, and customizable layouts</p>
+          </button>
+          <button 
+            class="feature-selector" 
+            class:selected={selectedBrowserFeature === 'productivity'}
+            onmouseenter={() => {
+              console.log('Hovered productivity button');
+              selectedBrowserFeature = 'productivity';
+            }}
+          >
             <strong style="display: block; margin-bottom: 0.5rem;">Productivity</strong>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);"></p>
-          </div>
+            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Link previews, gestures, and lightbox views for efficient browsing</p>
+          </button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="agents" class="section section-alt">
+<section id="agents" class="section">
   <div class="container">
     <div class="text-center" style="margin-bottom: 3.5rem;">
       <h2 class="text-primary" style="margin-bottom: 12px;">
@@ -165,7 +214,7 @@
           </div>
         </div> -->
         <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Smart Suggestions</h3>
-        <p style="line-height: 1.7;">Context-aware suggestions that help you navigate and complete tasks faster without interrupting your flow.</p>
+        <p style="line-height: 1.7;">Context-aware suggestions that help you navigate and complete tasks faster without interrupting your flow. Think of it as tab complete everywhere.</p>
       </div>
       
       <div class="feature-card-enhanced">
@@ -177,8 +226,8 @@
             </svg>
           </div>
         </div> -->
-        <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Automation Assist</h3>
-        <p style="line-height: 1.7;">Automate repetitive tasks with your explicit permission. You decide what runs and when.</p>
+        <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Next Generation Browser Automation</h3>
+        <p style="line-height: 1.7;">Existing automation features feel like glue to get anything done or don't scale to be used for more than a few tabs. We build a new system into the core that instantly reacts and goes out of your way just as fast.</p>
       </div>
       
       <div class="feature-card-enhanced">
@@ -191,38 +240,17 @@
             </svg>
           </div>
         </div> -->
-        <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Transparent Actions</h3>
-        <p style="line-height: 1.7;">Every agent action is visible and auditable. No hidden behavior or unexpected surprises.</p>
+        <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Runs where you want</h3>
+        <p style="line-height: 1.7;">Everything can run fully local or in the cloud depending on your resources and preferences.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Security and Privacy -->
-<section id="security" class="section">
+<section id="security" class="section section-alt">
   <div class="container">
-    <div class="grid grid-2" style="align-items: center; gap: 4rem;">
-      <div class="feature-card-enhanced" style="padding: 3rem;">
-        <h3 style="margin-bottom: 1.5rem; color: var(--text-primary); text-align: center;">Security Layers</h3>
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px; border-left: 1px solid var(--text-primary);">
-            <strong style="display: block; margin-bottom: 0.5rem;">Process Isolation</strong>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Each tab runs in its own sandboxed process</p>
-          </div>
-          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px; border-left: 1px solid var(--text-primary);">
-            <strong style="display: block; margin-bottom: 0.5rem;">Permission System</strong>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Granular control over what sites can access</p>
-          </div>
-          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px; border-left: 1px solid var(--text-primary);">
-            <strong style="display: block; margin-bottom: 0.5rem;">Memory Safety</strong>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Rust-based core prevents common vulnerabilities</p>
-          </div>
-          <div style="padding: 1rem; background: var(--bg-section); border-radius: 4px; border-left: 1px solid var(--text-primary);">
-            <strong style="display: block; margin-bottom: 0.5rem;">Local First</strong>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Your data stays on your machine by default</p>
-          </div>
-        </div>
-      </div>
+    <div class="grid grid-2" style="padding-top: 2rem; align-items: flex-start; gap: 4rem;">
       <div>
         <h2 class="text-primary" style="margin-bottom: 1.5rem;">
           Security and Privacy
@@ -231,34 +259,59 @@
           Darc is built with security and privacy as core principles, not afterthoughts. 
           Running on Xenon's secure foundation, Darc provides multiple layers of protection for your browsing.
         </p>
-        <div style="margin-bottom: 2rem;">
-          <h3 style="margin-bottom: 1rem; color: var(--text-primary); font-size: 1.25rem;">Privacy Guarantees:</h3>
-          <ul style="list-style: none; padding: 0;">
-            <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-              No telemetry or tracking by default
-            </li>
-            <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-              You control what data leaves your device
-            </li>
-            <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-              Open source and auditable
-            </li>
-            <li style="display: flex; align-items: center; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-              Built on proven Chromium security model
-            </li>
+        <div style="margin-bottom: 2rem; min-height: 250px;">
+          
+            <ul style="list-style: none; padding: 0;">
+            {#each filteredSecurityFeatures as feature}
+              <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
+                  <polyline points="20,6 9,17 4,12"/>
+                </svg>
+                <div>{feature.text}</div>
+              </li>
+            {/each}
           </ul>
+        </div>
+      </div>
+      <div 
+        class="feature-card-enhanced" 
+        style="padding: 3rem;"
+      >
+        <h3 style="margin-bottom: 1.5rem; color: var(--text-primary); text-align: center;">Security Features</h3>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <button 
+            class="feature-selector" 
+            class:selected={selectedSecurityFeature === 'permissions'}
+            onmouseenter={() => {
+              console.log('Hovered permissions button');
+              selectedSecurityFeature = 'permissions';
+            }}
+          >
+            <strong style="display: block; margin-bottom: 0.5rem;">Permissions</strong>
+            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Unified permission layer with always-visible controls</p>
+          </button>
+          <button 
+            class="feature-selector" 
+            class:selected={selectedSecurityFeature === 'context'}
+            onmouseenter={() => {
+              console.log('Hovered context button');
+              selectedSecurityFeature = 'context';
+            }}
+          >
+            <strong style="display: block; margin-bottom: 0.5rem;">Context Management</strong>
+            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Advanced visibility with sensitivity and trust scores</p>
+          </button>
+          <button 
+            class="feature-selector" 
+            class:selected={selectedSecurityFeature === 'auditing'}
+            onmouseenter={() => {
+              console.log('Hovered auditing button');
+              selectedSecurityFeature = 'auditing';
+            }}
+          >
+            <strong style="display: block; margin-bottom: 0.5rem;">Auditing</strong>
+            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Complete interaction history with local or self-hosted storage</p>
+          </button>
         </div>
       </div>
     </div>
@@ -270,67 +323,100 @@
   <div class="container">
     <div class="text-center" style="margin-bottom: 3.5rem;">
       <h2 class="text-primary" style="margin-bottom: 12px;">
-        Supported Browser Engines
+        Multiple Browser Engines
       </h2>
       <p style="max-width: 640px; margin: 0 auto;">
-        Choose the browser engine that works best for you. Both provide full web standards support.
+        Choose the browser engine that works best for you.
       </p>
     </div>
     
-    <div class="grid grid-2" style="max-width: 900px; margin: 0 auto;">
+    <div class="grid grid-3" style="margin: 0 auto;">
       <div class="feature-card-enhanced">
         <h3 style="margin-bottom: 1rem; color: var(--text-primary); font-size: 1.25rem;">Chrome</h3>
         <p style="line-height: 1.7; margin-bottom: 1.5rem;">
-          Use your existing Chrome browser installation. Leverages the Chrome engine you already have for rendering and web standards support.
+          The google browser you know and love. Full featured and always up to date.
         </p>
         <ul style="list-style: none; padding: 0;">
           <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
               <polyline points="20,6 9,17 4,12"/>
             </svg>
             Uses existing Chrome installation
           </li>
           <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
               <polyline points="20,6 9,17 4,12"/>
             </svg>
             Automatic updates via Chrome
           </li>
           <li style="display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
               <polyline points="20,6 9,17 4,12"/>
             </svg>
-            Familiar rendering behavior
+            All features including wedevine for spotify, netflix
           </li>
         </ul>
+        <a href="https://www.google.com/chrome/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-compact" style="margin-top: 1.5rem; display: inline-block; text-decoration: none;">
+          Download Chrome
+        </a>
       </div>
       
-      <div class="feature-card-enhanced" style="border: 2px solid rgba(255, 255, 255, 0.2);">
-        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-          <h3 style="margin: 0; color: var(--text-primary); font-size: 1.25rem;">Helium</h3>
-          <span style="background: rgba(255, 255, 255, 0.1); padding: 3px 10px; border-radius: 3px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Recommended</span>
-        </div>
+      <div class="feature-card-enhanced">
+        <h3 style="margin-bottom: 1rem; color: var(--text-primary); font-size: 1.25rem;">Helium</h3>
         <p style="line-height: 1.7; margin-bottom: 1.5rem;">
-          Optimized Chromium-based engine built specifically for Xenon and Darc. Provides enhanced performance and tighter integration.
+          Minimal ungoogled chromium release with focus on performance and privacy.
         </p>
         <ul style="list-style: none; padding: 0;">
           <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
               <polyline points="20,6 9,17 4,12"/>
             </svg>
-            Optimized for Xenon framework
+            Lightweight and super fast
           </li>
           <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
               <polyline points="20,6 9,17 4,12"/>
             </svg>
-            Better performance and memory usage
+            Privacy focused
+          </li>
+          <li style="display: flex; align-items: flex-start; gap: 0.5rem; color: var(--text-secondary);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            <span style="font-size: 0.9rem;">No Widevine support yet (DRM needed for Spotify, Netflix, etc.)</span>
+          </li>
+        </ul>
+        <a href="https://helium.computer/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-compact" style="margin-top: 1.5rem; display: inline-block; text-decoration: none;">
+          Download Helium
+        </a>
+      </div>
+
+      <div class="feature-card-enhanced" style="opacity: 0.7;">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+          <h3 style="margin: 0; color: var(--text-primary); font-size: 1.25rem;">More comming</h3>
+          <span style="background: rgba(255, 255, 255, 0.08); padding: 3px 10px; border-radius: 3px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Planned</span>
+        </div>
+        <p style="line-height: 1.7; margin-bottom: 1.5rem;">
+          Future support for additional browsers planned.
+        </p>
+        <ul style="list-style: none; padding: 0;">
+          <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            Edge
+          </li>
+          <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            Vivaldi
           </li>
           <li style="display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20,6 9,17 4,12"/>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
+              <circle cx="12" cy="12" r="10"/>
             </svg>
-            Tighter Darc integration
+            Firefox
           </li>
         </ul>
       </div>
@@ -355,7 +441,7 @@
         <div class="screenshot-container">
           <button 
             class="carousel-btn carousel-prev" 
-            onmousedown={prevOS}
+            onclick={prevOS}
             aria-label="Previous operating system"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -378,7 +464,7 @@
           
           <button 
             class="carousel-btn carousel-next" 
-            onmousedown={nextOS}
+            onclick={nextOS}
             aria-label="Next operating system"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -397,7 +483,7 @@
           <button 
             class="carousel-dot"
             class:active={index === currentOS}
-            onmousedown={() => currentOS = index}
+            onclick={() => currentOS = index}
             aria-label="Go to {operatingSystems[index].name}"
           ></button>
         {/each}
@@ -416,9 +502,6 @@
       Experience a browser built for humans, powered by the Xenon framework.
     </p>
     <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://github.com/agent54/xe-darc" class="btn btn-primary btn-compact">
-        View on GitHub
-      </a>
       <a href="https://github.com/agent54/xe-darc" class="btn btn-secondary btn-compact">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -741,6 +824,37 @@
       rgba(255, 255, 255, 0.3) 100%
     );
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
+  }
+  
+  .feature-selector {
+    color: inherit;
+    font-family: inherit;
+    padding: 1rem;
+    background: var(--bg-section);
+    border-radius: 4px;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s ease;
+    border: none;
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
+    pointer-events: auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .feature-selector:hover {
+    background: #1d1d1d;
+    border-left: 2px solid rgba(255, 255, 255, 0.4);
+  }
+  
+  .feature-selector.selected {
+    border-left: 3px solid rgba(255, 255, 255, 0.8);
+  }
+  
+  .feature-selector strong,
+  .feature-selector p {
+    pointer-events: none;
   }
 </style>
 

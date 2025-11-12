@@ -40,6 +40,13 @@
           If you believe in our mission, consider supporting us through donations on <a href="https://opencollective.com/user-and-agents" target="_blank">Open Collective</a> or if you are involved in chromium or firefox by supporting the APIs and architecture vision we rely on. Every contribution helps us continue building user-first software.
         </p>
       </div>
+
+      <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-section); border-radius: 8px; border: 1px solid var(--border-light)">
+        <h2 style="margin: 0 0 .75rem 0; font-size: 1.1rem; color: var(--text-primary)">Contact Us</h2>
+        <p style="margin: 0; color: var(--text-secondary)">
+          Have questions or feedback? Reach out to us at <a href="mailto:hello@xe.dev">hello@xe.dev</a>
+        </p>
+      </div>
     </div>
   </div>
 </section>

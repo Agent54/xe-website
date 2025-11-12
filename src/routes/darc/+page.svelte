@@ -86,37 +86,55 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
                 <polyline points="20,6 9,17 4,12"/>
               </svg>
-             <div> Horizontal Tab groups, Spaces Sidebar and Zen Mode give you the power to use the optimal organization tools no matter if you have on tab, ten or thousands. A unified data model combine tabs and bookmarks so you have to never think about sessions or window restore again. Never lose a tab, close windows and reusume where you left off at any time.</div>
+              <div>Horizontal Tab groups, Spaces Sidebar and Zen Mode give you optimal organization tools whether you have one tab, ten or thousands.</div>
             </li>
             <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
                 <polyline points="20,6 9,17 4,12"/>
               </svg>
-              Innovative view modes let you organize and view tabs, apps and content views in the optimal way for your current task. Resarch and annotate on a canvas, scroll seamlessly through your reading list, quickly find what you are looking for with a tile view or get back into your work with advaced history overview. Create your own: You are not a passive consumer but can change and create views.
+              <div>Unified data model combines tabs and bookmarks—never think about sessions or window restore again. Never lose a tab, close windows and resume where you left off at any time.</div>
             </li>
             <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
                 <polyline points="20,6 9,17 4,12"/>
               </svg>
-              Link previews, gestures and Lightbox views allow you to browse smarter without even leaving your tab.
+              <div>Innovative view modes let you organize tabs, apps and content in the optimal way for your current task.</div>
+            </li>
+            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
+                <polyline points="20,6 9,17 4,12"/>
+              </svg>
+              <div>Research and annotate on a canvas, scroll through your reading list, find things with tile view, or get back into work with advanced history overview.</div>
+            </li>
+            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
+                <polyline points="20,6 9,17 4,12"/>
+              </svg>
+              <div>Create your own views—you're not a passive consumer but can change and create custom experiences.</div>
+            </li>
+            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
+                <polyline points="20,6 9,17 4,12"/>
+              </svg>
+              <div>Link previews, gestures and Lightbox views allow you to browse smarter without even leaving your tab.</div>
             </li>
           </ul>
         </div>
       </div>
       <div class="feature-card-enhanced" style="padding: 3rem;">
-        <h3 style="margin-bottom: 1.5rem; color: var(--text-primary); text-align: center;">Real Browser Features</h3>
+        <h3 style="margin-bottom: 1.5rem; color: var(--text-primary); text-align: center;">Browser Features</h3>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
           <div style="border-left: 1px solid var(--text-primary); padding: 1rem; background: var(--bg-section); border-radius: 4px;">
             <strong style="display: block; margin-bottom: 0.5rem;">Tabs & Windows</strong>
             <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Multi-tab browsing with full window management</p>
           </div>
           <div style="border-left: 1px solid var(--text-primary); padding: 1rem; background: var(--bg-section); border-radius: 4px;">
-            <strong style="display: block; margin-bottom: 0.5rem;">DevTools</strong>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Built-in developer tools for debugging</p>
+            <strong style="display: block; margin-bottom: 0.5rem;">View Modes</strong>
+            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">...</p>
           </div>
           <div style="border-left: 1px solid var(--text-primary); padding: 1rem; background: var(--bg-section); border-radius: 4px;">
-            <strong style="display: block; margin-bottom: 0.5rem;">Extensions</strong>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">Support for browser extensions and customization</p>
+            <strong style="display: block; margin-bottom: 0.5rem;">Productivity</strong>
+            <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);"></p>
           </div>
         </div>
       </div>

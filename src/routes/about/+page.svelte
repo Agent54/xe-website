@@ -21,7 +21,7 @@
       </p>
 
       <p style="margin-bottom: 1.5rem">
-        We are part of a broader community centered around these shared values: <br> <a href="https://userandagents.com" target="_blank">User & Agents</a>
+        We are part of a broader community centered around these shared values: <br> <a href="https://userandagents.com" target="_blank" style="color: var(--text-primary); text-decoration: none; font-weight: 600;">User & Agents</a>
       </p>
 
       <div style="margin-top: 2.5rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(88, 101, 242, 0.08), rgba(88, 101, 242, 0.03)); border-radius: 8px; border: 1px solid rgba(88, 101, 242, 0.2)">
@@ -37,14 +37,14 @@
       <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-section); border-radius: 8px; border: 1px solid var(--border-light)">
         <h2 style="margin: 0 0 .75rem 0; font-size: 1.1rem; color: var(--text-primary)">Support the Project</h2>
         <p style="margin: 0; color: var(--text-secondary)">
-          If you believe in our mission, consider supporting us through donations on <a href="https://opencollective.com/user-and-agents" target="_blank">Open Collective</a> or if you are involved in chromium or firefox by supporting the APIs and architecture vision we rely on. Every contribution helps us continue building user-first software.
+          If you believe in our mission, consider supporting us through donations on <a href="https://opencollective.com/user-and-agents" target="_blank" style="color: var(--text-primary); text-decoration: none; font-weight: 600;">Open Collective</a> or if you are involved in chromium or firefox by supporting the APIs and architecture vision we rely on. Every contribution helps us continue building user-first software.
         </p>
       </div>
 
       <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-section); border-radius: 8px; border: 1px solid var(--border-light)">
         <h2 style="margin: 0 0 .75rem 0; font-size: 1.1rem; color: var(--text-primary)">Contact Us</h2>
         <p style="margin: 0; color: var(--text-secondary)">
-          Have questions or feedback? Reach out to us at <a href="mailto:hello@xe.dev">hello@xe.dev</a>
+          Have questions or feedback? Reach out to us at <a href="mailto:hello@xe.dev" style="color: var(--text-primary); text-decoration: none; font-weight: 600;">hello@xe.dev</a>
         </p>
       </div>
     </div>

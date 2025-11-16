@@ -238,6 +238,25 @@
     background: rgba(255, 255, 255, 0.05);
   }
   
+  :global(body:has(.darc-page) .nav a.active) {
+    color: #e8e8e8;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  :global(body:has(.darc-page) .mobile-menu-toggle) {
+    color: #e8e8e8;
+  }
+  
+  @media (max-width: 768px) {
+    :global(body:has(.darc-page) .nav-mobile) {
+      background: rgba(18, 18, 18, 0.85);
+      border-top-color: rgba(255, 255, 255, 0.08);
+      border-left-color: rgba(255, 255, 255, 0.08);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+    }
+  }
+  
   :global(body:has(.darc-page) .btn-secondary) {
     background: rgba(255, 255, 255, 0.05);
     color: #e8e8e8;

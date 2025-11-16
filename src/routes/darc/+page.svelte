@@ -34,30 +34,30 @@
     },
     agents: {
       title: 'AI That Works For You',
-      description: 'Agent features that enhance your workflow without taking agency from users. Everything transparent, opt in and optional.'
+      description: 'Agent features that enhance your workflow without taking agency from users. Everything is transparent, opt-in, and optional.'
     },
     security: {
       title: 'Privacy First',
-      description: `Your data stays yours with granular permissions and sandboxing as well as latest security pracices. We don't rush to be first, thanks to your donations, we have the time to make it open and make it right.`
+      description: `Your data stays yours with granular permissions and sandboxing as well as latest security practices. We don't rush to be first. Thanks to your donations, we have the time to make it open and make it right.`
     }
   }
   
   const powerFeatures = [
-    { category: 'tabs', text: 'Horizontal Tab groups, Spaces Sidebar and Zen Mode give you optimal organization tools whether you have one tab, ten or thousands.' },
-    { category: 'tabs', text: 'Unified data model combines tabs and bookmarks—never think about sessions or window restore again. Never lose a tab, close windows and resume where you left off at any time.' },
+    { category: 'tabs', text: 'Horizontal tab groups, Spaces sidebar, and Zen Mode give you optimal organization tools whether you have one tab, ten, or thousands.' },
+    { category: 'tabs', text: 'Unified data model combines tabs and bookmarks—never think about sessions or window restore again. Never lose a tab; close windows and resume where you left off at any time.' },
     { category: 'views', text: 'View modes let you organize tabs, apps and content in the optimal way for your current task.' },
     { category: 'views', text: 'Research and annotate on a canvas, scroll through your reading list, find things with tile view, or get back into work with advanced history overview.' },
     { category: 'views', text: "Create your own views—you're not a passive consumer but can change and create custom experiences." },
-    { category: 'productivity', text: 'Link previews, gestures and Lightbox views allow you to browse smarter without even leaving your tab.' }
+    { category: 'productivity', text: 'Link previews, gestures, and Lightbox views allow you to browse smarter without even leaving your tab.' }
   ]
   
   const securityFeatures = [
-    { category: 'permissions', text: 'Unified permission layer across all resources that works the same way for agents, webapps, websites and extensions.' },
-    { category: 'permissions', text: 'See what permissions a site or agent has in an always available sidebar not hidden in popups and depths of settings pages.' },
+    { category: 'permissions', text: 'Unified permission layer across all resources that works the same way for agents, web apps, websites, and extensions.' },
+    { category: 'permissions', text: 'See what permissions a site or agent has in an always-available sidebar, not hidden in pop-ups and the depths of settings pages.' },
     { category: 'context', text: 'Advanced context management and visibility with indicators for sensitivity and trust scores for each item.' },
     { category: 'context', text: 'Always know the risks. Never be in the dark about what an agent sees.' },
     { category: 'auditing', text: 'Auditing from the ground up—not just a feature for enterprises but a basic need for everyone.' },
-    { category: 'auditing', text: 'Central database of every interaction including permission requests and browser history with user/agent attribution and filters.' },
+    { category: 'auditing', text: 'Central database of every interaction, including permission requests and browser history with user/agent attribution and filters.' },
     { category: 'auditing', text: 'All data can stay fully local or in self-hosted databases.' }
   ]
   
@@ -104,7 +104,7 @@
         Darc Browser
       </h1>
       <p class="hero-desc">
-        A purpose-built browser running on the Xenon framework. Designed for real browsing experiences with agent features that enhance and empower rather than replace human control. All the power features you come to expect. And the ones you can imagine.
+        A purpose-built browser running on the Xenon framework. Designed for real browsing experiences with agent features that enhance and empower rather than replace human control. All the power features you've come to expect—and the ones you can imagine.
       </p>
       <div class="hero-ctas">
         <a href="#browsing" class="btn btn-primary" aria-label="Learn about Darc browsing" style="position: relative; overflow: hidden;">
@@ -199,7 +199,7 @@
         Agent Features That Work For You
       </h2>
       <p style="max-width: 640px; margin: 0 auto;">
-        Agents should elevate your browsing, not take control over you.
+        Agents should elevate your browsing, not take control away from you.
       </p>
     </div>
     
@@ -215,7 +215,7 @@
           </div>
         </div> -->
         <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Smart Suggestions</h3>
-        <p style="line-height: 1.7;">Context-aware suggestions that help you navigate and complete tasks faster without interrupting your flow. Think of it as tab complete everywhere.</p>
+        <p style="line-height: 1.7;">Context-aware suggestions that help you navigate and complete tasks faster without interrupting your flow. Think of it as tab-complete everywhere.</p>
       </div>
       
       <div class="feature-card-enhanced">
@@ -227,8 +227,8 @@
             </svg>
           </div>
         </div> -->
-        <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Next Generation Browser Automation</h3>
-        <p style="line-height: 1.7;">Existing automation features feel like glue to get anything done or don't scale to be used for more than a few tabs. We build a new system into the core that instantly reacts and goes out of your way just as fast.</p>
+        <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Next-generation Browser Automation</h3>
+        <p style="line-height: 1.7;">Existing automation features feel like glue to get anything done and don't scale beyond a few tabs. We build a new system into the core that instantly reacts and gets out of your way just as fast.</p>
       </div>
       
       <div class="feature-card-enhanced">
@@ -241,8 +241,8 @@
             </svg>
           </div>
         </div> -->
-        <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Runs where you want</h3>
-        <p style="line-height: 1.7;">Everything can run fully local or in the cloud depending on your resources and preferences.</p>
+        <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Runs Where You Want</h3>
+        <p style="line-height: 1.7;">Everything can run fully locally or in the cloud, depending on your resources and preferences.</p>
       </div>
     </div>
   </div>

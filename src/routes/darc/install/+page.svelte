@@ -143,7 +143,7 @@
   <div class="container">
     <h2 class="text-center" style="margin-bottom: 1.5rem;">Browser Engine Selection</h2>
     <p class="text-center" style="max-width: 640px; margin: 0 auto 3rem;">
-      Chose which engine to use.
+      Choose which engine to use.
     </p>
     
     <BrowserEngines />

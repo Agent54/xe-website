@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import BrowserEngines from '$lib/BrowserEngines.svelte';
   
   // Detect OS
   function detectOS() {
@@ -61,10 +62,10 @@
   ]
   
   const operatingSystems = [
-    { name: 'macOS', icon: ['M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z'], viewBox: '0 0 24 24' },
-    { name: 'Windows', icon: ['M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801'], viewBox: '0 0 24 24' },
-    { name: 'Linux', icon: ['M14.62,8.35c-.42.28-1.75,1-1.95,1.19a.82.82,0,0,1-1.14,0c-.2-.16-1.53-.92-1.95-1.19s-.45-.7.08-.92a6.16,6.16,0,0,1,4.91,0c.49.21.51.6,0,.9m7.22,7.28A19.09,19.09,0,0,0,18,10a4.31,4.31,0,0,1-1.06-1.88c-.1-.33-.17-.67-.24-1A11.32,11.32,0,0,0,16,4.47,4.06,4.06,0,0,0,12.16,2,4.2,4.2,0,0,0,8.21,4.4a5.9,5.9,0,0,0-.46,1.34c-.17.76-.32,1.55-.5,2.32a3.38,3.38,0,0,1-1,1.71,19.53,19.53,0,0,0-3.88,5.35A6.09,6.09,0,0,0,2,16c-.19.66.29,1.12,1,1,.44-.09.88-.18,1.3-.31s.57,0,.67.35a6.73,6.73,0,0,0,4.24,4.5c4.12,1.56,8.93-.66,10-4.58.07-.27.17-.37.47-.27.46.14.93.24,1.4.35a.72.72,0,0,0,.92-.64,1.44,1.44,0,0,0-.16-.73'], viewBox: '0 0 24 24' },
-    { name: 'ChromeOS', icon: ['M938.67 512.01c0-44.59-6.82-87.6-19.54-128H682.67a212.372 212.372 0 0 1 42.67 128c.06 38.71-10.45 76.7-30.42 109.87l-182.91 316.8c235.65-.01 426.66-191.02 426.66-426.67z', 'M576.79 401.63a127.92 127.92 0 0 0-63.56-17.6c-22.36-.22-44.39 5.43-63.89 16.38s-35.79 26.82-47.25 46.02a128.005 128.005 0 0 0-2.16 127.44l1.24 2.13a127.906 127.906 0 0 0 46.36 46.61 127.907 127.907 0 0 0 63.38 17.44c22.29.2 44.24-5.43 63.68-16.33a127.94 127.94 0 0 0 47.16-45.79v-.01l1.11-1.92a127.984 127.984 0 0 0 .29-127.46 127.957 127.957 0 0 0-46.36-46.91z', 'M394.45 333.96A213.336 213.336 0 0 1 512 298.67h369.58A426.503 426.503 0 0 0 512 85.34a425.598 425.598 0 0 0-171.74 35.98 425.644 425.644 0 0 0-142.62 102.22l118.14 204.63a213.397 213.397 0 0 1 78.67-94.21zm117.56 604.72H512zm-97.25-236.73a213.284 213.284 0 0 1-89.54-86.81L142.48 298.6c-36.35 62.81-57.13 135.68-57.13 213.42 0 203.81 142.93 374.22 333.95 416.55h.04l118.19-204.71a213.315 213.315 0 0 1-122.77-21.91z'], viewBox: '0 0 1024 1024' }
+    { name: 'macOS', icon: ['M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z'], viewBox: '0 0 24 24', screenshot: '/main.png' },
+    { name: 'Windows', icon: ['M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801'], viewBox: '0 0 24 24', screenshot: '/windows.png' },
+    { name: 'Linux', icon: ['M14.62,8.35c-.42.28-1.75,1-1.95,1.19a.82.82,0,0,1-1.14,0c-.2-.16-1.53-.92-1.95-1.19s-.45-.7.08-.92a6.16,6.16,0,0,1,4.91,0c.49.21.51.6,0,.9m7.22,7.28A19.09,19.09,0,0,0,18,10a4.31,4.31,0,0,1-1.06-1.88c-.1-.33-.17-.67-.24-1A11.32,11.32,0,0,0,16,4.47,4.06,4.06,0,0,0,12.16,2,4.2,4.2,0,0,0,8.21,4.4a5.9,5.9,0,0,0-.46,1.34c-.17.76-.32,1.55-.5,2.32a3.38,3.38,0,0,1-1,1.71,19.53,19.53,0,0,0-3.88,5.35A6.09,6.09,0,0,0,2,16c-.19.66.29,1.12,1,1,.44-.09.88-.18,1.3-.31s.57,0,.67.35a6.73,6.73,0,0,0,4.24,4.5c4.12,1.56,8.93-.66,10-4.58.07-.27.17-.37.47-.27.46.14.93.24,1.4.35a.72.72,0,0,0,.92-.64,1.44,1.44,0,0,0-.16-.73'], viewBox: '0 0 24 24', screenshot: '/linux.png' },
+    { name: 'ChromeOS', icon: ['M938.67 512.01c0-44.59-6.82-87.6-19.54-128H682.67a212.372 212.372 0 0 1 42.67 128c.06 38.71-10.45 76.7-30.42 109.87l-182.91 316.8c235.65-.01 426.66-191.02 426.66-426.67z', 'M576.79 401.63a127.92 127.92 0 0 0-63.56-17.6c-22.36-.22-44.39 5.43-63.89 16.38s-35.79 26.82-47.25 46.02a128.005 128.005 0 0 0-2.16 127.44l1.24 2.13a127.906 127.906 0 0 0 46.36 46.61 127.907 127.907 0 0 0 63.38 17.44c22.29.2 44.24-5.43 63.68-16.33a127.94 127.94 0 0 0 47.16-45.79v-.01l1.11-1.92a127.984 127.984 0 0 0 .29-127.46 127.957 127.957 0 0 0-46.36-46.91z', 'M394.45 333.96A213.336 213.336 0 0 1 512 298.67h369.58A426.503 426.503 0 0 0 512 85.34a425.598 425.598 0 0 0-171.74 35.98 425.644 425.644 0 0 0-142.62 102.22l118.14 204.63a213.397 213.397 0 0 1 78.67-94.21zm117.56 604.72H512zm-97.25-236.73a213.284 213.284 0 0 1-89.54-86.81L142.48 298.6c-36.35 62.81-57.13 135.68-57.13 213.42 0 203.81 142.93 374.22 333.95 416.55h.04l118.19-204.71a213.315 213.315 0 0 1-122.77-21.91z'], viewBox: '0 0 1024 1024', screenshot: '/linux.png' }
   ]
   
   $: filteredPowerFeatures = selectedBrowserFeature 
@@ -330,97 +331,7 @@
       </p>
     </div>
     
-    <div class="grid grid-3" style="margin: 0 auto;">
-      <div class="feature-card-enhanced">
-        <h3 style="margin-bottom: 1rem; color: var(--text-primary); font-size: 1.25rem;">Chrome</h3>
-        <p style="line-height: 1.7; margin-bottom: 1.5rem;">
-          The google browser you know and love. Full featured and always up to date.
-        </p>
-        <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
-              <polyline points="20,6 9,17 4,12"/>
-            </svg>
-            Uses existing Chrome installation
-          </li>
-          <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
-              <polyline points="20,6 9,17 4,12"/>
-            </svg>
-            Automatic updates via Chrome
-          </li>
-          <li style="display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
-              <polyline points="20,6 9,17 4,12"/>
-            </svg>
-            All features including wedevine for spotify, netflix
-          </li>
-        </ul>
-        <a href="https://www.google.com/chrome/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-compact" style="margin-top: 1.5rem; display: inline-block; text-decoration: none;">
-          Download Chrome
-        </a>
-      </div>
-      
-      <div class="feature-card-enhanced">
-        <h3 style="margin-bottom: 1rem; color: var(--text-primary); font-size: 1.25rem;">Helium</h3>
-        <p style="line-height: 1.7; margin-bottom: 1.5rem;">
-          Minimal ungoogled chromium release with focus on performance and privacy.
-        </p>
-        <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
-              <polyline points="20,6 9,17 4,12"/>
-            </svg>
-            Lightweight and super fast
-          </li>
-          <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
-              <polyline points="20,6 9,17 4,12"/>
-            </svg>
-            Privacy focused
-          </li>
-          <li style="display: flex; align-items: flex-start; gap: 0.5rem; color: var(--text-secondary);">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
-              <circle cx="12" cy="12" r="10"/>
-            </svg>
-            <span style="font-size: 0.9rem;">No Widevine support yet (DRM needed for Spotify, Netflix, etc.)</span>
-          </li>
-        </ul>
-        <a href="https://helium.computer/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-compact" style="margin-top: 1.5rem; display: inline-block; text-decoration: none;">
-          Download Helium
-        </a>
-      </div>
-
-      <div class="feature-card-enhanced" style="opacity: 0.7;">
-        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-          <h3 style="margin: 0; color: var(--text-primary); font-size: 1.25rem;">More comming</h3>
-          <span style="background: rgba(255, 255, 255, 0.08); padding: 3px 10px; border-radius: 3px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Planned</span>
-        </div>
-        <p style="line-height: 1.7; margin-bottom: 1.5rem;">
-          Future support for additional browsers planned.
-        </p>
-        <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
-              <circle cx="12" cy="12" r="10"/>
-            </svg>
-            Edge
-          </li>
-          <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
-              <circle cx="12" cy="12" r="10"/>
-            </svg>
-            Vivaldi
-          </li>
-          <li style="display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;">
-              <circle cx="12" cy="12" r="10"/>
-            </svg>
-            Firefox
-          </li>
-        </ul>
-      </div>
-    </div>
+    <BrowserEngines />
   </div>
 </section>
 
@@ -449,12 +360,7 @@
             </svg>
           </button>
           
-          <div class="screenshot-placeholder">
-            <div class="screenshot-grid">
-              <div class="screenshot-bar"></div>
-              <div class="screenshot-sidebar"></div>
-              <div class="screenshot-main"></div>
-            </div>
+          <div class="screenshot-placeholder" style="background-image: url({operatingSystems[currentOS].screenshot}); background-size: cover; background-position: center;">
           </div>
           <div class="os-icon-overlay">
             <svg width="48" height="48" viewBox={operatingSystems[currentOS].viewBox} fill="currentColor" aria-hidden="true">
@@ -694,29 +600,6 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
   }
   
-  .screenshot-grid {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    grid-template-rows: 40px 1fr;
-    gap: 1px;
-    background: rgba(255, 255, 255, 0.05);
-  }
-  
-  .screenshot-bar {
-    grid-column: 1 / -1;
-    background: #202020;
-  }
-  
-  .screenshot-sidebar {
-    background: #181818;
-  }
-  
-  .screenshot-main {
-    background: #1d1d1d;
-  }
-  
   .os-icon-overlay {
     position: absolute;
     top: 12px;
@@ -811,11 +694,6 @@
     .carousel-btn svg {
       width: 16px;
       height: 16px;
-    }
-    
-    .screenshot-grid {
-      grid-template-columns: 120px 1fr;
-      grid-template-rows: 30px 1fr;
     }
     
     .os-icon-overlay {

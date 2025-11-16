@@ -1,4 +1,6 @@
 <script>
+  import BrowserEngines from '$lib/BrowserEngines.svelte';
+  
   let selectedOS = 'mac'
   
   const osInstructions = {
@@ -52,6 +54,12 @@
 
 <div class="darc-page">
 
+<div class="sticky-back-button">
+  <div class="container">
+    <a href="/darc" class="btn btn-secondary btn-compact">← Back to Darc</a>
+  </div>
+</div>
+
 <section class="hero" style="position: relative; overflow: hidden; padding: 80px 0 60px;">
   <div class="container text-center">
     <h1 class="hero-title">
@@ -89,7 +97,7 @@
         onmousedown={() => selectedOS = 'linux'}
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.84-.41 1.684-.287 2.489.123.805.487 1.52 1.133 2.062.645.542 1.476.95 2.421 1.229.945.279 2.006.432 3.134.432 1.128 0 2.189-.153 3.134-.432.945-.279 1.776-.687 2.421-1.229.646-.542 1.01-1.257 1.133-2.062.123-.805-.009-1.649-.287-2.489-.589-1.771-1.831-3.47-2.716-4.521-.75-1.067-.974-1.928-1.05-3.02-.065-1.491 1.056-5.965-3.17-6.298-.165-.013-.325-.021-.48-.021zm-.005 2.024c.075 0 .15.003.224.009 2.438.195 1.688 3.235 1.734 4.31.054 1.257.367 2.32 1.285 3.629.918 1.309 2.053 2.863 2.564 4.403.192.578.292 1.14.207 1.615-.085.475-.346.851-.831 1.242-.485.391-1.184.732-2.002.972-.818.24-1.747.372-2.676.372-.929 0-1.858-.132-2.676-.372-.818-.24-1.517-.581-2.002-.972-.485-.391-.746-.767-.831-1.242-.085-.475.015-1.037.207-1.615.511-1.54 1.646-3.094 2.564-4.403.918-1.309 1.231-2.372 1.285-3.629.046-1.075-.704-4.115 1.734-4.31.074-.006.149-.009.224-.009z"/>
+          <path d="M14.62,8.35c-.42.28-1.75,1-1.95,1.19a.82.82,0,0,1-1.14,0c-.2-.16-1.53-.92-1.95-1.19s-.45-.7.08-.92a6.16,6.16,0,0,1,4.91,0c.49.21.51.6,0,.9m7.22,7.28A19.09,19.09,0,0,0,18,10a4.31,4.31,0,0,1-1.06-1.88c-.1-.33-.17-.67-.24-1A11.32,11.32,0,0,0,16,4.47,4.06,4.06,0,0,0,12.16,2,4.2,4.2,0,0,0,8.21,4.4a5.9,5.9,0,0,0-.46,1.34c-.17.76-.32,1.55-.5,2.32a3.38,3.38,0,0,1-1,1.71,19.53,19.53,0,0,0-3.88,5.35A6.09,6.09,0,0,0,2,16c-.19.66.29,1.12,1,1,.44-.09.88-.18,1.3-.31s.57,0,.67.35a6.73,6.73,0,0,0,4.24,4.5c4.12,1.56,8.93-.66,10-4.58.07-.27.17-.37.47-.27.46.14.93.24,1.4.35a.72.72,0,0,0,.92-.64,1.44,1.44,0,0,0-.16-.73"/>
         </svg>
         Linux
       </button>
@@ -97,28 +105,35 @@
         class="btn {selectedOS === 'chromeos' ? 'btn-primary' : 'btn-secondary'}"
         onmousedown={() => selectedOS = 'chromeos'}
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.14-7-7 3.14-7 7-7zm0 2c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/>
+        <svg width="20" height="20" viewBox="0 0 1024 1024" fill="currentColor" aria-hidden="true">
+          <path d="M938.67 512.01c0-44.59-6.82-87.6-19.54-128H682.67a212.372 212.372 0 0 1 42.67 128c.06 38.71-10.45 76.7-30.42 109.87l-182.91 316.8c235.65-.01 426.66-191.02 426.66-426.67z"/>
+          <path d="M576.79 401.63a127.92 127.92 0 0 0-63.56-17.6c-22.36-.22-44.39 5.43-63.89 16.38s-35.79 26.82-47.25 46.02a128.005 128.005 0 0 0-2.16 127.44l1.24 2.13a127.906 127.906 0 0 0 46.36 46.61 127.907 127.907 0 0 0 63.38 17.44c22.29.2 44.24-5.43 63.68-16.33a127.94 127.94 0 0 0 47.16-45.79v-.01l1.11-1.92a127.984 127.984 0 0 0 .29-127.46 127.957 127.957 0 0 0-46.36-46.91z"/>
+          <path d="M394.45 333.96A213.336 213.336 0 0 1 512 298.67h369.58A426.503 426.503 0 0 0 512 85.34a425.598 425.598 0 0 0-171.74 35.98 425.644 425.644 0 0 0-142.62 102.22l118.14 204.63a213.397 213.397 0 0 1 78.67-94.21zm117.56 604.72H512zm-97.25-236.73a213.284 213.284 0 0 1-89.54-86.81L142.48 298.6c-36.35 62.81-57.13 135.68-57.13 213.42 0 203.81 142.93 374.22 333.95 416.55h.04l118.19-204.71a213.315 213.315 0 0 1-122.77-21.91z"/>
         </svg>
         ChromeOS
       </button>
     </div>
     
-    <div class="feature-card-enhanced" style="max-width: 800px; margin: 0 auto; padding: 3rem;">
-      <h2 style="margin-bottom: 2rem; text-align: center;">{osInstructions[selectedOS].title}</h2>
-      
-      <ol style="list-style: decimal; padding-left: 1.5rem; margin-bottom: 2rem;">
-        {#each osInstructions[selectedOS].steps as step}
-          <li style="margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.6; color: rgba(232, 232, 232, 0.85);">
-            {step}
-          </li>
-        {/each}
-      </ol>
-      
-      <div style="text-align: center; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-        <a href="#" class="btn btn-primary">
-          Download for {selectedOS === 'mac' ? 'macOS' : selectedOS === 'windows' ? 'Windows' : selectedOS === 'linux' ? 'Linux' : 'ChromeOS'}
-        </a>
+    <div style="position: relative; max-width: 800px; margin: 0 auto;">
+      <div class="coming-soon-overlay">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="feature-card-enhanced blurred-card" style="padding: 3rem;">
+        <h2 style="margin-bottom: 2rem; text-align: center;">{osInstructions[selectedOS].title}</h2>
+        
+        <ol style="list-style: decimal; padding-left: 1.5rem; margin-bottom: 2rem;">
+          {#each osInstructions[selectedOS].steps as step}
+            <li style="margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.6; color: rgba(232, 232, 232, 0.85);">
+              {step}
+            </li>
+          {/each}
+        </ol>
+        
+        <div style="text-align: center; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+          <a href="https://github.com/agent54/xe-darc/releases" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Download for {selectedOS === 'mac' ? 'macOS' : selectedOS === 'windows' ? 'Windows' : selectedOS === 'linux' ? 'Linux' : 'ChromeOS'}
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -128,67 +143,10 @@
   <div class="container">
     <h2 class="text-center" style="margin-bottom: 1.5rem;">Browser Engine Selection</h2>
     <p class="text-center" style="max-width: 640px; margin: 0 auto 3rem;">
-      During installation, you'll choose which browser engine to use. Both options provide full web standards support.
+      Chose which engine to use.
     </p>
     
-    <div class="grid grid-2" style="max-width: 900px; margin: 0 auto;">
-      <div class="feature-card-enhanced">
-        <h3 style="margin-bottom: 1rem;">Chrome Engine</h3>
-        <p style="margin-bottom: 1.5rem; line-height: 1.7;">
-          Use the Chrome browser engine you already have installed. Leverages your existing Chrome installation for rendering.
-        </p>
-        <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20,6 9,17 4,12"/>
-            </svg>
-            Uses existing Chrome installation
-          </li>
-          <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20,6 9,17 4,12"/>
-            </svg>
-            Automatic updates via Chrome
-          </li>
-          <li style="display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20,6 9,17 4,12"/>
-            </svg>
-            Familiar rendering behavior
-          </li>
-        </ul>
-      </div>
-      
-      <div class="feature-card-enhanced" style="border: 2px solid rgba(255, 255, 255, 0.2);">
-        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-          <h3 style="margin: 0;">Helium Engine</h3>
-          <span style="background: rgba(255, 255, 255, 0.1); padding: 2px 8px; border-radius: 3px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">Recommended</span>
-        </div>
-        <p style="margin-bottom: 1.5rem; line-height: 1.7;">
-          Optimized Chromium-based engine built specifically for Xenon and Darc. Provides enhanced performance and tighter integration.
-        </p>
-        <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20,6 9,17 4,12"/>
-            </svg>
-            Optimized for Xenon framework
-          </li>
-          <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20,6 9,17 4,12"/>
-            </svg>
-            Better performance and memory usage
-          </li>
-          <li style="display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20,6 9,17 4,12"/>
-            </svg>
-            Tighter Darc integration
-          </li>
-        </ul>
-      </div>
-    </div>
+    <BrowserEngines />
   </div>
 </section>
 
@@ -196,15 +154,11 @@
   <div class="container text-center">
     <h2 style="margin-bottom: 1rem;">Need Help?</h2>
     <p style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-      Check out our documentation or join the community for installation support.
+      Join our community for installation support and questions.
     </p>
     <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="/darc" class="btn btn-secondary">Back to Darc</a>
-      <a href="https://github.com/xenon-framework" class="btn btn-secondary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
-        Documentation
+      <a href="https://go.userandagents.com/discord" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Ask for Help on Discord
       </a>
     </div>
   </div>
@@ -213,6 +167,50 @@
 </div>
 
 <style>
+  .sticky-back-button {
+    position: sticky;
+    top: 80px;
+    z-index: 100;
+    padding: 1rem 0;
+  }
+  
+  .sticky-back-button .container {
+    padding-left: 0 !important;
+  }
+  
+  .blurred-card {
+    filter: blur(4px);
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  .coming-soon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    pointer-events: none;
+  }
+  
+  .coming-soon-badge {
+    background: rgba(26, 26, 26, 0.95);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #e8e8e8;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+  }
+
   :global(body:has(.darc-page)) {
     background: #0f0f0f;
     transition: background-color 0.6s ease;

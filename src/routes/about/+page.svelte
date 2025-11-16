@@ -21,7 +21,7 @@
       </p>
 
       <p style="margin-bottom: 1.5rem">
-        We are part of a broader community centered around these shared values: <a href="https://userandagents.com" target="_blank">User & Agents</a>
+        We are part of a broader community centered around these shared values: <br> <a href="https://userandagents.com" target="_blank">User & Agents</a>
       </p>
 
       <div style="margin-top: 2.5rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(88, 101, 242, 0.08), rgba(88, 101, 242, 0.03)); border-radius: 8px; border: 1px solid rgba(88, 101, 242, 0.2)">

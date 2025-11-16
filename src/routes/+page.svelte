@@ -399,8 +399,11 @@ Xenon is built in a way to make a move in this direction possible. If you believ
       <a href="#" style="color: var(--text-secondary); text-decoration: none;">Support</a>
     </div> -->
     
-    <p style="color: var(--text-muted); font-size: 0.9rem;">
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;">
       © 2025 Agent54 - XE, built with ❤️ in Thailand and around the world.
+    </p>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+      Contact: <a href="mailto:hello@xe.dev" style="color: var(--text-primary); text-decoration: none;">hello@xe.dev</a>
     </p>
   </div>
 </footer>

@@ -43,15 +43,4 @@
   <main class="min-h-screen">
     <slot />
   </main>
-
-  <footer class="footer">
-    <div class="container" style="padding: 2rem 1rem; text-align: center; border-top: 1px solid var(--border-light);">
-      <p style="margin: 0 0 0.5rem 0; color: var(--text-secondary); font-size: 0.9rem;">
-        © 2025 Xenon Framework. Built with care for users.
-      </p>
-      <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-        Contact: <a href="mailto:hello@xe.dev" style="color: var(--text-primary);">hello@xe.dev</a>
-      </p>
-    </div>
-  </footer>
 </div>

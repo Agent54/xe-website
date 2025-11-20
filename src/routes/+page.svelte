@@ -340,9 +340,13 @@ Xenon is built in a way to make a move in this direction possible. If you believ
       <h3 class="text-center" style="margin-bottom: 1rem; color: var(--text-primary);">
         {features[currentFeature].title}
       </h3>
-      <p style="font-size: 1.1rem; max-width: 750px; margin: 0 auto; white-space: pre-line; line-height: 1.8;">
-        {features[currentFeature].description}
-      </p>
+      <div style="font-size: 1.1rem; max-width: 750px; margin: 0 auto; line-height: 1.5;">
+        {#each features[currentFeature].description.split('\n') as paragraph}
+          {#if paragraph.trim()}
+            <p style="margin-bottom: 0.5rem;">{paragraph}</p>
+          {/if}
+        {/each}
+      </div>
     </div>
   </div>
 </section>

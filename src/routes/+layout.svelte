@@ -1,6 +1,8 @@
 <script>
   import './styles.css'
   import { page } from '$app/stores'
+  import { afterNavigate, beforeNavigate } from '$app/navigation'
+  import { onMount, tick } from 'svelte'
 
   let brandName
   let brandLink
@@ -14,6 +16,28 @@
     brandLink = isDarc ? '/darc' : '/'
     currentPath = $page.url.pathname
   }
+
+  onMount(() => {
+    // Disable browser's default scroll restoration to handle it manually
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual'
+    }
+  })
+
+  afterNavigate(async () => {
+    mobileMenuOpen = false
+    // Wait for DOM update
+    await tick()
+    // Force scroll to top with a slight delay to override any browser behavior
+    setTimeout(() => {
+      const main = document.querySelector('main')
+      if (main) {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+        document.body.scrollTop = 0
+        document.documentElement.scrollTop = 0
+      }
+    }, 0)
+  })
 
   function isActive(path) {
     if (path === '/') {

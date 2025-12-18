@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Holidays from Xenon 🎄</title>
+  <meta http-equiv="refresh" content="1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -14,106 +15,141 @@
       box-sizing: border-box;
     }
 
-    :root {
-      --wall-warm: #c9a66b;
-      --wall-light: #dcc192;
-      --wall-dark: #a88544;
-      --wood-floor: #8b5a2b;
-      --wood-dark: #5d3a1a;
-      --wood-light: #a67c52;
-      --warm-cream: #fff8e7;
-      --gold: #d4a853;
-      --bright-gold: #f7d794;
-      --pine-dark: #1a4d2e;
-      --pine-mid: #2d6a4f;
-      --pine-light: #40916c;
-      --berry: #c23a3a;
-      --candy-red: #e74c3c;
-      --fire-orange: #f4722b;
-      --fire-yellow: #ffbe0b;
-      --brick-red: #8b4513;
-      --brick-dark: #5c3317;
-    }
-
     body {
       height: 100vh;
-      max-height: 100vh;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      color: var(--warm-cream);
       overflow: hidden;
-      position: relative;
+      background: #2a1810;
     }
 
-    /* The Room */
     .room {
+      width: 100%;
       height: 100vh;
-      max-height: 100vh;
-      background: linear-gradient(180deg, var(--wall-warm) 0%, var(--wall-light) 40%, var(--wall-warm) 100%);
       position: relative;
-      display: flex;
-      flex-direction: column;
+      overflow: hidden;
     }
 
-    /* Wallpaper pattern */
-    .room::before {
+    /* Sky/ceiling gradient */
+    .ceiling {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 12%;
+      background: linear-gradient(180deg, #1a3a52 0%, #2d5a7b 100%);
+    }
+
+    /* Left wall - angled perspective */
+    .wall-left {
+      position: absolute;
+      top: 8%;
+      left: 0;
+      width: 38%;
+      height: 70%;
+      background: linear-gradient(90deg, #8b5a2b 0%, #a0682e 30%, #b87333 100%);
+      transform: perspective(800px) rotateY(15deg);
+      transform-origin: left center;
+      box-shadow: inset -20px 0 40px rgba(0,0,0,0.3);
+    }
+
+    /* Left wall wood paneling */
+    .wall-left::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 80px,
+        rgba(0,0,0,0.15) 80px,
+        rgba(0,0,0,0.15) 82px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 150px,
+        rgba(0,0,0,0.1) 150px,
+        rgba(0,0,0,0.1) 152px
+      );
+    }
+
+    /* Right wall - angled perspective */
+    .wall-right {
+      position: absolute;
+      top: 8%;
+      right: 0;
+      width: 45%;
       height: 70%;
-      background-image: 
-        radial-gradient(circle at 25px 25px, rgba(139, 90, 43, 0.1) 2px, transparent 2px),
-        radial-gradient(circle at 75px 75px, rgba(139, 90, 43, 0.1) 2px, transparent 2px);
-      background-size: 100px 100px;
-      pointer-events: none;
+      background: linear-gradient(270deg, #7a4a1f 0%, #8b5a2b 40%, #a0682e 100%);
+      transform: perspective(800px) rotateY(-12deg);
+      transform-origin: right center;
+      box-shadow: inset 20px 0 40px rgba(0,0,0,0.2);
     }
 
-    /* Crown molding */
-    .molding-top {
-      height: 40px;
-      background: linear-gradient(180deg, var(--wood-dark) 0%, var(--wood-light) 50%, var(--wood-dark) 100%);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      position: relative;
-      z-index: 10;
-    }
-
-    .molding-top::after {
+    /* Right wall wood paneling */
+    .wall-right::before {
       content: '';
       position: absolute;
-      bottom: -10px;
+      top: 0;
       left: 0;
       right: 0;
-      height: 10px;
-      background: linear-gradient(180deg, var(--wood-dark), transparent);
-    }
-
-    /* Baseboard */
-    .baseboard {
-      height: 25px;
-      background: linear-gradient(180deg, var(--wood-light) 0%, var(--wood-dark) 100%);
-      position: absolute;
-      bottom: 90px;
-      left: 0;
-      right: 0;
-      z-index: 5;
-    }
-
-    /* Wooden Floor */
-    .floor {
-      height: 90px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--wood-floor) 0px,
-        var(--wood-light) 2px,
-        var(--wood-floor) 4px,
-        var(--wood-floor) 150px
-      );
-      position: absolute;
       bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 80px,
+        rgba(0,0,0,0.15) 80px,
+        rgba(0,0,0,0.15) 82px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 120px,
+        rgba(0,0,0,0.1) 120px,
+        rgba(0,0,0,0.1) 122px
+      );
+    }
+
+    /* Back wall / corner */
+    .wall-back {
+      position: absolute;
+      top: 10%;
+      left: 35%;
+      width: 30%;
+      height: 60%;
+      background: linear-gradient(180deg, #9a6830 0%, #b87333 50%, #a0682e 100%);
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.3);
+    }
+
+    .wall-back::before {
+      content: '';
+      position: absolute;
+      top: 0;
       left: 0;
       right: 0;
-      box-shadow: inset 0 10px 30px rgba(0,0,0,0.4);
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 60px,
+        rgba(0,0,0,0.12) 60px,
+        rgba(0,0,0,0.12) 62px
+      );
+    }
+
+    /* Floor - behind all elements, larger than viewport */
+    .floor {
+      position: absolute;
+      bottom: -10%;
+      left: -20%;
+      right: -20%;
+      height: 45%;
+      background: linear-gradient(180deg, #5d3a1a 0%, #4a2e15 50%, #3d2510 100%);
+      transform: perspective(500px) rotateX(20deg);
+      transform-origin: bottom center;
+      z-index: 1;
     }
 
     .floor::before {
@@ -123,226 +159,293 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 30%);
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 100px,
+        rgba(0,0,0,0.15) 100px,
+        rgba(0,0,0,0.15) 102px
+      );
     }
 
-    /* Cozy Rug */
-    .rug {
+    /* Large window - left wall */
+    .window-left {
       position: absolute;
-      bottom: 5px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 75%;
-      max-width: 1000px;
-      height: 80px;
-      background: linear-gradient(135deg, #8b2942 0%, #6b1d32 50%, #8b2942 100%);
-      border-radius: 50%;
-      z-index: 6;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-    }
-
-    .rug::before {
-      content: '';
-      position: absolute;
-      top: 8px;
-      left: 15px;
-      right: 15px;
-      bottom: 8px;
-      border: 3px solid #d4a853;
-      border-radius: 50%;
-    }
-
-    .rug::after {
-      content: '';
-      position: absolute;
-      top: 16px;
-      left: 30px;
-      right: 30px;
-      bottom: 16px;
-      border: 2px solid #f7d794;
-      border-radius: 50%;
-    }
-
-    /* Main content area */
-    .room-content {
-      flex: 1;
-      position: relative;
-      z-index: 7;
-      padding: 1rem;
-      min-height: 500px;
-    }
-
-    /* Welcome message - compact, top-right */
-    .welcome {
-      position: absolute;
-      top: 20px;
-      right: 25%;
-      text-align: center;
-      animation: fadeInDown 1.5s ease-out;
-      z-index: 20;
-      max-width: 320px;
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .welcome h1 {
-      font-family: 'Caveat', cursive;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 600;
-      color: var(--wood-dark);
-      text-shadow: 1px 1px 0 var(--bright-gold), 0 0 15px rgba(247, 215, 148, 0.5);
-      margin-bottom: 0.4rem;
-      line-height: 1.1;
-    }
-
-    .welcome p {
-      font-size: clamp(0.85rem, 1.5vw, 1rem);
-      line-height: 1.5;
-      color: var(--wood-dark);
-      background: rgba(255,255,255,0.85);
-      padding: 0.7rem 1rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      margin-bottom: 0.6rem;
-    }
-
-    .welcome a {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--berry) 0%, #a02e2e 100%);
-      color: var(--warm-cream);
-      text-decoration: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 15px rgba(194, 58, 58, 0.4);
-    }
-
-    .welcome a:hover {
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 6px 25px rgba(194, 58, 58, 0.6);
-    }
-
-    /* Scene container */
-    .scene {
-      position: absolute;
-      top: 40px;
-      left: 0;
-      right: 0;
-      bottom: 100px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    /* Window */
-    .window {
-      position: absolute;
-      top: 10px;
-      right: 5%;
-      width: 180px;
-      height: 220px;
-      background: linear-gradient(180deg, #0a1628 0%, #1a3a52 100%);
-      border: 18px solid var(--wood-dark);
-      border-radius: 10px 10px 0 0;
-      box-shadow: inset 0 0 30px rgba(0,0,0,0.5), 0 5px 20px rgba(0,0,0,0.3);
+      top: 15%;
+      left: 4%;
+      width: 28%;
+      height: 50%;
+      background: linear-gradient(180deg, #1a3a52 0%, #2d5a7b 25%, #4a7fa8 50%, #6b9fc4 75%, #8bbad8 100%);
+      border: 18px solid #5d3a1a;
+      border-radius: 8px 8px 0 0;
+      transform: perspective(800px) rotateY(15deg);
+      transform-origin: left center;
+      box-shadow: 
+        inset 0 0 30px rgba(255,255,255,0.2),
+        0 5px 20px rgba(0,0,0,0.4);
       overflow: hidden;
-      z-index: 8;
     }
 
-    .window::before {
+    /* Window frame cross */
+    .window-left::before {
       content: '';
       position: absolute;
-      top: 50%;
+      top: 48%;
       left: 0;
       right: 0;
-      height: 15px;
-      background: var(--wood-dark);
+      height: 14px;
+      background: #5d3a1a;
       transform: translateY(-50%);
+      z-index: 5;
     }
 
-    .window::after {
+    .window-left::after {
       content: '';
       position: absolute;
       top: 0;
+      left: 48%;
+      width: 14px;
       bottom: 0;
-      left: 50%;
-      width: 15px;
-      background: var(--wood-dark);
+      background: #5d3a1a;
       transform: translateX(-50%);
+      z-index: 5;
     }
 
-    /* Stars in window */
-    .window-stars {
+    /* Snow scenery in left window */
+    .window-left-scene {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
     }
 
-    .window-star {
-      position: absolute;
-      background: #fff;
-      border-radius: 50%;
-      animation: twinkle 2s infinite ease-in-out;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
-
-    /* Snow in window */
-    .window-snow {
+    .snow-hill-1 {
       position: absolute;
       bottom: 0;
-      left: 0;
-      right: 0;
-      height: 40px;
-      background: linear-gradient(180deg, #e8f4f8 0%, #d0e8ef 100%);
-      border-radius: 100% 100% 0 0 / 20px 20px 0 0;
+      left: -10%;
+      width: 70%;
+      height: 40%;
+      background: #e8f4f8;
+      border-radius: 100% 100% 0 0;
     }
 
-    /* Fireplace */
+    .snow-hill-2 {
+      position: absolute;
+      bottom: 0;
+      right: -10%;
+      width: 80%;
+      height: 35%;
+      background: #dbeef4;
+      border-radius: 100% 100% 0 0;
+    }
+
+    .pine-tree {
+      position: absolute;
+      bottom: 20%;
+      width: 0;
+      height: 0;
+      border-left: 28px solid transparent;
+      border-right: 28px solid transparent;
+      border-bottom: 75px solid #1a4d2e;
+    }
+
+    .pine-tree::before {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -36px;
+      width: 0;
+      height: 0;
+      border-left: 36px solid transparent;
+      border-right: 36px solid transparent;
+      border-bottom: 90px solid #1a4d2e;
+    }
+
+    /* Snow on top of trees - builds up with animation */
+    .pine-tree::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -18px;
+      width: 36px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50% 50% 30% 30%;
+      box-shadow: 
+        -12px 22px 0 4px #fff,
+        12px 22px 0 4px #fff,
+        -22px 52px 0 6px #fff,
+        22px 52px 0 6px #fff,
+        0px 75px 0 5px #fff;
+      animation: snowBuild 30s ease-out forwards;
+      animation-delay: 6s;
+      opacity: 0;
+    }
+
+    @keyframes snowBuild {
+      0% { opacity: 0; transform: scale(0); }
+      10% { opacity: 0; transform: scale(0); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .pine-tree-1 { left: 12%; bottom: 22%; }
+    .pine-tree-2 { left: 48%; bottom: 18%; transform: scale(0.65); }
+    .pine-tree-3 { left: 82%; bottom: 24%; transform: scale(0.45); }
+    .pine-tree-4 { left: 30%; bottom: 16%; transform: scale(0.5); }
+
+    /* Large window - right wall */
+    .window-right {
+      position: absolute;
+      top: 12%;
+      right: 5%;
+      width: 32%;
+      height: 55%;
+      background: linear-gradient(180deg, #1a3a52 0%, #2d5a7b 25%, #4a7fa8 50%, #6b9fc4 75%, #8bbad8 100%);
+      border: 18px solid #5d3a1a;
+      border-radius: 8px 8px 0 0;
+      transform: perspective(800px) rotateY(-12deg);
+      transform-origin: right center;
+      box-shadow: 
+        inset 0 0 30px rgba(255,255,255,0.2),
+        0 5px 20px rgba(0,0,0,0.4);
+      overflow: hidden;
+    }
+
+    .window-right::before {
+      content: '';
+      position: absolute;
+      top: 48%;
+      left: 0;
+      right: 0;
+      height: 14px;
+      background: #5d3a1a;
+      transform: translateY(-50%);
+      z-index: 5;
+    }
+
+    .window-right::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 48%;
+      width: 14px;
+      bottom: 0;
+      background: #5d3a1a;
+      transform: translateX(-50%);
+      z-index: 5;
+    }
+
+    /* Winter scenery in right window */
+    .window-right-scene {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+    }
+
+    .snow-hill-r1 {
+      position: absolute;
+      bottom: 0;
+      left: -10%;
+      width: 75%;
+      height: 38%;
+      background: #e8f4f8;
+      border-radius: 100% 100% 0 0;
+    }
+
+    .snow-hill-r2 {
+      position: absolute;
+      bottom: 0;
+      right: -10%;
+      width: 70%;
+      height: 32%;
+      background: #dbeef4;
+      border-radius: 100% 100% 0 0;
+    }
+
+    .pine-tree-r {
+      position: absolute;
+      bottom: 18%;
+      width: 0;
+      height: 0;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 80px solid #1a4d2e;
+    }
+
+    .pine-tree-r::before {
+      content: '';
+      position: absolute;
+      bottom: -110px;
+      left: -38px;
+      width: 0;
+      height: 0;
+      border-left: 38px solid transparent;
+      border-right: 38px solid transparent;
+      border-bottom: 95px solid #1a4d2e;
+    }
+
+    /* Snow on right window trees - builds up */
+    .pine-tree-r::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -20px;
+      width: 40px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50% 50% 30% 30%;
+      box-shadow: 
+        -14px 24px 0 5px #fff,
+        14px 24px 0 5px #fff,
+        -24px 58px 0 7px #fff,
+        24px 58px 0 7px #fff,
+        0px 80px 0 6px #fff;
+      animation: snowBuild 30s ease-out forwards;
+      animation-delay: 6s;
+      opacity: 0;
+    }
+
+    .pine-tree-r1 { left: 8%; bottom: 22%; }
+    .pine-tree-r2 { left: 42%; bottom: 15%; transform: scale(0.7); }
+    .pine-tree-r3 { left: 72%; bottom: 20%; transform: scale(0.5); }
+    .pine-tree-r4 { left: 88%; bottom: 12%; transform: scale(0.4); }
+
+    /* Fireplace - center back wall */
     .fireplace {
       position: absolute;
-      bottom: 90px;
-      left: 3%;
-      width: 300px;
-      height: 360px;
-      z-index: 9;
+      top: 28%;
+      left: 38%;
+      width: 24%;
+      height: 48%;
+      z-index: 10;
+      overflow: visible;
     }
 
     .fireplace-mantle {
       position: absolute;
       top: 0;
-      left: -20px;
-      right: -20px;
-      height: 40px;
-      background: linear-gradient(180deg, var(--wood-light) 0%, var(--wood-dark) 100%);
-      border-radius: 5px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      left: -8%;
+      right: -8%;
+      height: 30px;
+      background: linear-gradient(180deg, #6d4c1a 0%, #4a3310 100%);
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      overflow: visible;
+      z-index: 5;
     }
 
     .fireplace-body {
       position: absolute;
-      top: 35px;
+      top: 25px;
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(180deg, var(--brick-red) 0%, var(--brick-dark) 100%);
+      background: linear-gradient(180deg, #8b4513 0%, #6b3410 100%);
       border-radius: 0 0 5px 5px;
     }
 
@@ -358,1034 +461,1315 @@
         repeating-linear-gradient(
           0deg,
           transparent 0px,
-          transparent 30px,
-          rgba(0,0,0,0.2) 30px,
-          rgba(0,0,0,0.2) 32px
+          transparent 22px,
+          rgba(0,0,0,0.25) 22px,
+          rgba(0,0,0,0.25) 24px
         ),
         repeating-linear-gradient(
           90deg,
           transparent 0px,
-          transparent 60px,
-          rgba(0,0,0,0.15) 60px,
-          rgba(0,0,0,0.15) 62px
+          transparent 44px,
+          rgba(0,0,0,0.2) 44px,
+          rgba(0,0,0,0.2) 46px
         );
       border-radius: 0 0 5px 5px;
     }
 
     .fireplace-opening {
       position: absolute;
-      bottom: 10px;
+      bottom: 5%;
       left: 50%;
       transform: translateX(-50%);
-      width: 200px;
-      height: 230px;
-      background: #1a1a1a;
-      border-radius: 100px 100px 5px 5px;
-      box-shadow: inset 0 -30px 50px rgba(255, 150, 0, 0.5);
+      width: 75%;
+      height: 65%;
+      background: #0a0a0a;
+      border-radius: 50% 50% 5px 5px / 30% 30% 5px 5px;
+      box-shadow: inset 0 -30px 60px rgba(255, 120, 0, 0.5);
       overflow: hidden;
     }
 
     /* Fire */
     .fire {
       position: absolute;
-      bottom: 0;
+      bottom: 5px;
       left: 50%;
       transform: translateX(-50%);
-      width: 160px;
-      height: 140px;
+      width: 85%;
+      height: 70%;
     }
 
     .flame {
       position: absolute;
       bottom: 0;
       border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      animation: flicker 0.5s infinite alternate;
+      animation: flicker 0.4s infinite alternate;
     }
 
     .flame-1 {
       left: 50%;
       transform: translateX(-50%);
-      width: 80px;
-      height: 110px;
-      background: linear-gradient(180deg, var(--fire-yellow) 0%, var(--fire-orange) 50%, var(--candy-red) 100%);
-      animation-delay: 0s;
+      width: 50%;
+      height: 80%;
+      background: linear-gradient(180deg, #ffeb3b 0%, #ff9800 40%, #f44336 100%);
     }
 
     .flame-2 {
-      left: 15%;
-      width: 55px;
-      height: 85px;
-      background: linear-gradient(180deg, var(--fire-yellow) 0%, var(--fire-orange) 100%);
+      left: 10%;
+      width: 35%;
+      height: 60%;
+      background: linear-gradient(180deg, #ffeb3b 0%, #ff9800 100%);
       animation-delay: 0.1s;
     }
 
     .flame-3 {
-      right: 15%;
-      width: 60px;
-      height: 90px;
-      background: linear-gradient(180deg, var(--fire-yellow) 0%, var(--fire-orange) 100%);
+      right: 10%;
+      width: 38%;
+      height: 65%;
+      background: linear-gradient(180deg, #ffeb3b 0%, #ff9800 100%);
       animation-delay: 0.2s;
     }
 
     @keyframes flicker {
       0% { transform: translateX(-50%) scaleY(1) scaleX(1); opacity: 1; }
-      100% { transform: translateX(-50%) scaleY(1.1) scaleX(0.9); opacity: 0.9; }
+      100% { transform: translateX(-50%) scaleY(1.15) scaleX(0.9); opacity: 0.9; }
     }
 
     .flame-2, .flame-3 {
-      animation: flickerSide 0.4s infinite alternate;
+      animation-name: flickerSide;
     }
 
     @keyframes flickerSide {
       0% { transform: scaleY(1) scaleX(1); }
-      100% { transform: scaleY(1.15) scaleX(0.85); }
+      100% { transform: scaleY(1.12) scaleX(0.88); }
     }
 
     /* Logs */
     .logs {
       position: absolute;
-      bottom: 8px;
+      bottom: 3px;
       left: 50%;
       transform: translateX(-50%);
+      width: 90%;
     }
 
     .log {
       position: absolute;
-      height: 35px;
-      background: linear-gradient(180deg, #5a4738 0%, #4a3728 50%, #2d1f14 100%);
-      border-radius: 17px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      height: 18px;
+      background: linear-gradient(180deg, #4a3020 0%, #2d1810 100%);
+      border-radius: 9px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
 
-    .log-1 {
-      width: 130px;
-      bottom: 0;
-      left: -65px;
-      transform: rotate(-5deg);
-    }
+    .log-1 { width: 80%; bottom: 0; left: 10%; transform: rotate(-3deg); }
+    .log-2 { width: 70%; bottom: 6px; left: 18%; transform: rotate(5deg); }
 
-    .log-2 {
-      width: 120px;
-      bottom: 8px;
-      left: -55px;
-      transform: rotate(8deg);
-    }
-
-    /* Stockings on mantle */
-    .stocking {
+    /* Stockings hanging from mantle */
+    .stockings {
       position: absolute;
-      top: 35px;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: 10;
+    }
+
+    .stocking {
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: transform 0.2s;
+      filter: drop-shadow(3px 4px 4px rgba(0,0,0,0.35));
+      width: 70px;
+      height: 98px;
     }
 
     .stocking:hover {
-      transform: rotate(10deg) scale(1.1);
+      transform: rotate(8deg) scale(1.1);
     }
 
-    .stocking-1 { left: 25px; }
-    .stocking-2 { left: 100px; animation-delay: 0.1s; }
-    .stocking-3 { left: 175px; animation-delay: 0.2s; }
+    /* Items container */
+    .items {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 30;
+    }
 
-    /* Christmas Tree - MUCH BIGGER */
+    /* Christmas tree - large */
     .tree-container {
       position: absolute;
-      bottom: -10px;
-      left: 42%;
-      transform: translateX(-50%);
+      bottom: 10%;
+      left: -5%;
       cursor: pointer;
-      z-index: 10;
-      transition: filter 0.3s ease;
+      transition: filter 0.3s;
+      z-index: 15;
     }
 
     .tree-container:hover {
-      filter: drop-shadow(0 0 30px rgba(247, 215, 148, 0.8));
+      filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.7));
     }
 
-    .tree-container:hover .tree-star {
-      animation: starPulse 0.5s ease infinite;
+    .tree-container svg {
+      width: 500px;
+      height: 650px;
     }
 
-    @keyframes starPulse {
-      0%, 100% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.3) rotate(15deg); }
-    }
-
-    .tree {
-      width: 420px;
-      height: 520px;
-    }
-
-    /* Presents - BIGGER */
+    /* Presents */
     .presents {
       position: absolute;
-      bottom: 5px;
-      right: 18%;
+      bottom: 14%;
+      left: 24%;
       display: flex;
-      gap: 12px;
+      gap: 10px;
       cursor: pointer;
-      z-index: 11;
+      z-index: 16;
     }
 
-    .present {
-      transition: transform 0.3s ease;
+    .present:hover {
+      animation: bounce 0.3s ease;
     }
 
-    .presents:hover .present:nth-child(1) {
-      animation: presentBounce 0.5s ease infinite;
-      animation-delay: 0s;
-    }
-
-    .presents:hover .present:nth-child(2) {
-      animation: presentBounce 0.5s ease infinite;
-      animation-delay: 0.1s;
-    }
-
-    .presents:hover .present:nth-child(3) {
-      animation: presentBounce 0.5s ease infinite;
-      animation-delay: 0.2s;
-    }
-
-    @keyframes presentBounce {
+    @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
+      50% { transform: translateY(-15px); }
     }
 
-    /* Armchair */
+    /* Armchair - large */
     .armchair {
       position: absolute;
-      bottom: 0;
-      right: 3%;
-      z-index: 12;
+      bottom: 8%;
+      right: 2%;
       cursor: pointer;
+      z-index: 17;
     }
 
     .armchair:hover .cat {
-      animation: catStretch 0.8s ease;
+      animation: catWake 0.5s ease;
     }
 
-    @keyframes catStretch {
-      0%, 100% { transform: scaleX(1); }
-      50% { transform: scaleX(1.1) translateY(-5px); }
+    @keyframes catWake {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px) rotate(3deg); }
     }
 
-    /* Mouse with cheese */
-    .mouse-area {
-      position: absolute;
-      bottom: 0;
-      left: 32%;
-      cursor: pointer;
-      z-index: 11;
-    }
-
-    .mouse-area:hover .mouse-friend {
-      animation: mouseWiggle 0.4s ease infinite;
-    }
-
-    @keyframes mouseWiggle {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(-10deg); }
-      75% { transform: rotate(10deg); }
+    .armchair svg {
+      width: 320px;
+      height: 300px;
     }
 
     /* Elf */
     .elf-area {
       position: absolute;
-      bottom: 0;
-      left: 22%;
+      bottom: 12%;
+      left: 42%;
       cursor: pointer;
-      z-index: 11;
+      z-index: 18;
     }
 
     .elf-area:hover .elf-body {
-      animation: elfDance 0.4s ease infinite;
+      animation: wave 0.4s ease infinite;
     }
 
-    @keyframes elfDance {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      25% { transform: translateY(-10px) rotate(-5deg); }
-      75% { transform: translateY(-10px) rotate(5deg); }
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    /* Mouse */
+    .mouse-area {
+      position: absolute;
+      bottom: 13%;
+      right: 28%;
+      cursor: pointer;
+      z-index: 18;
+    }
+
+    /* Welcome card - top right near right window */
+    .welcome-card {
+      position: absolute;
+      top: 5%;
+      right: 3%;
+      background: linear-gradient(135deg, #fff8e7 0%, #f5e6d3 100%);
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.35);
+      z-index: 50;
+      max-width: 260px;
+      transform: rotate(2deg);
+    }
+
+    .welcome-card h1 {
+      font-family: 'Caveat', cursive;
+      font-size: 1.5rem;
+      color: #8b4513;
+      margin-bottom: 8px;
+    }
+
+    .welcome-card p {
+      font-size: 0.8rem;
+      color: #5d3a1a;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .welcome-card a {
+      display: inline-block;
+      background: linear-gradient(135deg, #c0392b 0%, #962d22 100%);
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+
+    .welcome-card a:hover {
+      transform: scale(1.05);
+    }
+
+    /* Side table on left wall - with perspective */
+    .shelf-left {
+      position: absolute;
+      bottom: 22%;
+      left: 0;
+      width: 18%;
+      height: 22%;
+      transform: perspective(800px) rotateY(15deg);
+      transform-origin: left center;
+      z-index: 12;
+    }
+
+    /* Table top surface */
+    .shelf-left-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 15px;
+      background: linear-gradient(180deg, #7a4a2a 0%, #5d3a1a 100%);
+      transform: perspective(200px) rotateX(-10deg);
+      transform-origin: bottom center;
+      border-radius: 3px;
+    }
+
+    /* Table front panel */
+    .shelf-left-front {
+      position: absolute;
+      top: 10px;
+      left: 5%;
+      right: 0;
+      bottom: 25%;
+      background: linear-gradient(90deg, #5d3a1a 0%, #6d4a2a 50%, #5d3a1a 100%);
+      border-radius: 0 0 3px 3px;
+    }
+
+    /* Table legs */
+    .shelf-left-leg1 {
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      width: 12px;
+      height: 25%;
+      background: linear-gradient(90deg, #4a2e15 0%, #5d3a1a 100%);
+      border-radius: 0 0 3px 3px;
+    }
+
+    .shelf-left-leg2 {
+      position: absolute;
+      bottom: 0;
+      right: 5%;
+      width: 12px;
+      height: 25%;
+      background: linear-gradient(90deg, #5d3a1a 0%, #4a2e15 100%);
+      border-radius: 0 0 3px 3px;
+    }
+
+    /* Clock on table */
+    .clock {
+      position: absolute;
+      top: -55px;
+      left: 30%;
+      width: 45px;
+      height: 55px;
+      background: linear-gradient(180deg, #8b4513 0%, #654321 100%);
+      border-radius: 22px 22px 5px 5px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+      transform: perspective(200px) rotateY(-5deg);
+    }
+
+    .clock::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 30px;
+      background: #fff;
+      border-radius: 50%;
+      border: 3px solid #333;
+    }
+
+    /* Lamp on side table */
+    .lamp {
+      position: absolute;
+      bottom: 28%;
+      left: 8%;
+      z-index: 13;
+      transform: perspective(800px) rotateY(15deg);
+      transform-origin: left center;
+    }
+
+    .lamp-shade {
+      width: 50px;
+      height: 40px;
+      background: linear-gradient(180deg, #f5deb3 0%, #daa520 100%);
+      clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+    }
+
+    .lamp-base {
+      width: 6px;
+      height: 30px;
+      background: #8b4513;
+      margin: 0 auto;
+    }
+
+    .lamp-foot {
+      width: 24px;
+      height: 6px;
+      background: #8b4513;
+      border-radius: 0 0 5px 5px;
+      margin: 0 auto;
+    }
+
+    /* Picture frame on back wall */
+    .picture-frame {
+      position: absolute;
+      top: 15%;
+      left: 42%;
+      width: 16%;
+      height: 25%;
+      background: linear-gradient(135deg, #1a4d2e 0%, #2d6a4f 100%);
+      border: 12px solid #5d3a1a;
+      border-radius: 3px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      z-index: 8;
+    }
+
+    /* Wreath on picture */
+    .wreath {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      height: 80%;
+      border: 12px solid #228b22;
+      border-radius: 50%;
+    }
+
+    .wreath::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 20px;
+      background: #c0392b;
+      border-radius: 3px;
+    }
+
+    /* Bookshelf on right wall - beside window, going off screen */
+    .bookshelf {
+      position: absolute;
+      bottom: 22%;
+      right: -2%;
+      width: 10%;
+      height: 50%;
+      background: linear-gradient(270deg, #3d2510 0%, #5d3a1a 30%, #4a2e15 100%);
+      transform: perspective(800px) rotateY(-12deg);
+      transform-origin: right center;
+      box-shadow: inset 5px 0 15px rgba(0,0,0,0.4);
+      z-index: 6;
+    }
+
+    /* Bookshelf side panel visible */
+    .bookshelf::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -15px;
+      width: 15px;
+      height: 100%;
+      background: linear-gradient(90deg, #6d4a2a 0%, #5d3a1a 100%);
+      transform: perspective(200px) rotateY(20deg);
+      transform-origin: right center;
+    }
+
+    .shelf {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: linear-gradient(180deg, #4a2e15 0%, #3d2510 100%);
+    }
+
+    .shelf-1 { top: 25%; }
+    .shelf-2 { top: 50%; }
+    .shelf-3 { top: 75%; }
+
+    /* Books - sitting on bottom of each shelf section */
+    .books {
+      position: absolute;
+      bottom: 52%;
+      left: 5px;
+      display: flex;
+      gap: 4px;
+      align-items: flex-end;
+    }
+
+    .books-2 {
+      position: absolute;
+      bottom: 27%;
+      left: 5px;
+      display: flex;
+      gap: 4px;
+      align-items: flex-end;
+    }
+
+    .books-3 {
+      position: absolute;
+      bottom: 2%;
+      left: 5px;
+      display: flex;
+      gap: 4px;
+      align-items: flex-end;
+    }
+
+    .book {
+      width: 16px;
+      border-radius: 2px;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .book-1 { background: linear-gradient(90deg, #a02828 0%, #c0392b 100%); height: 50px; }
+    .book-2 { background: linear-gradient(90deg, #1e8449 0%, #27ae60 100%); height: 44px; }
+    .book-3 { background: linear-gradient(90deg, #2471a3 0%, #2980b9 100%); height: 55px; }
+    .book-4 { background: linear-gradient(90deg, #6c3483 0%, #8e44ad 100%); height: 48px; }
+    .book-5 { background: linear-gradient(90deg, #ba4a00 0%, #d35400 100%); height: 42px; }
+    .book-6 { background: linear-gradient(90deg, #117a65 0%, #16a085 100%); height: 52px; }
+    .book-7 { background: linear-gradient(90deg, #c0392b 0%, #e74c3c 100%); height: 46px; }
+    .book-8 { background: linear-gradient(90deg, #1a5276 0%, #2980b9 100%); height: 50px; }
+    .book-9 { background: linear-gradient(90deg, #7b241c 0%, #a93226 100%); height: 53px; }
+
+    /* Rug on floor */
+    .rug {
+      position: absolute;
+      bottom: 8%;
+      left: 20%;
+      width: 60%;
+      height: 18%;
+      background: linear-gradient(135deg, #8b2942 0%, #6b1d32 30%, #8b2942 60%, #6b1d32 100%);
+      border-radius: 50%;
+      transform: perspective(600px) rotateX(65deg);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      z-index: 8;
+    }
+
+    .rug::before {
+      content: '';
+      position: absolute;
+      top: 12%;
+      left: 4%;
+      right: 4%;
+      bottom: 12%;
+      border: 5px solid #d4a853;
+      border-radius: 50%;
+    }
+
+    .rug::after {
+      content: '';
+      position: absolute;
+      top: 22%;
+      left: 8%;
+      right: 8%;
+      bottom: 22%;
+      border: 3px solid #f7d794;
+      border-radius: 50%;
+    }
+
+    /* Snow falling outside windows - starts off-screen, falls to bottom */
+    @keyframes snowfall {
+      0% { transform: translateY(-30px) translateX(0) rotate(0deg); }
+      25% { transform: translateY(100px) translateX(5px) rotate(90deg); }
+      50% { transform: translateY(200px) translateX(-3px) rotate(180deg); }
+      75% { transform: translateY(300px) translateX(4px) rotate(270deg); }
+      100% { transform: translateY(400px) translateX(0) rotate(360deg); }
+    }
+
+    @keyframes snowfallSlow {
+      0% { transform: translateY(-40px) translateX(0); }
+      100% { transform: translateY(420px) translateX(10px); }
+    }
+
+    .snowflake {
+      position: absolute;
+      top: -30px;
+      width: 5px;
+      height: 5px;
+      background: #fff;
+      border-radius: 50%;
+      animation: snowfall 6s linear infinite;
+      box-shadow: 0 0 3px #fff;
+    }
+
+    .snowflake-star {
+      position: absolute;
+      top: -40px;
+      color: #fff;
+      font-size: 12px;
+      text-shadow: 0 0 3px #fff;
+      animation: snowfallSlow 9s linear infinite;
+    }
+
+    .snowflake-lg {
+      position: absolute;
+      top: -35px;
+      width: 8px;
+      height: 8px;
+      background: #fff;
+      border-radius: 50%;
+      animation: snowfall 8s linear infinite;
+      box-shadow: 0 0 5px #fff;
+    }
+
+    .snowflake-sm {
+      position: absolute;
+      top: -25px;
+      width: 3px;
+      height: 3px;
+      background: #fff;
+      border-radius: 50%;
+      animation: snowfallSlow 5s linear infinite;
     }
 
     /* Responsive */
     @media (max-width: 1400px) {
-      .tree { width: 350px; height: 440px; }
-      .fireplace { width: 260px; height: 320px; }
-      .armchair svg { width: 180px; height: 165px; }
-      .elf-area svg { width: 110px; height: 165px; }
-      .welcome { right: 20%; max-width: 280px; }
+      .tree-container svg { width: 400px; height: 520px; }
+      .armchair svg { width: 260px; height: 240px; }
     }
 
-    @media (max-width: 1000px) {
-      .tree { width: 280px; height: 350px; }
-      .fireplace { display: none; }
-      .window { display: none; }
-      .armchair { right: 5%; }
-      .armchair svg { width: 150px; height: 140px; }
-      .elf-area { left: 5%; }
-      .mouse-area { left: 20%; }
-      .presents { right: 25%; }
-      .welcome { right: 10%; top: 10px; }
+    @media (max-width: 1200px) {
+      .welcome-card { max-width: 200px; padding: 10px 14px; }
+      .welcome-card h1 { font-size: 1.2rem; }
+      .tree-container svg { width: 320px; height: 420px; }
+      .armchair svg { width: 200px; height: 185px; }
+      .elf-area svg { width: 80px; height: 120px; }
+      .bookshelf { right: -4%; }
     }
 
-    @media (max-width: 768px) {
-      .tree { width: 220px; height: 280px; }
-      .armchair { display: none; }
-      .elf-area { display: none; }
-      .mouse-area { display: none; }
-      .presents { right: 10%; }
-      .welcome { 
-        position: relative;
-        top: 0;
-        right: 0;
-        max-width: 100%;
-        margin: 0 auto 1rem;
-      }
+    @media (max-width: 900px) {
+      .bookshelf, .lamp, .shelf-left { display: none; }
+      .welcome-card { top: 2%; right: 2%; max-width: 180px; }
+      .tree-container svg { width: 250px; height: 330px; }
+      .tree-container { left: 0; }
+      .armchair svg { width: 160px; height: 150px; }
+      .presents { left: 22%; }
+    }
+
+    @media (max-width: 600px) {
+      .armchair, .elf-area, .mouse-area { display: none; }
+      .tree-container svg { width: 180px; height: 235px; }
+      .tree-container { left: 2%; }
+      .window-right { display: none; }
+      .presents { gap: 5px; left: 35%; }
+      .presents svg { width: 45px; height: 50px; }
+      .welcome-card { top: 1%; right: 1%; max-width: 140px; padding: 8px; }
+      .welcome-card h1 { font-size: 1rem; }
+      .welcome-card p { font-size: 0.65rem; }
     }
   </style>
 </head>
 <body>
   <div class="room">
-    <div class="molding-top"></div>
+    <!-- Room structure -->
+    <div class="ceiling"></div>
+    <div class="wall-left"></div>
+    <div class="wall-right"></div>
+    <div class="wall-back"></div>
+    <div class="floor"></div>
 
-    <div class="room-content">
-      <!-- Welcome Message -->
-      <div class="welcome">
-        <h1>Happy Holidays ✨</h1>
-        <p>
-          Thank you for being part of our journey. May your holidays be filled with warmth and wonder.
-        </p>
-        <a href="/darc/install">🎁 Unwrap Darc Beta</a>
+    <!-- Left window with winter scene -->
+    <div class="window-left">
+      <div class="window-left-scene">
+        <div class="snow-hill-1"></div>
+        <div class="snow-hill-2"></div>
+        <div class="pine-tree pine-tree-1"></div>
+        <div class="pine-tree pine-tree-2"></div>
+        <div class="pine-tree pine-tree-3"></div>
+        <!-- Varied snowflakes -->
+        <div class="snowflake" style="left: 15%; animation-delay: 0s;"></div>
+        <div class="snowflake-lg" style="left: 35%; animation-delay: 0.8s;"></div>
+        <div class="snowflake-sm" style="left: 50%; animation-delay: 1.5s;"></div>
+        <div class="snowflake" style="left: 70%; animation-delay: 0.3s;"></div>
+        <div class="snowflake-star" style="left: 25%; animation-delay: 2s;">❄</div>
+        <div class="snowflake-sm" style="left: 85%; animation-delay: 1s;"></div>
+        <div class="snowflake-lg" style="left: 10%; animation-delay: 2.5s;"></div>
+        <div class="snowflake" style="left: 60%; animation-delay: 3s;"></div>
+        <div class="snowflake-star" style="left: 45%; animation-delay: 1.2s;">✦</div>
+        <div class="snowflake-sm" style="left: 78%; animation-delay: 0.6s;"></div>
+        <div class="snowflake" style="left: 30%; animation-delay: 3.5s;"></div>
+        <div class="snowflake-star" style="left: 90%; animation-delay: 2.2s;">❅</div>
+      </div>
+    </div>
+
+    <!-- Right window with winter scene -->
+    <div class="window-right">
+      <div class="window-right-scene">
+        <div class="snow-hill-r1"></div>
+        <div class="snow-hill-r2"></div>
+        <div class="pine-tree-r pine-tree-r1"></div>
+        <div class="pine-tree-r pine-tree-r2"></div>
+        <div class="pine-tree-r pine-tree-r3"></div>
+        <!-- Varied snowflakes -->
+        <div class="snowflake" style="left: 12%; animation-delay: 0.2s;"></div>
+        <div class="snowflake-lg" style="left: 30%; animation-delay: 1s;"></div>
+        <div class="snowflake-sm" style="left: 48%; animation-delay: 0.5s;"></div>
+        <div class="snowflake" style="left: 65%; animation-delay: 1.8s;"></div>
+        <div class="snowflake-star" style="left: 20%; animation-delay: 2.5s;">❄</div>
+        <div class="snowflake-sm" style="left: 82%; animation-delay: 0.8s;"></div>
+        <div class="snowflake-lg" style="left: 55%; animation-delay: 3s;"></div>
+        <div class="snowflake" style="left: 38%; animation-delay: 1.3s;"></div>
+        <div class="snowflake-star" style="left: 72%; animation-delay: 2s;">✦</div>
+        <div class="snowflake-sm" style="left: 8%; animation-delay: 3.2s;"></div>
+        <div class="snowflake" style="left: 88%; animation-delay: 0.4s;"></div>
+        <div class="snowflake-star" style="left: 42%; animation-delay: 2.8s;">❅</div>
+      </div>
+    </div>
+
+    <!-- Side table with clock -->
+    <div class="shelf-left">
+      <div class="shelf-left-top"></div>
+      <div class="shelf-left-front"></div>
+      <div class="shelf-left-leg1"></div>
+      <div class="shelf-left-leg2"></div>
+      <div class="clock"></div>
+    </div>
+
+    <!-- Lamp -->
+    <div class="lamp">
+      <div class="lamp-shade"></div>
+      <div class="lamp-base"></div>
+      <div class="lamp-foot"></div>
+    </div>
+
+    <!-- Picture frame with wreath -->
+    <div class="picture-frame">
+      <div class="wreath"></div>
+    </div>
+
+    <!-- Bookshelf -->
+    <div class="bookshelf">
+      <div class="shelf shelf-1"></div>
+      <div class="shelf shelf-2"></div>
+      <div class="shelf shelf-3"></div>
+      <div class="books">
+        <div class="book book-1"></div>
+        <div class="book book-2"></div>
+        <div class="book book-3"></div>
+      </div>
+      <div class="books-2">
+        <div class="book book-4"></div>
+        <div class="book book-5"></div>
+        <div class="book book-6"></div>
+      </div>
+      <div class="books-3">
+        <div class="book book-7"></div>
+        <div class="book book-8"></div>
+        <div class="book book-9"></div>
+      </div>
+    </div>
+
+    <!-- Fireplace -->
+    <div class="fireplace">
+      <div class="fireplace-mantle">
+        <!-- Stockings hanging down -->
+        <div class="stockings">
+          <svg class="stocking" width="50" height="70" viewBox="0 0 50 70">
+            <path d="M10 0 L10 35 Q10 50 25 56 L40 66 Q50 72 50 60 L50 50 Q50 44 40 44 L30 38 L30 0 Z" fill="#c0392b"/>
+            <path d="M8 0 L32 0 L32 9 Q20 13 8 9 Z" fill="#fff"/>
+            <ellipse cx="20" cy="5" rx="12" ry="5" fill="#f5f5f5"/>
+            <rect x="16" y="12" width="8" height="20" fill="#fff" opacity="0.2"/>
+          </svg>
+          <svg class="stocking" width="50" height="70" viewBox="0 0 50 70">
+            <path d="M10 0 L10 35 Q10 50 25 56 L40 66 Q50 72 50 60 L50 50 Q50 44 40 44 L30 38 L30 0 Z" fill="#27ae60"/>
+            <path d="M8 0 L32 0 L32 9 Q20 13 8 9 Z" fill="#fff"/>
+            <ellipse cx="20" cy="5" rx="12" ry="5" fill="#f5f5f5"/>
+            <rect x="16" y="12" width="8" height="20" fill="#fff" opacity="0.2"/>
+          </svg>
+          <svg class="stocking" width="50" height="70" viewBox="0 0 50 70">
+            <path d="M10 0 L10 35 Q10 50 25 56 L40 66 Q50 72 50 60 L50 50 Q50 44 40 44 L30 38 L30 0 Z" fill="#c0392b"/>
+            <path d="M8 0 L32 0 L32 9 Q20 13 8 9 Z" fill="#fff"/>
+            <ellipse cx="20" cy="5" rx="12" ry="5" fill="#f5f5f5"/>
+            <rect x="16" y="12" width="8" height="20" fill="#fff" opacity="0.2"/>
+            <!-- Candy cane peeking out -->
+            <rect x="18" y="-12" width="5" height="18" fill="#fff" rx="2"/>
+            <rect x="18" y="-12" width="5" height="4" fill="#e74c3c"/>
+            <rect x="18" y="-4" width="5" height="4" fill="#e74c3c"/>
+            <rect x="18" y="4" width="5" height="2" fill="#e74c3c"/>
+          </svg>
+        </div>
+      </div>
+      <div class="fireplace-body">
+        <div class="fireplace-opening">
+          <div class="fire">
+            <div class="flame flame-1"></div>
+            <div class="flame flame-2"></div>
+            <div class="flame flame-3"></div>
+          </div>
+          <div class="logs">
+            <div class="log log-1"></div>
+            <div class="log log-2"></div>
+          </div>
+        </div>
+      </div>
       </div>
 
-      <!-- Scene -->
-      <div class="scene">
-        <!-- Window with snowy night -->
-        <div class="window">
-          <div class="window-stars">
-            <div class="window-star" style="top: 15%; left: 20%; width: 3px; height: 3px;"></div>
-            <div class="window-star" style="top: 25%; left: 70%; width: 4px; height: 4px; animation-delay: 0.5s;"></div>
-            <div class="window-star" style="top: 10%; left: 50%; width: 3px; height: 3px; animation-delay: 1s;"></div>
-            <div class="window-star" style="top: 35%; left: 30%; width: 2px; height: 2px; animation-delay: 0.3s;"></div>
-            <div class="window-star" style="top: 20%; left: 85%; width: 3px; height: 3px; animation-delay: 0.7s;"></div>
-          </div>
-          <div class="window-snow"></div>
-        </div>
+    <!-- Rug -->
+    <div class="rug"></div>
 
-        <!-- Fireplace -->
-        <div class="fireplace">
-          <div class="fireplace-mantle"></div>
-          <div class="fireplace-body">
-            <div class="fireplace-opening">
-              <div class="fire">
-                <div class="flame flame-1"></div>
-                <div class="flame flame-2"></div>
-                <div class="flame flame-3"></div>
-              </div>
-              <div class="logs">
-                <div class="log log-1"></div>
-                <div class="log log-2"></div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Stockings - 3D -->
-          <div class="stocking stocking-1" title="This one's for Jingles!">
-            <svg width="60" height="85" viewBox="0 0 60 85">
-              <defs>
-                <linearGradient id="stocking1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#922b21"/>
-                  <stop offset="50%" stop-color="#c0392b"/>
-                  <stop offset="100%" stop-color="#922b21"/>
-                </linearGradient>
-              </defs>
-              <path d="M12 0 L12 42 Q12 60 30 66 L48 78 Q60 85 60 72 L60 60 Q60 54 48 54 L36 48 L36 0 Z" fill="url(#stocking1)"/>
-              <path d="M10 0 L38 0 L38 10 Q24 15 10 10 Z" fill="#fff"/>
-              <ellipse cx="24" cy="5" rx="14" ry="6" fill="#f5f5f5"/>
-              <rect x="20" y="12" width="8" height="30" fill="#fff" opacity="0.15"/>
-            </svg>
-          </div>
-          <div class="stocking stocking-2" title="For the good boys and girls!">
-            <svg width="60" height="85" viewBox="0 0 60 85">
-              <defs>
-                <linearGradient id="stocking2" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#1e8449"/>
-                  <stop offset="50%" stop-color="#27ae60"/>
-                  <stop offset="100%" stop-color="#1e8449"/>
-                </linearGradient>
-              </defs>
-              <path d="M12 0 L12 42 Q12 60 30 66 L48 78 Q60 85 60 72 L60 60 Q60 54 48 54 L36 48 L36 0 Z" fill="url(#stocking2)"/>
-              <path d="M10 0 L38 0 L38 10 Q24 15 10 10 Z" fill="#fff"/>
-              <ellipse cx="24" cy="5" rx="14" ry="6" fill="#f5f5f5"/>
-              <rect x="20" y="12" width="8" height="30" fill="#fff" opacity="0.15"/>
-            </svg>
-          </div>
-          <div class="stocking stocking-3" title="Santa was here!">
-            <svg width="60" height="85" viewBox="0 0 60 85">
-              <path d="M12 0 L12 42 Q12 60 30 66 L48 78 Q60 85 60 72 L60 60 Q60 54 48 54 L36 48 L36 0 Z" fill="url(#stocking1)"/>
-              <path d="M10 0 L38 0 L38 10 Q24 15 10 10 Z" fill="#fff"/>
-              <ellipse cx="24" cy="5" rx="14" ry="6" fill="#f5f5f5"/>
-              <rect x="20" y="12" width="8" height="30" fill="#fff" opacity="0.15"/>
-              <!-- Candy cane peeking out -->
-              <rect x="22" y="-15" width="6" height="20" fill="#fff" rx="3"/>
-              <rect x="22" y="-15" width="6" height="4" fill="#e74c3c"/>
-              <rect x="22" y="-7" width="6" height="4" fill="#e74c3c"/>
-              <rect x="22" y="1" width="6" height="4" fill="#e74c3c"/>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Big Christmas Tree -->
-      <div class="tree-container" title="The most magnificent tree in all the land!">
-          <svg class="tree" viewBox="0 0 380 480" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Tree pot/stand -->
-            <rect x="150" y="430" width="80" height="50" fill="#5D4037" rx="5"/>
-            <rect x="145" y="425" width="90" height="12" fill="#4E342E" rx="3"/>
-            
+    <!-- Large Christmas Tree - Detailed -->
+    <div class="tree-container" title="The most magnificent tree!">
+      <svg viewBox="0 0 380 480">
+        <!-- Dark green tree stand -->
+        <ellipse cx="190" cy="470" rx="55" ry="12" fill="#0d3d1a"/>
+        <rect x="140" y="440" width="100" height="32" fill="#145a25" rx="4"/>
+        <rect x="145" y="438" width="90" height="6" fill="#1a6b2e" rx="2"/>
+        <rect x="150" y="468" width="80" height="6" fill="#0d3d1a" rx="2"/>
+        <!-- Stand legs -->
+        <rect x="150" y="468" width="12" height="10" fill="#0d3d1a"/>
+        <rect x="218" y="468" width="12" height="10" fill="#0d3d1a"/>
+        <!-- Stand ornaments -->
+        <circle cx="160" cy="455" r="6" fill="#c0392b"/>
+        <circle cx="190" cy="455" r="6" fill="#f39c12"/>
+        <circle cx="220" cy="455" r="6" fill="#c0392b"/>
+        <circle cx="175" cy="450" r="4" fill="#27ae60"/>
+        <circle cx="205" cy="450" r="4" fill="#27ae60"/>
+        <!-- Gold trim on stand -->
+        <rect x="142" y="445" width="96" height="3" fill="#d4a853"/>
+        <rect x="142" y="462" width="96" height="3" fill="#d4a853"/>
+        
           <!-- Tree trunk -->
-            <rect x="165" y="380" width="50" height="55" fill="#5D4037"/>
-            <rect x="170" y="385" width="8" height="45" fill="#4E342E"/>
-            <rect x="195" y="390" width="5" height="35" fill="#4E342E"/>
-            
-            <!-- Tree layers with more detail -->
-            <!-- Bottom layer -->
-            <polygon points="190,340 40,420 340,420" fill="#1a4d2e"/>
-            <polygon points="190,350 60,420 320,420" fill="#2d6a4f"/>
-            <polygon points="190,360 80,420 300,420" fill="#40916c"/>
-            
-            <!-- Middle-bottom layer -->
-            <polygon points="190,260 70,350 310,350" fill="#1a4d2e"/>
-            <polygon points="190,275 90,350 290,350" fill="#2d6a4f"/>
-            <polygon points="190,290 105,350 275,350" fill="#40916c"/>
-            
-            <!-- Middle-top layer -->
-            <polygon points="190,180 100,270 280,270" fill="#1a4d2e"/>
-            <polygon points="190,195 115,270 265,270" fill="#2d6a4f"/>
-            <polygon points="190,210 130,270 250,270" fill="#40916c"/>
-            
-            <!-- Top layer -->
-            <polygon points="190,100 130,190 250,190" fill="#1a4d2e"/>
-            <polygon points="190,115 145,190 235,190" fill="#2d6a4f"/>
-            <polygon points="190,130 155,190 225,190" fill="#40916c"/>
-            
-            <!-- Peak -->
-            <polygon points="190,50 165,110 215,110" fill="#1a4d2e"/>
-            <polygon points="190,60 172,105 208,105" fill="#2d6a4f"/>
-            
-            <!-- Ornaments - big and colorful -->
-            <circle cx="120" cy="380" r="18" fill="#e74c3c">
-              <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="120" cy="380" r="8" fill="#fff" opacity="0.3"/>
-            
-            <circle cx="260" cy="390" r="16" fill="#3498db">
-              <animate attributeName="opacity" values="1;0.8;1" dur="2.5s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="260" cy="390" r="7" fill="#fff" opacity="0.3"/>
-            
-            <circle cx="190" cy="400" r="20" fill="#f39c12">
-              <animate attributeName="opacity" values="0.9;1;0.9" dur="1.8s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="190" cy="400" r="9" fill="#fff" opacity="0.3"/>
-            
-            <circle cx="100" cy="320" r="15" fill="#9b59b6">
-              <animate attributeName="opacity" values="1;0.85;1" dur="2.2s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="100" cy="320" r="6" fill="#fff" opacity="0.3"/>
-            
-            <circle cx="280" cy="330" r="17" fill="#e74c3c">
-              <animate attributeName="opacity" values="0.85;1;0.85" dur="2.1s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="280" cy="330" r="7" fill="#fff" opacity="0.3"/>
-            
-            <circle cx="150" cy="340" r="14" fill="#27ae60">
-              <animate attributeName="opacity" values="1;0.9;1" dur="1.9s" repeatCount="indefinite"/>
-            </circle>
-            
-            <circle cx="230" cy="345" r="16" fill="#f39c12">
-              <animate attributeName="opacity" values="0.9;1;0.9" dur="2.3s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="230" cy="345" r="7" fill="#fff" opacity="0.3"/>
-            
-            <circle cx="135" cy="260" r="14" fill="#3498db">
-              <animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite"/>
-            </circle>
-            
-            <circle cx="245" cy="255" r="15" fill="#9b59b6">
-              <animate attributeName="opacity" values="0.85;1;0.85" dur="2.4s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="245" cy="255" r="6" fill="#fff" opacity="0.3"/>
-            
-            <circle cx="190" cy="280" r="16" fill="#e74c3c">
-              <animate attributeName="opacity" values="0.9;1;0.9" dur="1.7s" repeatCount="indefinite"/>
-            </circle>
-            
-            <circle cx="160" cy="195" r="12" fill="#f39c12">
-              <animate attributeName="opacity" values="1;0.85;1" dur="2.2s" repeatCount="indefinite"/>
-            </circle>
-            
-            <circle cx="220" cy="200" r="13" fill="#27ae60">
-              <animate attributeName="opacity" values="0.85;1;0.85" dur="1.8s" repeatCount="indefinite"/>
-            </circle>
-            
-            <circle cx="175" cy="140" r="10" fill="#3498db">
-              <animate attributeName="opacity" values="1;0.9;1" dur="2.1s" repeatCount="indefinite"/>
-            </circle>
-            
-            <circle cx="205" cy="145" r="10" fill="#e74c3c">
-              <animate attributeName="opacity" values="0.9;1;0.9" dur="1.9s" repeatCount="indefinite"/>
-            </circle>
-            
-            <!-- Tinsel garlands -->
-            <path d="M100 380 Q145 395 190 380 Q235 365 280 380" stroke="#f7d794" stroke-width="6" fill="none" opacity="0.8"/>
-            <path d="M120 320 Q155 340 190 320 Q225 300 260 320" stroke="#f7d794" stroke-width="5" fill="none" opacity="0.8"/>
-            <path d="M140 260 Q165 275 190 260 Q215 245 240 260" stroke="#f7d794" stroke-width="4" fill="none" opacity="0.8"/>
-            <path d="M155 200 Q172 212 190 200 Q208 188 225 200" stroke="#f7d794" stroke-width="3" fill="none" opacity="0.8"/>
-            
-            <!-- Lights -->
-            <circle cx="95" cy="375" r="5" fill="#ff6b6b">
-              <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="145" cy="388" r="5" fill="#4ecdc4">
-              <animate attributeName="opacity" values="1;0.5;1" dur="0.8s" repeatCount="indefinite" begin="0.2s"/>
-            </circle>
-            <circle cx="235" cy="388" r="5" fill="#ffe66d">
-              <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite" begin="0.4s"/>
-            </circle>
-            <circle cx="285" cy="375" r="5" fill="#ff6b6b">
-              <animate attributeName="opacity" values="1;0.5;1" dur="0.8s" repeatCount="indefinite" begin="0.6s"/>
-            </circle>
-            <circle cx="115" cy="315" r="5" fill="#4ecdc4">
-              <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite" begin="0.1s"/>
-            </circle>
-            <circle cx="190" cy="315" r="5" fill="#ffe66d">
-              <animate attributeName="opacity" values="1;0.5;1" dur="0.8s" repeatCount="indefinite" begin="0.3s"/>
-            </circle>
-            <circle cx="265" cy="315" r="5" fill="#ff6b6b">
-              <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite" begin="0.5s"/>
-            </circle>
-            
-            <!-- Star on top -->
+        <rect x="172" y="405" width="36" height="38" fill="#5D4037"/>
+        <rect x="176" y="408" width="6" height="32" fill="#4E342E"/>
+        <rect x="197" y="410" width="4" height="28" fill="#4E342E"/>
+        
+        <!-- Tree layers with more detail -->
+        <polygon points="190,320 40,405 340,405" fill="#1a4d2e"/>
+        <polygon points="190,332 60,405 320,405" fill="#2d6a4f"/>
+        <polygon points="190,344 80,405 300,405" fill="#40916c"/>
+        
+        <polygon points="190,250 70,340 310,340" fill="#1a4d2e"/>
+        <polygon points="190,265 90,340 290,340" fill="#2d6a4f"/>
+        <polygon points="190,280 105,340 275,340" fill="#40916c"/>
+        
+        <polygon points="190,180 100,270 280,270" fill="#1a4d2e"/>
+        <polygon points="190,195 115,270 265,270" fill="#2d6a4f"/>
+        <polygon points="190,210 130,270 250,270" fill="#40916c"/>
+        
+        <polygon points="190,100 130,190 250,190" fill="#1a4d2e"/>
+        <polygon points="190,115 145,190 235,190" fill="#2d6a4f"/>
+        <polygon points="190,130 155,190 225,190" fill="#40916c"/>
+        
+        <polygon points="190,50 165,110 215,110" fill="#1a4d2e"/>
+        <polygon points="190,60 172,105 208,105" fill="#2d6a4f"/>
+        
+        <!-- Ornaments - big and colorful with shine -->
+        <circle cx="120" cy="365" r="18" fill="#e74c3c"/>
+        <circle cx="120" cy="365" r="8" fill="#fff" opacity="0.3"/>
+        
+        <circle cx="260" cy="375" r="16" fill="#3498db"/>
+        <circle cx="260" cy="375" r="7" fill="#fff" opacity="0.3"/>
+        
+        <circle cx="190" cy="385" r="20" fill="#f39c12"/>
+        <circle cx="190" cy="385" r="9" fill="#fff" opacity="0.3"/>
+        
+        <circle cx="100" cy="310" r="15" fill="#9b59b6"/>
+        <circle cx="100" cy="310" r="6" fill="#fff" opacity="0.3"/>
+        
+        <circle cx="280" cy="318" r="17" fill="#e74c3c"/>
+        <circle cx="280" cy="318" r="7" fill="#fff" opacity="0.3"/>
+        
+        <circle cx="150" cy="328" r="14" fill="#27ae60"/>
+        <circle cx="230" cy="332" r="16" fill="#f39c12"/>
+        <circle cx="230" cy="332" r="7" fill="#fff" opacity="0.3"/>
+        
+        <circle cx="135" cy="250" r="14" fill="#3498db"/>
+        <circle cx="245" cy="248" r="15" fill="#9b59b6"/>
+        <circle cx="245" cy="248" r="6" fill="#fff" opacity="0.3"/>
+        
+        <circle cx="190" cy="268" r="16" fill="#e74c3c"/>
+        <circle cx="160" cy="195" r="12" fill="#f39c12"/>
+        <circle cx="220" cy="200" r="13" fill="#27ae60"/>
+        <circle cx="175" cy="140" r="10" fill="#3498db"/>
+        <circle cx="205" cy="145" r="10" fill="#e74c3c"/>
+        
+        <!-- Tinsel garlands -->
+        <path d="M100 365 Q145 380 190 365 Q235 350 280 365" stroke="#f7d794" stroke-width="6" fill="none" opacity="0.8"/>
+        <path d="M120 310 Q155 328 190 310 Q225 292 260 310" stroke="#f7d794" stroke-width="5" fill="none" opacity="0.8"/>
+        <path d="M140 260 Q165 275 190 260 Q215 245 240 260" stroke="#f7d794" stroke-width="4" fill="none" opacity="0.8"/>
+        <path d="M155 200 Q172 212 190 200 Q208 188 225 200" stroke="#f7d794" stroke-width="3" fill="none" opacity="0.8"/>
+        
+        <!-- Twinkling lights -->
+        <circle cx="95" cy="360" r="5" fill="#ff6b6b">
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="145" cy="373" r="5" fill="#4ecdc4">
+          <animate attributeName="opacity" values="1;0.5;1" dur="0.8s" repeatCount="indefinite" begin="0.2s"/>
+        </circle>
+        <circle cx="235" cy="373" r="5" fill="#ffe66d">
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite" begin="0.4s"/>
+        </circle>
+        <circle cx="285" cy="360" r="5" fill="#ff6b6b">
+          <animate attributeName="opacity" values="1;0.5;1" dur="0.8s" repeatCount="indefinite" begin="0.6s"/>
+        </circle>
+        <circle cx="115" cy="305" r="5" fill="#4ecdc4">
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite" begin="0.1s"/>
+        </circle>
+        <circle cx="190" cy="305" r="5" fill="#ffe66d">
+          <animate attributeName="opacity" values="1;0.5;1" dur="0.8s" repeatCount="indefinite" begin="0.3s"/>
+        </circle>
+        <circle cx="265" cy="305" r="5" fill="#ff6b6b">
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite" begin="0.5s"/>
+        </circle>
+        
+        <!-- Star on top -->
           <g class="tree-star">
-              <polygon points="190,15 197,38 222,38 202,52 209,75 190,62 171,75 178,52 158,38 183,38" fill="#f7d794"/>
-              <polygon points="190,22 195,37 212,37 199,47 204,62 190,53 176,62 181,47 168,37 185,37" fill="#fff8dc"/>
-              <circle cx="190" cy="42" r="8" fill="#fff" opacity="0.6"/>
+          <polygon points="190,15 197,38 222,38 202,52 209,75 190,62 171,75 178,52 158,38 183,38" fill="#f7d794"/>
+          <polygon points="190,22 195,37 212,37 199,47 204,62 190,53 176,62 181,47 168,37 185,37" fill="#fff8dc"/>
+          <circle cx="190" cy="42" r="8" fill="#fff" opacity="0.6"/>
           </g>
         </svg>
       </div>
 
-        <!-- Big 3D Presents -->
-        <div class="presents" title="No peeking until Christmas!">
-          <!-- Large Red Present - 3D Box -->
-          <svg class="present" width="110" height="120" viewBox="0 0 110 120">
+    <!-- Presents - 3D -->
+    <div class="presents" title="Don't peek!">
+      <!-- Large Red Present -->
+      <svg class="present" width="100" height="110" viewBox="0 0 110 120">
           <defs>
-              <linearGradient id="redBoxFront" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#d63031"/>
+          <linearGradient id="redBoxFront" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#d63031"/>
               <stop offset="50%" stop-color="#e74c3c"/>
-                <stop offset="100%" stop-color="#c0392b"/>
-              </linearGradient>
-              <linearGradient id="redBoxTop" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" stop-color="#e74c3c"/>
-                <stop offset="100%" stop-color="#ff6b6b"/>
-              </linearGradient>
-              <linearGradient id="redBoxSide" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#c0392b"/>
-                <stop offset="100%" stop-color="#962d22"/>
-              </linearGradient>
-              <linearGradient id="goldRibbon" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#f9ca24"/>
-                <stop offset="50%" stop-color="#f7d794"/>
-                <stop offset="100%" stop-color="#d4a853"/>
-              </linearGradient>
-            </defs>
-            <!-- Box shadow -->
-            <ellipse cx="55" cy="115" rx="45" ry="8" fill="rgba(0,0,0,0.3)"/>
-            <!-- Box right side (3D) -->
-            <polygon points="85,35 105,25 105,100 85,110" fill="url(#redBoxSide)"/>
-            <!-- Box front -->
-            <rect x="10" y="35" width="75" height="75" fill="url(#redBoxFront)" rx="3"/>
-            <!-- Box top (3D) -->
-            <polygon points="10,35 30,25 105,25 85,35" fill="url(#redBoxTop)"/>
-            <!-- Front highlight -->
-            <rect x="15" y="45" width="25" height="8" fill="#fff" opacity="0.15" rx="2"/>
-            <!-- Ribbon vertical -->
-            <rect x="40" y="35" width="12" height="75" fill="url(#goldRibbon)"/>
-            <polygon points="46,35 52,35 72,25 66,25" fill="url(#goldRibbon)"/>
-            <!-- Ribbon horizontal -->
-            <rect x="10" y="65" width="75" height="12" fill="url(#goldRibbon)"/>
-            <polygon points="85,65 85,77 105,67 105,55" fill="#d4a853"/>
-            <!-- Bow -->
-            <ellipse cx="46" cy="32" rx="22" ry="12" fill="#f39c12"/>
-            <ellipse cx="28" cy="24" rx="15" ry="10" fill="#f7d794"/>
-            <ellipse cx="64" cy="24" rx="15" ry="10" fill="#f7d794"/>
-            <ellipse cx="28" cy="24" rx="12" ry="7" fill="#f39c12"/>
-            <ellipse cx="64" cy="24" rx="12" ry="7" fill="#f39c12"/>
-            <circle cx="46" cy="30" r="10" fill="#e67e22"/>
-            <circle cx="46" cy="28" r="4" fill="#f9ca24" opacity="0.6"/>
-            <!-- Ribbon tails -->
-            <path d="M36 35 Q30 50 20 45" stroke="#d4a853" stroke-width="8" fill="none"/>
-            <path d="M56 35 Q62 50 72 45" stroke="#d4a853" stroke-width="8" fill="none"/>
-          </svg>
-
-          <!-- Medium Green Present - 3D Box -->
-          <svg class="present" width="95" height="105" viewBox="0 0 95 105">
-            <defs>
-              <linearGradient id="greenBoxFront" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#1e8449"/>
-                <stop offset="50%" stop-color="#27ae60"/>
-                <stop offset="100%" stop-color="#1e8449"/>
-              </linearGradient>
-              <linearGradient id="greenBoxTop" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" stop-color="#27ae60"/>
-                <stop offset="100%" stop-color="#58d68d"/>
-              </linearGradient>
-              <linearGradient id="greenBoxSide" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#1e8449"/>
-                <stop offset="100%" stop-color="#145a32"/>
-              </linearGradient>
-              <linearGradient id="redRibbon" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#e74c3c"/>
-                <stop offset="50%" stop-color="#ff6b6b"/>
-                <stop offset="100%" stop-color="#c0392b"/>
-              </linearGradient>
-            </defs>
-            <!-- Shadow -->
-            <ellipse cx="47" cy="100" rx="38" ry="7" fill="rgba(0,0,0,0.3)"/>
-            <!-- Right side -->
-            <polygon points="72,32 90,24 90,92 72,100" fill="url(#greenBoxSide)"/>
-            <!-- Front -->
-            <rect x="8" y="32" width="64" height="68" fill="url(#greenBoxFront)" rx="3"/>
-            <!-- Top -->
-            <polygon points="8,32 26,24 90,24 72,32" fill="url(#greenBoxTop)"/>
-            <!-- Highlight -->
-            <rect x="12" y="42" width="20" height="6" fill="#fff" opacity="0.12" rx="2"/>
-            <!-- Ribbon V -->
-            <rect x="33" y="32" width="10" height="68" fill="url(#redRibbon)"/>
-            <polygon points="38,32 43,32 61,24 56,24" fill="url(#redRibbon)"/>
-            <!-- Ribbon H -->
-            <rect x="8" y="58" width="64" height="10" fill="url(#redRibbon)"/>
-            <polygon points="72,58 72,68 90,60 90,50" fill="#c0392b"/>
-            <!-- Bow -->
-            <ellipse cx="38" cy="30" rx="18" ry="10" fill="#e74c3c"/>
-            <ellipse cx="24" cy="22" rx="12" ry="8" fill="#ff6b6b"/>
-            <ellipse cx="52" cy="22" rx="12" ry="8" fill="#ff6b6b"/>
-            <ellipse cx="24" cy="22" rx="9" ry="5" fill="#e74c3c"/>
-            <ellipse cx="52" cy="22" rx="9" ry="5" fill="#e74c3c"/>
-            <circle cx="38" cy="28" r="8" fill="#c0392b"/>
-            <circle cx="38" cy="26" r="3" fill="#ff6b6b" opacity="0.5"/>
-          </svg>
-
-          <!-- Small Blue Present - 3D Box -->
-          <svg class="present" width="80" height="90" viewBox="0 0 80 90">
-            <defs>
-              <linearGradient id="blueBoxFront" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#2980b9"/>
-                <stop offset="50%" stop-color="#3498db"/>
-                <stop offset="100%" stop-color="#2471a3"/>
-              </linearGradient>
-              <linearGradient id="blueBoxTop" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" stop-color="#3498db"/>
-                <stop offset="100%" stop-color="#5dade2"/>
-              </linearGradient>
-              <linearGradient id="blueBoxSide" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#2471a3"/>
-                <stop offset="100%" stop-color="#1a5276"/>
-              </linearGradient>
-              <linearGradient id="silverRibbon" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#ecf0f1"/>
-              <stop offset="50%" stop-color="#ffffff"/>
-                <stop offset="100%" stop-color="#bdc3c7"/>
+            <stop offset="100%" stop-color="#c0392b"/>
+          </linearGradient>
+          <linearGradient id="redBoxTop" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#e74c3c"/>
+            <stop offset="100%" stop-color="#ff6b6b"/>
+          </linearGradient>
+          <linearGradient id="redBoxSide" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#c0392b"/>
+            <stop offset="100%" stop-color="#962d22"/>
+          </linearGradient>
+          <linearGradient id="goldRibbon" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f9ca24"/>
+            <stop offset="50%" stop-color="#f7d794"/>
+            <stop offset="100%" stop-color="#d4a853"/>
             </linearGradient>
           </defs>
-            <!-- Shadow -->
-            <ellipse cx="40" cy="86" rx="32" ry="6" fill="rgba(0,0,0,0.3)"/>
-            <!-- Right side -->
-            <polygon points="60,30 76,23 76,80 60,87" fill="url(#blueBoxSide)"/>
-            <!-- Front -->
-            <rect x="6" y="30" width="54" height="57" fill="url(#blueBoxFront)" rx="3"/>
-            <!-- Top -->
-            <polygon points="6,30 22,23 76,23 60,30" fill="url(#blueBoxTop)"/>
-            <!-- Highlight -->
-            <rect x="10" y="38" width="18" height="5" fill="#fff" opacity="0.12" rx="2"/>
-            <!-- Ribbon V -->
-            <rect x="28" y="30" width="9" height="57" fill="url(#silverRibbon)"/>
-            <polygon points="32.5,30 37,30 53,23 48.5,23" fill="url(#silverRibbon)"/>
-            <!-- Ribbon H -->
-            <rect x="6" y="52" width="54" height="9" fill="url(#silverRibbon)"/>
-            <polygon points="60,52 60,61 76,54 76,45" fill="#bdc3c7"/>
-            <!-- Bow -->
-            <ellipse cx="32.5" cy="28" rx="15" ry="8" fill="#ecf0f1"/>
-            <ellipse cx="20" cy="21" rx="10" ry="7" fill="#fff"/>
-            <ellipse cx="45" cy="21" rx="10" ry="7" fill="#fff"/>
-            <ellipse cx="20" cy="21" rx="7" ry="4" fill="#ecf0f1"/>
-            <ellipse cx="45" cy="21" rx="7" ry="4" fill="#ecf0f1"/>
-            <circle cx="32.5" cy="26" r="6" fill="#bdc3c7"/>
-            <circle cx="32.5" cy="24" r="2" fill="#fff" opacity="0.6"/>
+        <ellipse cx="55" cy="115" rx="45" ry="8" fill="rgba(0,0,0,0.3)"/>
+        <polygon points="85,35 105,25 105,100 85,110" fill="url(#redBoxSide)"/>
+        <rect x="10" y="35" width="75" height="75" fill="url(#redBoxFront)" rx="3"/>
+        <polygon points="10,35 30,25 105,25 85,35" fill="url(#redBoxTop)"/>
+        <rect x="15" y="45" width="25" height="8" fill="#fff" opacity="0.15" rx="2"/>
+        <rect x="40" y="35" width="12" height="75" fill="url(#goldRibbon)"/>
+        <polygon points="46,35 52,35 72,25 66,25" fill="url(#goldRibbon)"/>
+        <rect x="10" y="65" width="75" height="12" fill="url(#goldRibbon)"/>
+        <polygon points="85,65 85,77 105,67 105,55" fill="#d4a853"/>
+        <ellipse cx="46" cy="32" rx="22" ry="12" fill="#f39c12"/>
+        <ellipse cx="28" cy="24" rx="15" ry="10" fill="#f7d794"/>
+        <ellipse cx="64" cy="24" rx="15" ry="10" fill="#f7d794"/>
+        <ellipse cx="28" cy="24" rx="12" ry="7" fill="#f39c12"/>
+        <ellipse cx="64" cy="24" rx="12" ry="7" fill="#f39c12"/>
+        <circle cx="46" cy="30" r="10" fill="#e67e22"/>
+        <circle cx="46" cy="28" r="4" fill="#f9ca24" opacity="0.6"/>
+        <path d="M36 35 Q30 50 20 45" stroke="#d4a853" stroke-width="8" fill="none"/>
+        <path d="M56 35 Q62 50 72 45" stroke="#d4a853" stroke-width="8" fill="none"/>
+        </svg>
+
+      <!-- Medium Green Present -->
+      <svg class="present" width="85" height="95" viewBox="0 0 95 105">
+        <defs>
+          <linearGradient id="greenBoxFront" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#1e8449"/>
+            <stop offset="50%" stop-color="#27ae60"/>
+            <stop offset="100%" stop-color="#1e8449"/>
+          </linearGradient>
+          <linearGradient id="greenBoxTop" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#27ae60"/>
+            <stop offset="100%" stop-color="#58d68d"/>
+          </linearGradient>
+          <linearGradient id="greenBoxSide" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#1e8449"/>
+            <stop offset="100%" stop-color="#145a32"/>
+          </linearGradient>
+          <linearGradient id="redRibbon" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#e74c3c"/>
+            <stop offset="50%" stop-color="#ff6b6b"/>
+            <stop offset="100%" stop-color="#c0392b"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="47" cy="100" rx="38" ry="7" fill="rgba(0,0,0,0.3)"/>
+        <polygon points="72,32 90,24 90,92 72,100" fill="url(#greenBoxSide)"/>
+        <rect x="8" y="32" width="64" height="68" fill="url(#greenBoxFront)" rx="3"/>
+        <polygon points="8,32 26,24 90,24 72,32" fill="url(#greenBoxTop)"/>
+        <rect x="12" y="42" width="20" height="6" fill="#fff" opacity="0.12" rx="2"/>
+        <rect x="33" y="32" width="10" height="68" fill="url(#redRibbon)"/>
+        <polygon points="38,32 43,32 61,24 56,24" fill="url(#redRibbon)"/>
+        <rect x="8" y="58" width="64" height="10" fill="url(#redRibbon)"/>
+        <polygon points="72,58 72,68 90,60 90,50" fill="#c0392b"/>
+        <ellipse cx="38" cy="30" rx="18" ry="10" fill="#e74c3c"/>
+        <ellipse cx="24" cy="22" rx="12" ry="8" fill="#ff6b6b"/>
+        <ellipse cx="52" cy="22" rx="12" ry="8" fill="#ff6b6b"/>
+        <ellipse cx="24" cy="22" rx="9" ry="5" fill="#e74c3c"/>
+        <ellipse cx="52" cy="22" rx="9" ry="5" fill="#e74c3c"/>
+        <circle cx="38" cy="28" r="8" fill="#c0392b"/>
+        <circle cx="38" cy="26" r="3" fill="#ff6b6b" opacity="0.5"/>
+      </svg>
+
+      <!-- Small Blue Present -->
+      <svg class="present" width="70" height="80" viewBox="0 0 80 90">
+        <defs>
+          <linearGradient id="blueBoxFront" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#2980b9"/>
+            <stop offset="50%" stop-color="#3498db"/>
+            <stop offset="100%" stop-color="#2471a3"/>
+          </linearGradient>
+          <linearGradient id="blueBoxTop" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#3498db"/>
+            <stop offset="100%" stop-color="#5dade2"/>
+          </linearGradient>
+          <linearGradient id="blueBoxSide" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#2471a3"/>
+            <stop offset="100%" stop-color="#1a5276"/>
+          </linearGradient>
+          <linearGradient id="silverRibbon" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ecf0f1"/>
+              <stop offset="50%" stop-color="#ffffff"/>
+            <stop offset="100%" stop-color="#bdc3c7"/>
+            </linearGradient>
+          </defs>
+        <ellipse cx="40" cy="86" rx="32" ry="6" fill="rgba(0,0,0,0.3)"/>
+        <polygon points="60,30 76,23 76,80 60,87" fill="url(#blueBoxSide)"/>
+        <rect x="6" y="30" width="54" height="57" fill="url(#blueBoxFront)" rx="3"/>
+        <polygon points="6,30 22,23 76,23 60,30" fill="url(#blueBoxTop)"/>
+        <rect x="10" y="38" width="18" height="5" fill="#fff" opacity="0.12" rx="2"/>
+        <rect x="28" y="30" width="9" height="57" fill="url(#silverRibbon)"/>
+        <polygon points="32.5,30 37,30 53,23 48.5,23" fill="url(#silverRibbon)"/>
+        <rect x="6" y="52" width="54" height="9" fill="url(#silverRibbon)"/>
+        <polygon points="60,52 60,61 76,54 76,45" fill="#bdc3c7"/>
+        <ellipse cx="32.5" cy="28" rx="15" ry="8" fill="#ecf0f1"/>
+        <ellipse cx="20" cy="21" rx="10" ry="7" fill="#fff"/>
+        <ellipse cx="45" cy="21" rx="10" ry="7" fill="#fff"/>
+        <ellipse cx="20" cy="21" rx="7" ry="4" fill="#ecf0f1"/>
+        <ellipse cx="45" cy="21" rx="7" ry="4" fill="#ecf0f1"/>
+        <circle cx="32.5" cy="26" r="6" fill="#bdc3c7"/>
+        <circle cx="32.5" cy="24" r="2" fill="#fff" opacity="0.6"/>
         </svg>
       </div>
 
-        <!-- Cozy Armchair with Cat - 3D -->
-        <div class="armchair" title="Whiskers is enjoying the warmth!">
-          <svg width="220" height="200" viewBox="0 0 220 200">
-            <defs>
-              <linearGradient id="chairBack" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#6d3a1a"/>
-                <stop offset="30%" stop-color="#8b4513"/>
-                <stop offset="70%" stop-color="#a0522d"/>
-                <stop offset="100%" stop-color="#6d3a1a"/>
-              </linearGradient>
-              <linearGradient id="chairCushion" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#cd853f"/>
-                <stop offset="50%" stop-color="#a0522d"/>
-                <stop offset="100%" stop-color="#8b4513"/>
-              </linearGradient>
-              <linearGradient id="chairArm" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#a0522d"/>
-                <stop offset="100%" stop-color="#6d3a1a"/>
-              </linearGradient>
-              <linearGradient id="catFur" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#6a6a6a"/>
-                <stop offset="50%" stop-color="#4a4a4a"/>
-                <stop offset="100%" stop-color="#3a3a3a"/>
-              </linearGradient>
-            </defs>
-            <!-- Chair shadow -->
-            <ellipse cx="110" cy="195" rx="90" ry="12" fill="rgba(0,0,0,0.25)"/>
-            
-            <!-- Chair back -->
-            <path d="M25 25 Q25 5 60 5 L160 5 Q195 5 195 25 L195 120 L25 120 Z" fill="url(#chairBack)"/>
-            <path d="M35 30 Q35 15 65 15 L155 15 Q185 15 185 30 L185 115 L35 115 Z" fill="#a0522d"/>
-            <!-- Tufted cushion back -->
-            <ellipse cx="110" cy="70" rx="65" ry="40" fill="url(#chairCushion)" opacity="0.4"/>
-            <circle cx="80" cy="55" r="15" fill="#8b4513" opacity="0.3"/>
-            <circle cx="140" cy="55" r="15" fill="#8b4513" opacity="0.3"/>
-            <circle cx="110" cy="85" r="18" fill="#8b4513" opacity="0.3"/>
-            <!-- Button tufts -->
-            <circle cx="80" cy="55" r="4" fill="#5d3a1a"/>
-            <circle cx="140" cy="55" r="4" fill="#5d3a1a"/>
-            <circle cx="110" cy="85" r="4" fill="#5d3a1a"/>
-            
-            <!-- Left Armrest -->
-            <ellipse cx="18" cy="90" rx="18" ry="50" fill="url(#chairArm)"/>
-            <ellipse cx="18" cy="90" rx="12" ry="42" fill="#a0522d"/>
-            <ellipse cx="18" cy="50" rx="14" ry="10" fill="#8b4513"/>
-            
-            <!-- Right Armrest -->
-            <ellipse cx="202" cy="90" rx="18" ry="50" fill="url(#chairArm)"/>
-            <ellipse cx="202" cy="90" rx="12" ry="42" fill="#a0522d"/>
-            <ellipse cx="202" cy="50" rx="14" ry="10" fill="#8b4513"/>
-            
-            <!-- Seat -->
-            <rect x="25" y="115" width="170" height="45" fill="url(#chairBack)" rx="5"/>
-            <rect x="30" y="118" width="160" height="38" fill="#a0522d" rx="3"/>
-            <ellipse cx="110" cy="137" rx="70" ry="15" fill="url(#chairCushion)" opacity="0.35"/>
-            
-            <!-- Legs -->
-            <rect x="35" y="158" width="18" height="40" fill="#5d3a1a" rx="4"/>
-            <rect x="167" y="158" width="18" height="40" fill="#5d3a1a" rx="4"/>
-            <ellipse cx="44" cy="196" rx="12" ry="4" fill="#4a3020"/>
-            <ellipse cx="176" cy="196" rx="12" ry="4" fill="#4a3020"/>
-            
-            <!-- Cat sleeping on chair -->
-            <g class="cat">
-            <!-- Body -->
-              <ellipse cx="110" cy="105" rx="50" ry="25" fill="url(#catFur)"/>
-              <ellipse cx="110" cy="107" rx="45" ry="20" fill="#5a5a5a"/>
-              <!-- Fur texture -->
-              <path d="M70 100 Q75 95 80 100" stroke="#6a6a6a" stroke-width="2" fill="none"/>
-              <path d="M130 100 Q135 95 140 100" stroke="#6a6a6a" stroke-width="2" fill="none"/>
-              
+    <!-- Armchair with cat - Detailed -->
+    <div class="armchair" title="Cozy spot!">
+      <svg viewBox="0 0 220 200">
+        <defs>
+          <linearGradient id="chairBack" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#6d3a1a"/>
+            <stop offset="30%" stop-color="#8b4513"/>
+            <stop offset="70%" stop-color="#a0522d"/>
+            <stop offset="100%" stop-color="#6d3a1a"/>
+          </linearGradient>
+          <linearGradient id="chairCushion" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#cd853f"/>
+            <stop offset="50%" stop-color="#a0522d"/>
+            <stop offset="100%" stop-color="#8b4513"/>
+          </linearGradient>
+          <linearGradient id="catFur" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#6a6a6a"/>
+            <stop offset="50%" stop-color="#4a4a4a"/>
+            <stop offset="100%" stop-color="#3a3a3a"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="110" cy="195" rx="90" ry="12" fill="rgba(0,0,0,0.25)"/>
+        
+        <!-- Chair back -->
+        <path d="M25 25 Q25 5 60 5 L160 5 Q195 5 195 25 L195 120 L25 120 Z" fill="url(#chairBack)"/>
+        <path d="M35 30 Q35 15 65 15 L155 15 Q185 15 185 30 L185 115 L35 115 Z" fill="#a0522d"/>
+        <ellipse cx="110" cy="70" rx="65" ry="40" fill="url(#chairCushion)" opacity="0.4"/>
+        <circle cx="80" cy="55" r="15" fill="#8b4513" opacity="0.3"/>
+        <circle cx="140" cy="55" r="15" fill="#8b4513" opacity="0.3"/>
+        <circle cx="110" cy="85" r="18" fill="#8b4513" opacity="0.3"/>
+        <circle cx="80" cy="55" r="4" fill="#5d3a1a"/>
+        <circle cx="140" cy="55" r="4" fill="#5d3a1a"/>
+        <circle cx="110" cy="85" r="4" fill="#5d3a1a"/>
+        
+        <!-- Armrests -->
+        <ellipse cx="18" cy="90" rx="18" ry="50" fill="#8b4513"/>
+        <ellipse cx="18" cy="90" rx="12" ry="42" fill="#a0522d"/>
+        <ellipse cx="18" cy="50" rx="14" ry="10" fill="#8b4513"/>
+        <ellipse cx="202" cy="90" rx="18" ry="50" fill="#8b4513"/>
+        <ellipse cx="202" cy="90" rx="12" ry="42" fill="#a0522d"/>
+        <ellipse cx="202" cy="50" rx="14" ry="10" fill="#8b4513"/>
+        
+        <!-- Seat -->
+        <rect x="25" y="115" width="170" height="45" fill="url(#chairBack)" rx="5"/>
+        <rect x="30" y="118" width="160" height="38" fill="#a0522d" rx="3"/>
+        <ellipse cx="110" cy="137" rx="70" ry="15" fill="url(#chairCushion)" opacity="0.35"/>
+        
+        <!-- Legs -->
+        <rect x="35" y="158" width="18" height="40" fill="#5d3a1a" rx="4"/>
+        <rect x="167" y="158" width="18" height="40" fill="#5d3a1a" rx="4"/>
+        <ellipse cx="44" cy="196" rx="12" ry="4" fill="#4a3020"/>
+        <ellipse cx="176" cy="196" rx="12" ry="4" fill="#4a3020"/>
+        
+        <!-- Cat sleeping -->
+        <g class="cat">
+          <ellipse cx="110" cy="105" rx="50" ry="25" fill="url(#catFur)"/>
+          <ellipse cx="110" cy="107" rx="45" ry="20" fill="#5a5a5a"/>
+          <path d="M70 100 Q75 95 80 100" stroke="#6a6a6a" stroke-width="2" fill="none"/>
+          <path d="M130 100 Q135 95 140 100" stroke="#6a6a6a" stroke-width="2" fill="none"/>
+          
+          <circle cx="65" cy="92" r="22" fill="url(#catFur)"/>
+          <circle cx="65" cy="93" r="19" fill="#5a5a5a"/>
+          
+          <polygon points="48,75 42,55 58,68" fill="#4a4a4a"/>
+          <polygon points="82,75 88,55 72,68" fill="#4a4a4a"/>
+          <polygon points="50,73 45,60 56,68" fill="#ffb3b3"/>
+          <polygon points="80,73 85,60 74,68" fill="#ffb3b3"/>
+          
+          <path d="M54 90 Q58 94 62 90" stroke="#2a2a2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M68 90 Q72 94 76 90" stroke="#2a2a2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          
+          <ellipse cx="65" cy="98" rx="4" ry="3" fill="#ffb3b3"/>
+          
+          <line x1="45" y1="95" x2="55" y2="96" stroke="#888" stroke-width="1"/>
+          <line x1="45" y1="100" x2="55" y2="99" stroke="#888" stroke-width="1"/>
+          <line x1="75" y1="96" x2="85" y2="95" stroke="#888" stroke-width="1"/>
+          <line x1="75" y1="99" x2="85" y2="100" stroke="#888" stroke-width="1"/>
+          
+          <path d="M160 105 Q180 90 175 70 Q172 55 160 60" stroke="url(#catFur)" stroke-width="14" fill="none" stroke-linecap="round"/>
+          
+          <ellipse cx="85" cy="118" rx="10" ry="6" fill="#4a4a4a"/>
+          <ellipse cx="135" cy="118" rx="10" ry="6" fill="#4a4a4a"/>
+          <circle cx="85" cy="120" r="2" fill="#ffb3b3" opacity="0.5"/>
+          <circle cx="135" cy="120" r="2" fill="#ffb3b3" opacity="0.5"/>
+        </g>
+        </svg>
+      </div>
+
+    <!-- Mouse - Detailed -->
+    <div class="mouse-area" title="Gerald found cheese!">
+      <svg width="130" height="115" viewBox="0 0 130 115">
+        <defs>
+          <linearGradient id="mouseFur" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#c4a882"/>
+            <stop offset="50%" stop-color="#a0826d"/>
+            <stop offset="100%" stop-color="#7a6152"/>
+          </linearGradient>
+          <linearGradient id="cheeseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f9e076"/>
+            <stop offset="50%" stop-color="#f4d03f"/>
+            <stop offset="100%" stop-color="#d4a72c"/>
+          </linearGradient>
+        </defs>
+        <!-- Cheese wedge 3D -->
+        <polygon points="75,115 130,90 130,115" fill="url(#cheeseGrad)"/>
+        <polygon points="75,115 130,90 115,70 60,95" fill="#f9e076"/>
+        <ellipse cx="95" cy="100" rx="6" ry="5" fill="#c9a227"/>
+        <ellipse cx="115" cy="95" rx="5" ry="4" fill="#c9a227"/>
+        <ellipse cx="85" cy="108" rx="4" ry="3" fill="#c9a227"/>
+        <ellipse cx="105" cy="85" rx="4" ry="3" fill="#c9a227"/>
+        
+        <!-- Mouse shadow -->
+        <ellipse cx="50" cy="112" rx="35" ry="6" fill="rgba(0,0,0,0.2)"/>
+        
+        <!-- Mouse body -->
+        <ellipse cx="50" cy="88" rx="35" ry="22" fill="url(#mouseFur)"/>
+        <ellipse cx="50" cy="90" rx="30" ry="18" fill="#b8967a"/>
+        <ellipse cx="45" cy="82" rx="15" ry="8" fill="#c4a882" opacity="0.5"/>
+        
             <!-- Head -->
-              <circle cx="65" cy="92" r="22" fill="url(#catFur)"/>
-              <circle cx="65" cy="93" r="19" fill="#5a5a5a"/>
-              
-            <!-- Ears -->
-              <polygon points="48,75 42,55 58,68" fill="#4a4a4a"/>
-              <polygon points="82,75 88,55 72,68" fill="#4a4a4a"/>
-              <polygon points="50,73 45,60 56,68" fill="#ffb3b3"/>
-              <polygon points="80,73 85,60 74,68" fill="#ffb3b3"/>
-              
-              <!-- Closed eyes (sleeping) - curved happy -->
-              <path d="M54 90 Q58 94 62 90" stroke="#2a2a2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-              <path d="M68 90 Q72 94 76 90" stroke="#2a2a2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-              
-            <!-- Nose -->
-              <ellipse cx="65" cy="98" rx="4" ry="3" fill="#ffb3b3"/>
-              
-            <!-- Whiskers -->
-              <line x1="45" y1="95" x2="55" y2="96" stroke="#888" stroke-width="1"/>
-              <line x1="45" y1="100" x2="55" y2="99" stroke="#888" stroke-width="1"/>
-              <line x1="75" y1="96" x2="85" y2="95" stroke="#888" stroke-width="1"/>
-              <line x1="75" y1="99" x2="85" y2="100" stroke="#888" stroke-width="1"/>
-              
-              <!-- Tail curled -->
-              <path d="M160 105 Q180 90 175 70 Q172 55 160 60" stroke="url(#catFur)" stroke-width="14" fill="none" stroke-linecap="round"/>
-              
-              <!-- Front paws tucked -->
-              <ellipse cx="85" cy="118" rx="10" ry="6" fill="#4a4a4a"/>
-              <ellipse cx="135" cy="118" rx="10" ry="6" fill="#4a4a4a"/>
-              <!-- Paw pads hint -->
-              <circle cx="85" cy="120" r="2" fill="#ffb3b3" opacity="0.5"/>
-              <circle cx="135" cy="120" r="2" fill="#ffb3b3" opacity="0.5"/>
-          </g>
+        <circle cx="22" cy="72" r="24" fill="url(#mouseFur)"/>
+        <circle cx="22" cy="74" r="20" fill="#b8967a"/>
+        
+        <!-- Ears -->
+        <ellipse cx="5" cy="55" rx="16" ry="18" fill="url(#mouseFur)"/>
+        <ellipse cx="5" cy="55" rx="11" ry="13" fill="#f0d5c0"/>
+        <ellipse cx="5" cy="55" rx="7" ry="9" fill="#e8c5b0"/>
+        
+        <ellipse cx="38" cy="50" rx="16" ry="18" fill="url(#mouseFur)"/>
+        <ellipse cx="38" cy="50" rx="11" ry="13" fill="#f0d5c0"/>
+        <ellipse cx="38" cy="50" rx="7" ry="9" fill="#e8c5b0"/>
+        
+            <!-- Eyes -->
+        <circle cx="14" cy="68" r="7" fill="#1a1a1a"/>
+        <circle cx="30" cy="68" r="7" fill="#1a1a1a"/>
+        <circle cx="16" cy="65" r="3" fill="#fff"/>
+        <circle cx="32" cy="65" r="3" fill="#fff"/>
+        <circle cx="13" cy="70" r="1.5" fill="#fff" opacity="0.5"/>
+        <circle cx="29" cy="70" r="1.5" fill="#fff" opacity="0.5"/>
+        
+        <!-- Nose -->
+        <ellipse cx="22" cy="82" rx="6" ry="5" fill="#f0d5c0"/>
+        <circle cx="22" cy="80" r="4" fill="#ffb3b3"/>
+        <ellipse cx="21" cy="79" rx="1.5" ry="1" fill="#fff" opacity="0.6"/>
+        
+        <!-- Whiskers -->
+        <line x1="-2" y1="76" x2="14" y2="78" stroke="#888" stroke-width="1.2"/>
+        <line x1="-2" y1="82" x2="14" y2="82" stroke="#888" stroke-width="1.2"/>
+        <line x1="-2" y1="88" x2="14" y2="86" stroke="#888" stroke-width="1.2"/>
+        <line x1="30" y1="78" x2="46" y2="76" stroke="#888" stroke-width="1.2"/>
+        <line x1="30" y1="82" x2="46" y2="82" stroke="#888" stroke-width="1.2"/>
+        <line x1="30" y1="86" x2="46" y2="88" stroke="#888" stroke-width="1.2"/>
+        
+        <!-- Santa hat -->
+        <polygon points="5,55 22,22 38,50" fill="#c0392b"/>
+        <polygon points="5,55 22,25 38,50" fill="#e74c3c"/>
+        <path d="M2,55 Q22,62 42,52" stroke="#fff" stroke-width="7" fill="none"/>
+        <circle cx="22" cy="22" r="7" fill="#fff"/>
+        <circle cx="22" cy="20" r="3" fill="#f0f0f0"/>
+        
+        <!-- Tail -->
+        <path d="M85 88 Q110 70 100 45 Q95 30 80 35" stroke="url(#mouseFur)" stroke-width="7" fill="none" stroke-linecap="round"/>
+        
+        <!-- Front paws -->
+        <ellipse cx="72" cy="102" rx="8" ry="10" fill="url(#mouseFur)"/>
+        <ellipse cx="82" cy="98" rx="7" ry="9" fill="url(#mouseFur)"/>
+        <circle cx="72" cy="106" r="2" fill="#ffb3b3"/>
+        <circle cx="82" cy="102" r="2" fill="#ffb3b3"/>
         </svg>
       </div>
 
-        <!-- Little Mouse Friend - 3D -->
-        <div class="mouse-area" title="Gerald found the cheese!">
-          <svg width="130" height="115" viewBox="0 0 130 115">
-            <defs>
-              <linearGradient id="mouseFur" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#c4a882"/>
-                <stop offset="50%" stop-color="#a0826d"/>
-                <stop offset="100%" stop-color="#7a6152"/>
-              </linearGradient>
-              <linearGradient id="cheeseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#f9e076"/>
-                <stop offset="50%" stop-color="#f4d03f"/>
-                <stop offset="100%" stop-color="#d4a72c"/>
-              </linearGradient>
-              <linearGradient id="cheeseSide" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#d4a72c"/>
-                <stop offset="100%" stop-color="#b8922a"/>
-              </linearGradient>
-            </defs>
-            <g class="mouse-friend">
-              <!-- Cheese wedge 3D -->
-              <polygon points="75,115 130,90 130,115" fill="url(#cheeseGrad)"/>
-              <polygon points="75,115 130,90 115,70 60,95" fill="#f9e076"/>
-              <polygon points="130,90 130,115 130,90 115,70" fill="url(#cheeseSide)"/>
-              <!-- Cheese holes -->
-              <ellipse cx="95" cy="100" rx="6" ry="5" fill="#c9a227"/>
-              <ellipse cx="115" cy="95" rx="5" ry="4" fill="#c9a227"/>
-              <ellipse cx="85" cy="108" rx="4" ry="3" fill="#c9a227"/>
-              <ellipse cx="105" cy="85" rx="4" ry="3" fill="#c9a227"/>
-              
-              <!-- Mouse shadow -->
-              <ellipse cx="50" cy="112" rx="35" ry="6" fill="rgba(0,0,0,0.2)"/>
-              
-              <!-- Mouse body -->
-              <ellipse cx="50" cy="88" rx="35" ry="22" fill="url(#mouseFur)"/>
-              <ellipse cx="50" cy="90" rx="30" ry="18" fill="#b8967a"/>
-              <!-- Fur highlight -->
-              <ellipse cx="45" cy="82" rx="15" ry="8" fill="#c4a882" opacity="0.5"/>
-              
-              <!-- Head -->
-              <circle cx="22" cy="72" r="24" fill="url(#mouseFur)"/>
-              <circle cx="22" cy="74" r="20" fill="#b8967a"/>
-              
-              <!-- Ears - big and round -->
-              <ellipse cx="5" cy="55" rx="16" ry="18" fill="url(#mouseFur)"/>
-              <ellipse cx="5" cy="55" rx="11" ry="13" fill="#f0d5c0"/>
-              <ellipse cx="5" cy="55" rx="7" ry="9" fill="#e8c5b0"/>
-              
-              <ellipse cx="38" cy="50" rx="16" ry="18" fill="url(#mouseFur)"/>
-              <ellipse cx="38" cy="50" rx="11" ry="13" fill="#f0d5c0"/>
-              <ellipse cx="38" cy="50" rx="7" ry="9" fill="#e8c5b0"/>
-              
-              <!-- Eyes - big and cute -->
-              <circle cx="14" cy="68" r="7" fill="#1a1a1a"/>
-              <circle cx="30" cy="68" r="7" fill="#1a1a1a"/>
-              <circle cx="16" cy="65" r="3" fill="#fff"/>
-              <circle cx="32" cy="65" r="3" fill="#fff"/>
-              <circle cx="13" cy="70" r="1.5" fill="#fff" opacity="0.5"/>
-              <circle cx="29" cy="70" r="1.5" fill="#fff" opacity="0.5"/>
-              
-              <!-- Nose - pink and shiny -->
-              <ellipse cx="22" cy="82" rx="6" ry="5" fill="#f0d5c0"/>
-              <circle cx="22" cy="80" r="4" fill="#ffb3b3"/>
-              <ellipse cx="21" cy="79" rx="1.5" ry="1" fill="#fff" opacity="0.6"/>
-              
-              <!-- Whiskers -->
-              <line x1="-2" y1="76" x2="14" y2="78" stroke="#888" stroke-width="1.2"/>
-              <line x1="-2" y1="82" x2="14" y2="82" stroke="#888" stroke-width="1.2"/>
-              <line x1="-2" y1="88" x2="14" y2="86" stroke="#888" stroke-width="1.2"/>
-              <line x1="30" y1="78" x2="46" y2="76" stroke="#888" stroke-width="1.2"/>
-              <line x1="30" y1="82" x2="46" y2="82" stroke="#888" stroke-width="1.2"/>
-              <line x1="30" y1="86" x2="46" y2="88" stroke="#888" stroke-width="1.2"/>
-              
-              <!-- Little Santa hat -->
-              <polygon points="5,55 22,22 38,50" fill="#c0392b"/>
-              <polygon points="5,55 22,25 38,50" fill="#e74c3c"/>
-              <path d="M2,55 Q22,62 42,52" stroke="#fff" stroke-width="7" fill="none"/>
-              <circle cx="22" cy="22" r="7" fill="#fff"/>
-              <circle cx="22" cy="20" r="3" fill="#f0f0f0"/>
-              
-              <!-- Tail - curly -->
-              <path d="M85 88 Q110 70 100 45 Q95 30 80 35" stroke="url(#mouseFur)" stroke-width="7" fill="none" stroke-linecap="round"/>
-              
-              <!-- Front paws reaching for cheese -->
-              <ellipse cx="72" cy="102" rx="8" ry="10" fill="url(#mouseFur)"/>
-              <ellipse cx="82" cy="98" rx="7" ry="9" fill="url(#mouseFur)"/>
-              <!-- Tiny paw pads -->
-              <circle cx="72" cy="106" r="2" fill="#ffb3b3"/>
-              <circle cx="82" cy="102" r="2" fill="#ffb3b3"/>
-          </g>
-        </svg>
-      </div>
-
-        <!-- Standing Elf - 3D -->
-        <div class="elf-area" title="Jingles, Chief of Holiday Cheer!">
-          <svg width="130" height="190" viewBox="0 0 130 190">
-            <defs>
-              <linearGradient id="elfGreen" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#1e8449"/>
-                <stop offset="50%" stop-color="#27ae60"/>
-                <stop offset="100%" stop-color="#1e8449"/>
-              </linearGradient>
-              <linearGradient id="elfRed" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#922b21"/>
-                <stop offset="50%" stop-color="#c0392b"/>
-                <stop offset="100%" stop-color="#922b21"/>
-              </linearGradient>
-              <linearGradient id="skinTone" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#fce5cd"/>
-                <stop offset="100%" stop-color="#f5c6a5"/>
-              </linearGradient>
-              <linearGradient id="hatGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" stop-color="#922b21"/>
-                <stop offset="50%" stop-color="#c0392b"/>
-                <stop offset="100%" stop-color="#e74c3c"/>
-              </linearGradient>
-            </defs>
-            <g class="elf-body">
-              <!-- Shadow -->
-              <ellipse cx="65" cy="186" rx="40" ry="8" fill="rgba(0,0,0,0.2)"/>
-              
-              <!-- Body/Tunic -->
-              <path d="M35 75 L35 128 L30 128 L30 135 L100 135 L100 128 L95 128 L95 75 Q65 68 35 75" fill="url(#elfGreen)"/>
-              <path d="M38 78 L38 125 L92 125 L92 78 Q65 72 38 78" fill="#2ecc71"/>
-              <!-- Tunic highlights -->
-              <path d="M45 85 L45 115" stroke="#58d68d" stroke-width="3" opacity="0.4"/>
-              <path d="M85 85 L85 115" stroke="#1e8449" stroke-width="3" opacity="0.4"/>
-              
+    <!-- Elf - Detailed -->
+    <div class="elf-area" title="Jingles says hi!">
+      <svg width="110" height="165" viewBox="0 0 130 190">
+        <defs>
+          <linearGradient id="elfGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#1e8449"/>
+            <stop offset="50%" stop-color="#27ae60"/>
+            <stop offset="100%" stop-color="#1e8449"/>
+          </linearGradient>
+          <linearGradient id="elfRed" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#922b21"/>
+            <stop offset="50%" stop-color="#c0392b"/>
+            <stop offset="100%" stop-color="#922b21"/>
+          </linearGradient>
+          <linearGradient id="skinTone" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#fce5cd"/>
+            <stop offset="100%" stop-color="#f5c6a5"/>
+          </linearGradient>
+          <linearGradient id="hatGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#922b21"/>
+            <stop offset="50%" stop-color="#c0392b"/>
+            <stop offset="100%" stop-color="#e74c3c"/>
+          </linearGradient>
+        </defs>
+        <g class="elf-body">
+          <ellipse cx="65" cy="186" rx="40" ry="8" fill="rgba(0,0,0,0.2)"/>
+          
+          <!-- Body/Tunic -->
+          <path d="M35 75 L35 128 L30 128 L30 135 L100 135 L100 128 L95 128 L95 75 Q65 68 35 75" fill="url(#elfGreen)"/>
+          <path d="M38 78 L38 125 L92 125 L92 78 Q65 72 38 78" fill="#2ecc71"/>
+          <path d="M45 85 L45 115" stroke="#58d68d" stroke-width="3" opacity="0.4"/>
+          <path d="M85 85 L85 115" stroke="#1e8449" stroke-width="3" opacity="0.4"/>
+          
           <!-- Belt -->
-              <rect x="33" y="100" width="64" height="14" fill="#1a1a1a" rx="2"/>
-              <rect x="33" y="100" width="64" height="3" fill="#333"/>
-              <rect x="52" y="97" width="26" height="20" fill="#f7d794" rx="3"/>
-              <rect x="55" y="100" width="20" height="14" fill="#d4a853" rx="2"/>
-              <rect x="58" y="103" width="14" height="8" fill="#f7d794" rx="1"/>
-              
-              <!-- Collar - zigzag -->
-              <path d="M38 75 L45 85 L55 75 L65 85 L75 75 L85 85 L92 75" fill="#c0392b"/>
+          <rect x="33" y="100" width="64" height="14" fill="#1a1a1a" rx="2"/>
+          <rect x="33" y="100" width="64" height="3" fill="#333"/>
+          <rect x="52" y="97" width="26" height="20" fill="#f7d794" rx="3"/>
+          <rect x="55" y="100" width="20" height="14" fill="#d4a853" rx="2"/>
+          <rect x="58" y="103" width="14" height="8" fill="#f7d794" rx="1"/>
+          
+          <!-- Collar -->
+          <path d="M38 75 L45 85 L55 75 L65 85 L75 75 L85 85 L92 75" fill="#c0392b"/>
           
           <!-- Head -->
-              <circle cx="65" cy="50" r="28" fill="url(#skinTone)"/>
-              <!-- Face shadow -->
-              <ellipse cx="65" cy="55" rx="22" ry="18" fill="#f5c6a5" opacity="0.5"/>
-              
-              <!-- Pointy ears -->
-              <polygon points="32,42 15,28 38,50" fill="url(#skinTone)"/>
-              <polygon points="98,42 115,28 92,50" fill="url(#skinTone)"/>
-              <!-- Ear details -->
-              <line x1="28" y1="42" x2="22" y2="35" stroke="#e6b896" stroke-width="2"/>
-              <line x1="102" y1="42" x2="108" y2="35" stroke="#e6b896" stroke-width="2"/>
+          <circle cx="65" cy="50" r="28" fill="url(#skinTone)"/>
+          <ellipse cx="65" cy="55" rx="22" ry="18" fill="#f5c6a5" opacity="0.5"/>
+          
+          <!-- Pointy ears -->
+          <polygon points="32,42 15,28 38,50" fill="url(#skinTone)"/>
+          <polygon points="98,42 115,28 92,50" fill="url(#skinTone)"/>
+          <line x1="28" y1="42" x2="22" y2="35" stroke="#e6b896" stroke-width="2"/>
+          <line x1="102" y1="42" x2="108" y2="35" stroke="#e6b896" stroke-width="2"/>
           
           <!-- Hat -->
-              <polygon points="35,40 65,0 95,40" fill="url(#hatGrad)"/>
-              <polygon points="40,40 65,8 90,40" fill="#c0392b"/>
-              <!-- Hat fold -->
-              <path d="M32,40 Q65,55 98,40" fill="#fff"/>
-              <path d="M34,43 Q65,52 96,43" fill="#f5f5f5"/>
-              <!-- Pompom -->
-              <circle cx="65" cy="0" r="10" fill="#fff"/>
-              <circle cx="62" cy="-3" r="4" fill="#f5f5f5"/>
+          <polygon points="35,40 65,0 95,40" fill="url(#hatGrad)"/>
+          <polygon points="40,40 65,8 90,40" fill="#c0392b"/>
+          <path d="M32,40 Q65,55 98,40" fill="#fff"/>
+          <path d="M34,43 Q65,52 96,43" fill="#f5f5f5"/>
+          <circle cx="65" cy="0" r="10" fill="#fff"/>
+          <circle cx="62" cy="-3" r="4" fill="#f5f5f5"/>
           
           <!-- Eyes -->
-              <circle cx="52" cy="48" r="7" fill="#1a1a1a"/>
-              <circle cx="78" cy="48" r="7" fill="#1a1a1a"/>
-              <circle cx="54" cy="45" r="3" fill="#fff"/>
-              <circle cx="80" cy="45" r="3" fill="#fff"/>
-              <circle cx="51" cy="50" r="1.5" fill="#fff" opacity="0.5"/>
-              <circle cx="77" cy="50" r="1.5" fill="#fff" opacity="0.5"/>
-              
-              <!-- Eyebrows - happy -->
-              <path d="M46 40 Q52 37 58 40" stroke="#8b6914" stroke-width="2" fill="none"/>
-              <path d="M72 40 Q78 37 84 40" stroke="#8b6914" stroke-width="2" fill="none"/>
+          <circle cx="52" cy="48" r="7" fill="#1a1a1a"/>
+          <circle cx="78" cy="48" r="7" fill="#1a1a1a"/>
+          <circle cx="54" cy="45" r="3" fill="#fff"/>
+          <circle cx="80" cy="45" r="3" fill="#fff"/>
+          <circle cx="51" cy="50" r="1.5" fill="#fff" opacity="0.5"/>
+          <circle cx="77" cy="50" r="1.5" fill="#fff" opacity="0.5"/>
+          
+          <!-- Eyebrows -->
+          <path d="M46 40 Q52 37 58 40" stroke="#8b6914" stroke-width="2" fill="none"/>
+          <path d="M72 40 Q78 37 84 40" stroke="#8b6914" stroke-width="2" fill="none"/>
           
           <!-- Rosy cheeks -->
-              <ellipse cx="40" cy="58" rx="7" ry="5" fill="#e6a8a8" opacity="0.5"/>
-              <ellipse cx="90" cy="58" rx="7" ry="5" fill="#e6a8a8" opacity="0.5"/>
+          <ellipse cx="40" cy="58" rx="7" ry="5" fill="#e6a8a8" opacity="0.5"/>
+          <ellipse cx="90" cy="58" rx="7" ry="5" fill="#e6a8a8" opacity="0.5"/>
           
-              <!-- Big smile -->
-              <path d="M50 65 Q65 78 80 65" stroke="#1a1a1a" stroke-width="3" fill="none"/>
-              <path d="M52 66 Q65 76 78 66" fill="#c0392b" opacity="0.3"/>
+          <!-- Big smile -->
+          <path d="M50 65 Q65 78 80 65" stroke="#1a1a1a" stroke-width="3" fill="none"/>
+          <path d="M52 66 Q65 76 78 66" fill="#c0392b" opacity="0.3"/>
           
           <!-- Arms -->
-              <ellipse cx="22" cy="92" rx="14" ry="9" fill="url(#elfGreen)"/>
-              <ellipse cx="108" cy="92" rx="14" ry="9" fill="url(#elfGreen)"/>
-              <!-- Forearms -->
-              <ellipse cx="12" cy="95" rx="10" ry="8" fill="#2ecc71"/>
-              <ellipse cx="118" cy="95" rx="10" ry="8" fill="#2ecc71"/>
-              
-              <!-- Hands -->
-              <circle cx="8" cy="98" r="10" fill="url(#skinTone)"/>
-              <circle cx="122" cy="98" r="10" fill="url(#skinTone)"/>
-              <!-- Fingers hint -->
-              <ellipse cx="3" cy="100" rx="3" ry="4" fill="#f5c6a5"/>
-              <ellipse cx="127" cy="100" rx="3" ry="4" fill="#f5c6a5"/>
+          <ellipse cx="22" cy="92" rx="14" ry="9" fill="url(#elfGreen)"/>
+          <ellipse cx="108" cy="92" rx="14" ry="9" fill="url(#elfGreen)"/>
+          <ellipse cx="12" cy="95" rx="10" ry="8" fill="#2ecc71"/>
+          <ellipse cx="118" cy="95" rx="10" ry="8" fill="#2ecc71"/>
+          
+          <!-- Hands -->
+          <circle cx="8" cy="98" r="10" fill="url(#skinTone)"/>
+          <circle cx="122" cy="98" r="10" fill="url(#skinTone)"/>
+          <ellipse cx="3" cy="100" rx="3" ry="4" fill="#f5c6a5"/>
+          <ellipse cx="127" cy="100" rx="3" ry="4" fill="#f5c6a5"/>
           
           <!-- Legs -->
-              <rect x="40" y="133" width="18" height="32" fill="url(#elfRed)" rx="3"/>
-              <rect x="72" y="133" width="18" height="32" fill="url(#elfRed)" rx="3"/>
-              <!-- Leg stripes -->
-              <rect x="40" y="145" width="18" height="4" fill="#fff" opacity="0.2"/>
-              <rect x="72" y="145" width="18" height="4" fill="#fff" opacity="0.2"/>
-              
-              <!-- Curly elf shoes -->
-              <path d="M35 165 Q20 165 15 175 Q10 188 30 188 L58 188 L58 165 Z" fill="#1a1a1a"/>
-              <path d="M95 165 Q110 165 115 175 Q120 188 100 188 L72 188 L72 165 Z" fill="#1a1a1a"/>
-              <!-- Shoe curls -->
-              <circle cx="15" cy="175" r="7" fill="#f7d794"/>
-              <circle cx="15" cy="175" r="4" fill="#d4a853"/>
-              <circle cx="115" cy="175" r="7" fill="#f7d794"/>
-              <circle cx="115" cy="175" r="4" fill="#d4a853"/>
-              <!-- Shoe buckles -->
-              <rect x="42" y="170" width="12" height="8" fill="#f7d794" rx="2"/>
-              <rect x="76" y="170" width="12" height="8" fill="#f7d794" rx="2"/>
-            </g>
+          <rect x="40" y="133" width="18" height="32" fill="url(#elfRed)" rx="3"/>
+          <rect x="72" y="133" width="18" height="32" fill="url(#elfRed)" rx="3"/>
+          <rect x="40" y="145" width="18" height="4" fill="#fff" opacity="0.2"/>
+          <rect x="72" y="145" width="18" height="4" fill="#fff" opacity="0.2"/>
+          
+          <!-- Curly elf shoes -->
+          <path d="M35 165 Q20 165 15 175 Q10 188 30 188 L58 188 L58 165 Z" fill="#1a1a1a"/>
+          <path d="M95 165 Q110 165 115 175 Q120 188 100 188 L72 188 L72 165 Z" fill="#1a1a1a"/>
+          <circle cx="15" cy="175" r="7" fill="#f7d794"/>
+          <circle cx="15" cy="175" r="4" fill="#d4a853"/>
+          <circle cx="115" cy="175" r="7" fill="#f7d794"/>
+          <circle cx="115" cy="175" r="4" fill="#d4a853"/>
+          <rect x="42" y="170" width="12" height="8" fill="#f7d794" rx="2"/>
+          <rect x="76" y="170" width="12" height="8" fill="#f7d794" rx="2"/>
+        </g>
         </svg>
-      </div>
     </div>
 
+    <!-- Welcome card -->
+    <div class="welcome-card">
+      <h1>🎄 Happy Holidays!</h1>
+      <p>Thank you for being part of our journey. Wishing you warmth and wonder this season.</p>
+      <a href="/darc/install">🎁 Unwrap Darc Beta</a>
     </div>
-
-    <div class="baseboard"></div>
-    <div class="rug"></div>
-    <div class="floor"></div>
   </div>
-
-  <script>
-    // Add sparkle effect on mouse move
-    document.addEventListener('mousemove', function(e) {
-      if (Math.random() > 0.97) {
-        const sparkle = document.createElement('div')
-        sparkle.style.cssText = `
-          position: fixed;
-          left: ${e.clientX}px;
-          top: ${e.clientY}px;
-          width: 8px;
-          height: 8px;
-          background: #f7d794;
-          border-radius: 50%;
-          pointer-events: none;
-          z-index: 1000;
-          animation: sparkle 0.8s ease-out forwards;
-        `
-        document.body.appendChild(sparkle)
-        setTimeout(() => sparkle.remove(), 800)
-      }
-    })
-
-    // Add sparkle animation
-    const style = document.createElement('style')
-    style.textContent = `
-      @keyframes sparkle {
-        0% { transform: scale(1); opacity: 1; }
-        100% { transform: scale(0) translateY(-20px); opacity: 0; }
-      }
-    `
-    document.head.appendChild(style)
-  </script>
 </body>
 </html>

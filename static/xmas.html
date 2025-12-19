@@ -27,6 +27,9 @@
       --ring: 0 0 0 4px rgba(255, 214, 102, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.12);
       --ui-font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       --display-font: "Caveat", ui-serif, Georgia, serif;
+      --mode-transition-duration: 0.8s;
+      --mode-transition-easing: ease;
+      --mode-transition: var(--mode-transition-duration) var(--mode-transition-easing);
     }
 
     html,
@@ -1089,19 +1092,36 @@
     /* Stockings hanging from mantle */
     .stockings {
       position: absolute;
-      top: 15px;
+      top: 22px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       gap: 20px;
       z-index: 10;
       overflow: visible;
+      /* Enable a subtle 3D "turn" on hover for the stockings */
+      perspective: 900px;
+      perspective-origin: 50% 0%;
+    }
+
+    /* Wrap the SVG in a div so transforms always animate smoothly (SVG transform interpolation can be jumpy). */
+    .stocking-shell {
+      cursor: pointer;
+      transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), filter 260ms ease;
+      will-change: transform;
+      filter: drop-shadow(3px 4px 4px rgba(0,0,0,0.35));
+      width: 91px;
+      height: 127px;
+      transform-origin: 50% 12%;
+      transform: translateY(0) scale(1) rotateY(0deg);
+      position: relative;
+      z-index: 1;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
     }
 
     .stocking {
-      cursor: pointer;
-      transition: transform 0.2s;
-      filter: drop-shadow(3px 4px 4px rgba(0,0,0,0.35));
+      display: block;
       width: 91px;
       height: 127px;
     }
@@ -1110,32 +1130,61 @@
       position: relative;
       overflow: visible;
       cursor: pointer;
-      transition: transform 0.2s;
+      /* Hang from the mantle: pivot at the top so hover feels like a swing, not a jump. */
+      transform-origin: 50% 0%;
+      --rest-rot: 0deg;
+      --hover-rot: 8deg;
+      --hover-scale: 1.08;
+      --hover-y: 1px;
+      transform: rotate(var(--rest-rot));
+      transition: transform 520ms cubic-bezier(0.2, 1, 0.2, 1);
+      will-change: transform;
+      transform-style: preserve-3d;
+      /* Mouse positioning + clip defaults (override per-stocking below) */
+      --mouse-x: 50%;
+      --mouse-y: -6px;
+      --mouse-scale: 0.86;
+      /* A soft "sock opening" window so the mouse can't escape the cuff */
+      --mouse-clip: ellipse(52% 42% at 50% 78%);
     }
 
     .stocking-wrapper:hover {
-      transform: rotate(8deg) scale(1.1);
+      /* Keep wrapper mostly stationary so hover doesn't flicker/jump. */
+      transform: rotate(var(--hover-rot));
     }
+
+    /* Turn the sock on hover (separate from the wrapper swing) */
+    .stocking-wrapper:hover .stocking-shell {
+      transform: translateY(var(--hover-y)) scale(var(--hover-scale)) rotateY(-22deg) rotateZ(1.5deg) translateX(-1px);
+      filter: drop-shadow(6px 7px 8px rgba(0,0,0,0.32)) brightness(1.02);
+    }
+
+    /* Give each stocking a slightly different resting hang + hover swing. */
+    .stocking-wrapper:nth-child(1) { --rest-rot: -6deg; --hover-rot: 7deg; --hover-scale: 1.09; --hover-y: 2px; --mouse-x: 49%; --mouse-y: -7px; --mouse-scale: 0.86; --mouse-clip: ellipse(52% 42% at 50% 78%); }
+    .stocking-wrapper:nth-child(2) { --rest-rot:  4deg; --hover-rot: 11deg; --hover-scale: 1.07; --hover-y: 1px; --mouse-x: 50%; --mouse-y: -6px; --mouse-scale: 0.85; --mouse-clip: ellipse(52% 42% at 50% 78%); }
+    .stocking-wrapper:nth-child(3) { --rest-rot: -2deg; --hover-rot: 9deg; --hover-scale: 1.08; --hover-y: 2px; }
 
     .mouse-container {
       position: absolute;
-      top: -28px;
-      left: 40%;
+      top: var(--mouse-y);
+      left: var(--mouse-x);
       transform: translateX(-50%);
-      width: 44px;
-      height: 50px;
+      width: 42px;
+      height: 44px;
       overflow: hidden;
       pointer-events: none;
-      z-index: -1;
+      z-index: 0;
+      clip-path: var(--mouse-clip);
     }
 
     .mouse-peek {
-      transform: translateY(100%);
+      transform: translateY(100%) scale(var(--mouse-scale));
+      transform-origin: 50% 100%;
       transition: transform 0.35s ease-out;
     }
 
     .mouse-peek.visible {
-      transform: translateY(0);
+      transform: translateY(0) scale(var(--mouse-scale));
     }
 
     .candy-cane-peek {
@@ -1474,7 +1523,7 @@
     .mouse-exit-clip {
       position: absolute;
       bottom: 17px;
-      left: 2px;
+      left: 1px;
       width: 90px;
       height: 110px;
       z-index: 2;
@@ -1500,7 +1549,7 @@
     .mouse-hole-container {
       position: absolute;
       bottom: 17px;
-      left: 0;
+      left: -3px;
       z-index: 1;
       pointer-events: none;
       transform: skewY(10deg);
@@ -2369,7 +2418,7 @@
         inset 0 -1px 0 rgba(0,0,0,0.1);
       cursor: pointer;
       z-index: 50;
-      transition: transform 0.1s ease, background 0.5s ease;
+      transition: transform 0.1s ease, background var(--mode-transition), box-shadow var(--mode-transition);
     }
 
     .light-switch:hover {
@@ -2401,7 +2450,7 @@
       box-shadow: 
         inset 0 1px 2px rgba(0,0,0,0.2),
         0 1px 0 rgba(255,255,255,0.3);
-      transition: background 0.5s ease;
+      transition: background var(--mode-transition), box-shadow var(--mode-transition);
     }
 
     .light-switch-toggle {
@@ -2416,7 +2465,7 @@
       box-shadow: 
         0 1px 2px rgba(0,0,0,0.3),
         inset 0 1px 0 rgba(255,255,255,0.8);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background var(--mode-transition);
     }
 
     .light-switch.on .light-switch-toggle {
@@ -2562,6 +2611,24 @@
       animation: nightStarsTwinkle 7s ease-in-out infinite alternate;
     }
 
+    /* Thin crescent moon (right window only) */
+    .room.lights-off .window-right-scene::after {
+      content: '';
+      position: absolute;
+      top: 8%;
+      right: 7%;
+      width: clamp(30px, 5.8vw, 58px);
+      height: clamp(30px, 5.8vw, 58px);
+      pointer-events: none;
+      z-index: 0;
+      /* Draw ONLY the lit crescent (no "cutout" layer that could look black). */
+      background: no-repeat center / 100% 100%
+        url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='white'%20d='M60%2C6.1%20A45%2C45%200%201%200%2060%2C93.9%20A45%2C45%200%200%201%2060%2C6.1%20Z'/%3E%3C/svg%3E");
+      transform: rotate(-18deg);
+      opacity: 0.92;
+      filter: drop-shadow(0 0 12px rgba(205, 225, 255, 0.22));
+    }
+
     .room.lights-off .window-left-scene > *,
     .room.lights-off .window-right-scene > * {
       z-index: 1;
@@ -2621,38 +2688,28 @@
     
     /* Keep snow in dark mode (don't convert flakes into stars) */
     .room.lights-off .snowflake {
-      background: #fff !important;
-      animation: snowfall 6s linear infinite !important;
-      opacity: 1 !important;
-      box-shadow: 0 0 6px rgba(255, 255, 255, 0.55) !important;
+      /* Reuse the exact same snowflake animation/behavior; only tint the color. */
+      background: #dbe6f2 !important;
     }
 
     .room.lights-off .snowflake-lg {
-      background: #fff !important;
-      animation: snowfall 8s linear infinite !important;
-      opacity: 1 !important;
-      box-shadow: 0 0 7px rgba(255, 255, 255, 0.55) !important;
+      background: #dbe6f2 !important;
     }
 
     .room.lights-off .snowflake-sm {
-      background: #fff !important;
-      animation: snowfallSlow 5s linear infinite !important;
-      opacity: 1 !important;
-      box-shadow: 0 0 5px rgba(255, 255, 255, 0.55) !important;
+      background: #dbe6f2 !important;
     }
 
     .room.lights-off .snowflake-star {
-      color: #fff !important;
-      animation: snowfallSlow 9s linear infinite !important;
-      opacity: 1 !important;
-      filter: saturate(0) brightness(1.08);
-      text-shadow:
-        0 0 10px rgba(255, 255, 255, 0.75),
-        0 0 2px rgba(255, 255, 255, 0.9);
+      color: #dbe6f2 !important;
+      /* Avoid special "night algorithm" look (glow/text-shadow); keep day behavior. */
+      text-shadow: none !important;
+      filter: none !important;
     }
 
     /* Snowman should feel moonlit (a bit dimmer) */
-    .room.lights-off .snowman svg circle {
+    /* Only tint the snow body circles, not eyes/buttons (which are also circles). */
+    .room.lights-off .snowman svg circle[fill="#fff"] {
       fill: #dbe6f2 !important;
     }
 
@@ -2668,7 +2725,48 @@
     
     /* Fireplace glows warmly */
     .room.lights-off .fireplace {
-      filter: drop-shadow(0 0 40px rgba(255,100,30,0.4));
+      /* Don't glow the entire fireplace/mantle — light should come from the opening/flames. */
+      filter: none;
+    }
+
+    /* Firelight flicker (subtle + irregular to avoid "metronome" feel) */
+    @keyframes firelightFlicker {
+      0%   { opacity: 0.78; }
+      7%   { opacity: 0.92; }
+      13%  { opacity: 0.84; }
+      22%  { opacity: 0.96; }
+      36%  { opacity: 0.86; }
+      51%  { opacity: 0.98; }
+      63%  { opacity: 0.88; }
+      77%  { opacity: 0.95; }
+      100% { opacity: 0.82; }
+    }
+
+    @keyframes fireboxGlowFlicker {
+      0% {
+        box-shadow:
+          0 0 52px rgba(255,80,20,0.55),
+          0 0 92px rgba(255,120,40,0.34),
+          inset 0 0 26px rgba(255,60,10,0.26);
+      }
+      25% {
+        box-shadow:
+          0 0 62px rgba(255,80,20,0.64),
+          0 0 108px rgba(255,120,40,0.40),
+          inset 0 0 30px rgba(255,60,10,0.32);
+      }
+      55% {
+        box-shadow:
+          0 0 48px rgba(255,80,20,0.50),
+          0 0 86px rgba(255,120,40,0.30),
+          inset 0 0 24px rgba(255,60,10,0.24);
+      }
+      100% {
+        box-shadow:
+          0 0 70px rgba(255,80,20,0.68),
+          0 0 120px rgba(255,120,40,0.44),
+          inset 0 0 34px rgba(255,60,10,0.35);
+      }
     }
     
     .room.lights-off .fireplace-body {
@@ -2678,6 +2776,8 @@
     .room.lights-off .fireplace-mantle {
       background: linear-gradient(180deg, #2a1a10 0%, #1a0f08 100%) !important;
       box-shadow: 0 0 30px rgba(255,100,30,0.2);
+      /* Small animated edge-light so the mantle catches the fire. */
+      animation: firelightFlicker 2.1s ease-in-out infinite;
     }
     
     .room.lights-off .fireplace-opening {
@@ -2685,6 +2785,8 @@
         0 0 60px rgba(255,80,20,0.6),
         0 0 100px rgba(255,120,40,0.4),
         inset 0 0 30px rgba(255,60,10,0.3);
+      animation: fireboxGlowFlicker 1.55s ease-in-out infinite;
+      will-change: box-shadow;
     }
     
     /* Fire becomes the main light source - brighter */
@@ -2695,12 +2797,14 @@
     .room.lights-off .fire {
       filter: drop-shadow(0 -20px 40px rgba(255,100,30,0.8))
               drop-shadow(0 -10px 20px rgba(255,150,50,0.6));
+      animation: firelightFlicker 1.35s ease-in-out infinite;
+      will-change: opacity, filter;
     }
     
     /* Stockings get firelight glow */
     .room.lights-off .stocking {
-      filter: brightness(0.5) saturate(0.8);
-      box-shadow: 0 0 15px rgba(255,100,30,0.2);
+      /* Use drop-shadow (not box-shadow) so we don't get a rectangular SVG bounding-box glow. */
+      filter: brightness(0.5) saturate(0.8) drop-shadow(0 0 12px rgba(255,100,30,0.22));
     }
 
     /* Remove translucent "shine" on stockings in dark mode */
@@ -2839,7 +2943,8 @@
     
     /* Picture frame darkens */
     .room.lights-off .picture-frame {
-      filter: brightness(0.3);
+      /* Keep it readable in dark mode (no "crushed" / inverted-looking brightness). */
+      filter: brightness(0.55) saturate(0.85) contrast(1.02);
     }
 
     /* Extra props in the room should also match night mode */
@@ -2890,7 +2995,35 @@
     
     /* Ambient firelight on nearby surfaces */
     .room.lights-off .fireplace-mantle .stocking-wrapper {
-      box-shadow: 0 0 20px rgba(255,100,30,0.15);
+      /* Avoid a visible rectangular wrapper glow in dark mode. */
+      box-shadow: none !important;
+      filter: drop-shadow(0 0 16px rgba(255,100,30,0.14));
+      animation: firelightFlicker 2.4s ease-in-out infinite;
+    }
+
+    /* Cast firelight into the room (hit the back wall + floor). */
+    .room.lights-off .wall-back::after {
+      /* Keep existing AO/sheens but add a warm, flickering pool around the fireplace area. */
+      background:
+        radial-gradient(520px 380px at 52% 78%, rgba(255, 120, 60, 0.18) 0%, rgba(255, 120, 60, 0.10) 32%, rgba(255, 120, 60, 0) 64%),
+        radial-gradient(360px 240px at 48% 72%, rgba(255, 180, 90, 0.10) 0%, rgba(255, 180, 90, 0) 62%),
+        radial-gradient(700px 420px at 50% 120%, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0) 62%),
+        radial-gradient(420px 240px at 50% 0%, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 62%);
+      opacity: 0.92;
+      animation: firelightFlicker 2.2s ease-in-out infinite;
+      will-change: opacity;
+    }
+
+    .room.lights-off .floor::after {
+      /* Preserve AO/vignette, add warm reflection and let it breathe. */
+      background:
+        radial-gradient(900px 520px at 50% 12%, rgba(255, 110, 45, 0.16) 0%, rgba(255, 110, 45, 0.06) 40%, rgba(255, 110, 45, 0) 70%),
+        radial-gradient(700px 420px at 52% 22%, rgba(255, 180, 90, 0.08) 0%, rgba(255, 180, 90, 0) 62%),
+        radial-gradient(1100px 540px at 50% 0%, rgba(0,0,0,0.34) 0%, rgba(0,0,0,0) 60%),
+        radial-gradient(900px 520px at 50% 65%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 65%);
+      opacity: 0.95;
+      animation: firelightFlicker 2.0s ease-in-out infinite;
+      will-change: opacity;
     }
     
     /* Smooth transitions for night mode - only on specific elements */
@@ -2898,8 +3031,19 @@
     .wall-right,
     .wall-back,
     .floor,
+    .ceiling,
+    .ceiling::before,
+    .window-left,
+    .window-right,
+    .window-left::before,
+    .window-left::after,
+    .window-right::before,
+    .window-right::after,
     .window-left-scene,
     .window-right-scene,
+    .window-left-scene::before,
+    .window-right-scene::before,
+    .window-right-scene::after,
     .curtain-left,
     .curtain-right,
     .curtain-top,
@@ -2907,34 +3051,72 @@
     .fireplace-body,
     .fireplace-mantle,
     .fireplace-opening,
+    .fire,
+    .fire-svg,
     .lamp-shade,
+    .lamp-shade::before,
     .lamp-base,
     .lamp-foot,
     .bookshelf,
+    .book,
     .shelf-left,
     .clock,
     .picture-frame,
     .rug,
     .present,
     .tree-body,
+    .tree-trunk,
+    .tree-stand,
     .ornament,
     .tinsel,
+    .tree-ornaments,
+    .tree-tinsel,
+    .tree-light,
+    .tree-star,
     .chandelier-arm,
     .chandelier-body,
+    .chandelier,
+    .chandelier-candle-flame,
     .stocking,
+    .stocking-wrapper,
+    .stocking-shine,
     .cat,
     .bob-dog,
     .mouse-area,
+    .elf-area,
     .wreath,
     .snow-globe,
     .snow-hill-1,
-    .snow-hill-2 {
-      transition: filter 0.8s ease, background 0.8s ease, box-shadow 0.8s ease;
+    .snow-hill-2,
+    .snow-hill-r1,
+    .snow-hill-r2,
+    .pine-tree,
+    .pine-tree::before,
+    .pine-tree-r,
+    .pine-tree-r::before,
+    .tree-shadow,
+    .tree-shadow-r,
+    .candy-cane-peek,
+    .cheese-svg,
+    .window-candle,
+    .candle-flame,
+    .snowflake,
+    .snowflake-lg,
+    .snowflake-sm,
+    .snowflake-star {
+      transition:
+        filter var(--mode-transition),
+        background var(--mode-transition),
+        box-shadow var(--mode-transition),
+        opacity var(--mode-transition),
+        border-color var(--mode-transition),
+        border-bottom-color var(--mode-transition),
+        color var(--mode-transition);
     }
 
-    /* Remove the perceived "delay" for the picture itself when switching modes */
-    .picture-frame {
-      transition: none !important;
+    /* SVG paint needs explicit transitions */
+    .snowman svg circle[fill="#fff"] {
+      transition: fill var(--mode-transition);
     }
     
     /* Keep light switch clickable in dark mode */
@@ -2984,6 +3166,16 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+      }
+
+      /* Exception: keep the stocking interaction animated (requested behavior). */
+      .stocking-wrapper,
+      .stocking-shell {
+        transition-duration: 420ms !important;
+      }
+
+      .mouse-peek {
+        transition-duration: 350ms !important;
       }
     }
   </style>
@@ -3197,7 +3389,7 @@
       <div class="fireplace-mantle">
         <!-- Stockings hanging down -->
         <div class="stockings">
-          <div class="stocking-wrapper" data-mouse-stocking>
+          <div class="stocking-wrapper" data-mouse-stocking role="button" tabindex="0" aria-label="Stocking (mouse)">
             <div class="mouse-container">
               <svg class="mouse-peek" width="42" height="32" viewBox="0 0 40 28">
                 <ellipse cx="20" cy="18" rx="12" ry="10" fill="#9a8470"/>
@@ -3216,14 +3408,40 @@
                 <line x1="32" y1="22" x2="26" y2="21" stroke="#666" stroke-width="0.5"/>
               </svg>
             </div>
-            <svg class="stocking" width="50" height="70" viewBox="0 0 50 70">
-              <path d="M10 0 L10 35 Q10 50 25 56 L40 66 Q50 72 50 60 L50 50 Q50 44 40 44 L30 38 L30 0 Z" fill="#c0392b"/>
-              <path d="M8 0 L32 0 L32 9 Q20 13 8 9 Z" fill="#fff"/>
-              <ellipse cx="20" cy="5" rx="12" ry="5" fill="#f5f5f5"/>
-              <rect class="stocking-shine" x="16" y="12" width="8" height="20" fill="#fff" opacity="0.2"/>
+            <div class="stocking-shell" aria-hidden="true">
+            <svg class="stocking" width="50" height="70" viewBox="0 0 50 70" aria-label="Stocking">
+              <!-- Stocking 1: tall leg + roomy foot, with heel/toe patches -->
+              <path d="M16 5
+                       H33
+                       Q35 5 35 7
+                       V31
+                       Q35 41 41 45
+                       L47 49
+                       Q51 52 48 58
+                       Q46 62 40 64
+                       L29 68
+                       Q20 71 18 63
+                       Q17 59 18 54
+                       L20 48
+                       Q21 45 19 41
+                       Q16 36 16 30
+                       V7
+                       Q16 5 18 5
+                       Z" fill="#c0392b"/>
+              <!-- Cuff -->
+              <path d="M14 5 H35 V14 Q25 18 14 14 Z" fill="#ffffff"/>
+              <path d="M14.5 8.8 Q25 13.5 34.5 8.8" fill="none" stroke="#f0f0f0" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
+              <!-- Heel + toe -->
+              <path d="M25 46 Q29 45 31 48 Q32 50 31 52 Q29 55 24 54 Q22 52 23 49 Q23.5 47 25 46 Z" fill="#a72e24" opacity="0.95"/>
+              <path d="M44 51 Q48 54 46 58 Q44 62 38 61 Q36 58 38 55 Q40 52 44 51 Z" fill="#a72e24" opacity="0.95"/>
+              <!-- Seam / structure -->
+              <path d="M20 16 V32 Q20 40 24 44" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="1.2" stroke-linecap="round"/>
+              <!-- Shine -->
+              <path class="stocking-shine" d="M24 16 Q28 20 28 30 Q28 40 24 44" fill="none" stroke="#fff" stroke-width="5" opacity="0.18" stroke-linecap="round"/>
             </svg>
+            </div>
           </div>
-          <div class="stocking-wrapper" data-mouse-stocking>
+          <div class="stocking-wrapper" data-mouse-stocking role="button" tabindex="0" aria-label="Stocking (mouse)">
             <div class="mouse-container">
               <svg class="mouse-peek" width="42" height="32" viewBox="0 0 40 28">
                 <ellipse cx="20" cy="18" rx="12" ry="10" fill="#9a8470"/>
@@ -3242,14 +3460,51 @@
                 <line x1="32" y1="22" x2="26" y2="21" stroke="#666" stroke-width="0.5"/>
               </svg>
             </div>
-            <svg class="stocking" width="50" height="70" viewBox="0 0 50 70">
-              <path d="M10 0 L10 35 Q10 50 25 56 L40 66 Q50 72 50 60 L50 50 Q50 44 40 44 L30 38 L30 0 Z" fill="#27ae60"/>
-              <path d="M8 0 L32 0 L32 9 Q20 13 8 9 Z" fill="#fff"/>
-              <ellipse cx="20" cy="5" rx="12" ry="5" fill="#f5f5f5"/>
-              <rect class="stocking-shine" x="16" y="12" width="8" height="20" fill="#fff" opacity="0.2"/>
+            <div class="stocking-shell" aria-hidden="true">
+            <svg class="stocking" width="50" height="70" viewBox="0 0 50 70" aria-label="Stocking">
+              <!-- Stocking 2: shorter + rounder, striped leg and bigger toe -->
+              <path d="M14 6
+                       H32
+                       Q35 6 35 9
+                       V30
+                       Q35 38 39 41
+                       L46 46
+                       Q52 50 49 57
+                       Q46 64 38 64
+                       H24
+                       Q16 64 15 56
+                       Q14.5 51 18 46
+                       Q22 41 20 36
+                       Q14 30 14 22
+                       V9
+                       Q14 6 17 6
+                       Z" fill="#27ae60"/>
+              <!-- Cuff (scalloped-ish) -->
+              <path d="M13.5 6 H35.5 V14
+                       Q33 18 30 14
+                       Q27 18 24 14
+                       Q21 18 18 14
+                       Q15 18 13.5 14
+                       Z" fill="#f7f7f7"/>
+              <!-- Stripes -->
+              <path d="M16.8 18 H33.2" stroke="rgba(255,255,255,0.65)" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M16.8 24 H33.2" stroke="rgba(255,255,255,0.55)" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M16.8 30 H33.2" stroke="rgba(255,255,255,0.45)" stroke-width="2.6" stroke-linecap="round"/>
+              <!-- Heel + toe -->
+              <path d="M23.5 43 Q28 41.5 30.5 45 Q32 47 30.8 50 Q28.8 55 22.5 52.8 Q20.8 49.8 22 46 Q22.6 44 23.5 43 Z" fill="#1f8a4c" opacity="0.95"/>
+              <path d="M44 47 Q49 51 47 57 Q45 63 37.5 61.5 Q35.8 58 38 54.5 Q40.5 50.5 44 47 Z" fill="#1f8a4c" opacity="0.95"/>
+              <!-- Knit texture dots -->
+              <circle cx="18.5" cy="36.5" r="0.9" fill="rgba(0,0,0,0.12)"/>
+              <circle cx="22.5" cy="38.5" r="0.9" fill="rgba(0,0,0,0.12)"/>
+              <circle cx="26.5" cy="36.2" r="0.9" fill="rgba(0,0,0,0.12)"/>
+              <circle cx="30.5" cy="38.2" r="0.9" fill="rgba(0,0,0,0.12)"/>
+              <circle cx="33" cy="36.8" r="0.9" fill="rgba(0,0,0,0.12)"/>
+              <!-- Shine -->
+              <path class="stocking-shine" d="M23.5 16 Q27.5 20 27.5 28 Q27.5 36 24.5 40" fill="none" stroke="#fff" stroke-width="5" opacity="0.16" stroke-linecap="round"/>
             </svg>
+            </div>
           </div>
-          <div class="stocking-wrapper">
+          <div class="stocking-wrapper" role="button" tabindex="0" aria-label="Stocking (candy cane)">
             <svg class="candy-cane-peek" width="36" height="70" viewBox="0 0 36 70">
               <defs>
                 <pattern id="candy-stripes" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
@@ -3263,12 +3518,39 @@
               </defs>
               <rect width="36" height="70" fill="url(#candy-stripes)" mask="url(#cane-mask)"/>
             </svg>
-            <svg class="stocking" width="50" height="70" viewBox="0 0 50 70">
-              <path d="M10 0 L10 35 Q10 50 25 56 L40 66 Q50 72 50 60 L50 50 Q50 44 40 44 L30 38 L30 0 Z" fill="#c0392b"/>
-              <path d="M8 0 L32 0 L32 9 Q20 13 8 9 Z" fill="#fff"/>
-              <ellipse cx="20" cy="5" rx="12" ry="5" fill="#f5f5f5"/>
-              <rect class="stocking-shine" x="16" y="12" width="8" height="20" fill="#fff" opacity="0.2"/>
+            <div class="stocking-shell" aria-hidden="true">
+            <svg class="stocking" width="50" height="70" viewBox="0 0 50 70" aria-label="Stocking">
+              <!-- Stocking 3: long + bendy foot, with contrasting cuff + chevron -->
+              <path d="M17 4
+                       H34
+                       Q36 4 36 6.5
+                       V34
+                       Q36 45 44 49
+                       L48 51
+                       Q52 53 49 60
+                       Q46 67 38 66
+                       L26 64
+                       Q18 63 19 55
+                       Q19.5 50 22.5 46
+                       Q25.5 42 22.5 38
+                       Q17 33 17 25
+                       V6.5
+                       Q17 4 19.5 4
+                       Z" fill="#c0392b"/>
+              <!-- Cuff -->
+              <path d="M15.5 4 H36.5 V15 Q26 20 15.5 15 Z" fill="#f3f1ff"/>
+              <path d="M17 10 H35" stroke="rgba(0,0,0,0.08)" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M17 13 H35" stroke="rgba(0,0,0,0.08)" stroke-width="1.2" stroke-linecap="round"/>
+              <!-- Chevron band -->
+              <path d="M18 21 L22 25 L26 21 L30 25 L34 21" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18 27 L22 31 L26 27 L30 31 L34 27" fill="none" stroke="rgba(255,255,255,0.40)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Heel + toe -->
+              <path d="M25.5 48 Q30 46 32 49 Q33 51 31.8 54 Q29.5 59 23 56.5 Q21.2 53.5 22.5 50 Q23.4 48.7 25.5 48 Z" fill="#a72e24" opacity="0.95"/>
+              <path d="M45 52 Q49 56 46.5 60.5 Q44.5 64.5 38.5 63 Q36.5 59.5 39 56.5 Q41 54.5 45 52 Z" fill="#a72e24" opacity="0.95"/>
+              <!-- Shine -->
+              <path class="stocking-shine" d="M24.5 18 Q29 23 29 33 Q29 43 24.8 47" fill="none" stroke="#fff" stroke-width="5" opacity="0.16" stroke-linecap="round"/>
             </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -4813,11 +5095,40 @@
     const room = document.querySelector('.room')
     
     if (lightSwitch && room) {
+      const LIGHTS_OFF_STORAGE_KEY = 'xe:xmas:lights-off'
+
+      const setLightsOff = (isOff) => {
+        room.classList.toggle('lights-off', isOff)
+        lightSwitch.classList.toggle('on', !isOff)
+        lightSwitch.classList.toggle('off', isOff)
+        lightSwitch.setAttribute('aria-pressed', String(isOff))
+      }
+
+      const persistLightsOff = (isOff) => {
+        try {
+          localStorage.setItem(LIGHTS_OFF_STORAGE_KEY, isOff ? '1' : '0')
+        } catch (_) {
+          // Ignore storage failures (e.g. private mode / blocked storage).
+        }
+      }
+
+      // Restore saved state (default: lights on)
+      try {
+        const saved = localStorage.getItem(LIGHTS_OFF_STORAGE_KEY)
+        if (saved === '1' || saved === '0') {
+          setLightsOff(saved === '1')
+        } else {
+          // Ensure ARIA is consistent even when no saved value exists.
+          lightSwitch.setAttribute('aria-pressed', String(room.classList.contains('lights-off')))
+        }
+      } catch (_) {
+        lightSwitch.setAttribute('aria-pressed', String(room.classList.contains('lights-off')))
+      }
+
       const toggleLights = () => {
-        lightSwitch.classList.toggle('on')
-        lightSwitch.classList.toggle('off')
-        room.classList.toggle('lights-off')
-        lightSwitch.setAttribute('aria-pressed', room.classList.contains('lights-off'))
+        const nextOff = !room.classList.contains('lights-off')
+        setLightsOff(nextOff)
+        persistLightsOff(nextOff)
       }
       lightSwitch.addEventListener('click', toggleLights)
       lightSwitch.addEventListener('keydown', (e) => {

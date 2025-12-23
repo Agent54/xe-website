@@ -5236,6 +5236,75 @@
       }
     }
 
+    /* ========== FIREWORKS ========== */
+    .fireworks-container {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      right: 0;
+      height: 50%;
+      pointer-events: none;
+      z-index: -15;
+      overflow: visible;
+    }
+
+    .firework {
+      position: absolute;
+      width: 0;
+      height: 0;
+    }
+
+    .firework-particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff 0%, var(--color) 40%, var(--color) 100%);
+      box-shadow: 
+        0 0 4px #fff,
+        0 0 8px var(--color),
+        0 0 16px var(--color),
+        0 0 32px var(--color),
+        0 0 48px var(--color);
+      animation: firework-explode 1.8s ease-out forwards;
+      transform: rotate(var(--angle)) translateX(0);
+    }
+
+    .firework-particle.sparkle {
+      width: 4px;
+      height: 4px;
+      animation: firework-sparkle 1.4s ease-out forwards;
+      animation-delay: var(--sparkle-delay, 0s);
+    }
+
+    @keyframes firework-explode {
+      0% {
+        transform: rotate(var(--angle)) translateX(0);
+        opacity: 1;
+      }
+      15% {
+        opacity: 1;
+      }
+      100% {
+        transform: rotate(var(--angle)) translateX(140px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes firework-sparkle {
+      0% {
+        transform: rotate(var(--angle)) translateX(20px);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: rotate(var(--angle)) translateX(100px);
+        opacity: 0;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -8754,6 +8823,84 @@
       },
       onAllFound() {
         document.body.classList.add('all-easter-eggs-found')
+        // Switch to night mode
+        const room = document.querySelector('.room')
+        const lightSwitch = document.getElementById('light-switch')
+        if (room && !room.classList.contains('lights-off')) {
+          room.classList.add('lights-off')
+          if (lightSwitch) {
+            lightSwitch.classList.remove('on')
+            lightSwitch.classList.add('off')
+            lightSwitch.setAttribute('aria-pressed', 'true')
+          }
+          try {
+            localStorage.setItem('xe:xmas:lights-off', '1')
+          } catch (_) {}
+        }
+        // Launch celebration fireworks after a brief delay for night mode transition
+        setTimeout(() => this.launchFireworks(), 400)
+      },
+      launchFireworks() {
+        const colors = ['#00ff44', '#ff1744', '#d500f9'] // brilliant green, red, purple
+        const room = document.querySelector('.room')
+        if (!room) return
+        
+        // Create fireworks container if not exists
+        let container = room.querySelector('.fireworks-container')
+        if (!container) {
+          container = document.createElement('div')
+          container.className = 'fireworks-container'
+          room.appendChild(container)
+        }
+        
+        // Launch multiple rounds
+        const launchRound = (roundDelay) => {
+          colors.forEach((color, i) => {
+            setTimeout(() => {
+              const x = 15 + Math.random() * 70
+              const y = 10 + Math.random() * 25
+              this.createFirework(container, color, x, y)
+            }, roundDelay + i * 250)
+          })
+        }
+        
+        // 4 rounds of fireworks
+        launchRound(0)
+        launchRound(1200)
+        launchRound(2400)
+        launchRound(3600)
+      },
+      createFirework(container, color, xPercent, yPercent) {
+        const firework = document.createElement('div')
+        firework.className = 'firework'
+        firework.style.left = xPercent + '%'
+        firework.style.top = yPercent + '%'
+        
+        // Main particles
+        const particleCount = 28
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div')
+          particle.className = 'firework-particle'
+          particle.style.setProperty('--angle', (i * (360 / particleCount)) + 'deg')
+          particle.style.setProperty('--color', color)
+          firework.appendChild(particle)
+        }
+        
+        // Smaller sparkles
+        const sparkleCount = 16
+        for (let i = 0; i < sparkleCount; i++) {
+          const sparkle = document.createElement('div')
+          sparkle.className = 'firework-particle sparkle'
+          sparkle.style.setProperty('--angle', (i * (360 / sparkleCount) + 11) + 'deg')
+          sparkle.style.setProperty('--color', color)
+          sparkle.style.setProperty('--sparkle-delay', (Math.random() * 0.3) + 's')
+          firework.appendChild(sparkle)
+        }
+        
+        container.appendChild(firework)
+        
+        // Remove after animation
+        setTimeout(() => firework.remove(), 2500)
       }
     }
 

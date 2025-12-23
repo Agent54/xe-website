@@ -5239,12 +5239,12 @@
     /* ========== FIREWORKS ========== */
     .fireworks-container {
       position: absolute;
-      top: 40px;
+      top: 0;
       left: 0;
       right: 0;
-      height: 50%;
+      bottom: 0;
       pointer-events: none;
-      z-index: -15;
+      z-index: 5;
       overflow: visible;
     }
 
@@ -8841,25 +8841,32 @@
         setTimeout(() => this.launchFireworks(), 400)
       },
       launchFireworks() {
-        const colors = ['#00ff44', '#ff1744', '#d500f9'] // brilliant green, red, purple
-        const room = document.querySelector('.room')
-        if (!room) return
+        const colors = ['#00ff44', '#ff1744', '#d500f9', '#ffea00'] // brilliant green, red, purple, yellow
+        const leftScene = document.querySelector('.window-left-scene')
+        const rightScene = document.querySelector('.window-right-scene')
+        if (!leftScene && !rightScene) return
         
-        // Create fireworks container if not exists
-        let container = room.querySelector('.fireworks-container')
-        if (!container) {
-          container = document.createElement('div')
-          container.className = 'fireworks-container'
-          room.appendChild(container)
-        }
+        // Create fireworks containers in both window scenes
+        const scenes = [leftScene, rightScene].filter(Boolean)
+        scenes.forEach(scene => {
+          if (!scene.querySelector('.fireworks-container')) {
+            const container = document.createElement('div')
+            container.className = 'fireworks-container'
+            scene.appendChild(container)
+          }
+        })
         
         // Launch multiple rounds
         const launchRound = (roundDelay) => {
           colors.forEach((color, i) => {
             setTimeout(() => {
-              const x = 15 + Math.random() * 70
-              const y = 10 + Math.random() * 25
-              this.createFirework(container, color, x, y)
+              const x = 10 + Math.random() * 80
+              const y = 5 + Math.random() * 35
+              // Launch in both windows
+              scenes.forEach(scene => {
+                const container = scene.querySelector('.fireworks-container')
+                if (container) this.createFirework(container, color, x, y)
+              })
             }, roundDelay + i * 250)
           })
         }

@@ -7040,7 +7040,7 @@
       <div class="shelf shelf-2"></div>
       <div class="shelf shelf-3"></div>
       <div class="rubiks-cube-container">
-        <div class="rubiks-cube" role="img" aria-label="Rubik's Cube">
+        <div class="rubiks-cube" role="button" tabindex="0" aria-label="Rubik's Cube">
           <div class="face front">
             <div class="tile"></div><div class="tile"></div><div class="tile"></div>
             <div class="tile"></div><div class="tile"></div><div class="tile"></div>
@@ -8989,7 +8989,7 @@
     const achievements = {
       triggered: new Set(),
       count: 0,
-      totalEvents: 11,
+      totalEvents: 12,
       trigger(eventName) {
         if (this.triggered.has(eventName)) return
         this.triggered.add(eventName)
@@ -9242,6 +9242,11 @@
     // UFO cow abduction - sequence on hover
     addHoverBehavior('.cow-abduction', {
       onEnter: () => achievements.trigger('cow-abducted')
+    })
+
+    // Rubik's cube - solves on hover
+    addHoverBehavior('.rubiks-cube', {
+      onEnter: () => achievements.trigger('rubiks-solved')
     })
 
     // ========== EXISTING FUNCTIONALITY ==========

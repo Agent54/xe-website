@@ -75,7 +75,8 @@
       min-height: 100vh;
       overflow: auto;
       overflow-x: auto;
-      background:
+      background-color: var(--bg-1);
+      background-image:
         radial-gradient(1200px 900px at 18% 12%, rgba(255, 190, 110, 0.18) 0%, rgba(255, 190, 110, 0) 55%),
         radial-gradient(900px 700px at 82% 18%, rgba(120, 190, 255, 0.14) 0%, rgba(120, 190, 255, 0) 60%),
         radial-gradient(1000px 800px at 50% 110%, rgba(255, 120, 60, 0.15) 0%, rgba(255, 120, 60, 0) 55%),
@@ -123,8 +124,10 @@
       overflow: hidden;
       flex-shrink: 0;
       border-radius: 26px;
+      -webkit-border-radius: 26px;
       box-shadow: var(--shadow-lg);
       isolation: isolate;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
       transform-origin: top left;
       zoom: var(--room-zoom, 1);
     }
@@ -2322,28 +2325,36 @@
       font-weight: 500;
     }
 
+    .welcome-card-content {
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     .welcome-card .close-btn {
       position: absolute;
-      top: 12px;
+      bottom: 16px;
       right: 16px;
-      width: 32px;
-      height: 32px;
       border: none;
-      background: rgba(139, 90, 43, 0.15);
-      border-radius: 50%;
+      background: rgba(139, 90, 43, 0.25);
+      border-radius: 6px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      color: #8b5a2b;
+      font-size: 1rem;
+      font-family: var(--ui-font);
+      padding: 10px 20px;
+      color: #5a3d2b;
       transition: all 0.2s ease;
+      z-index: 10;
     }
 
     .welcome-card .close-btn:hover {
-      background: rgba(139, 42, 27, 0.25);
+      background: rgba(139, 42, 27, 0.35);
       color: #8b2a1b;
-      transform: scale(1.1);
     }
 
     .welcome-card .close-btn:focus-visible {
@@ -2353,6 +2364,51 @@
 
     .welcome-card.hidden {
       display: none;
+    }
+
+    /* Mobile: fullscreen welcome card with scrollable content */
+    @media (max-width: 600px) {
+      .welcome-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        transform: none;
+        border-radius: 0;
+        clip-path: none;
+        padding: 32px;
+        padding-bottom: 80px;
+        display: flex;
+        flex-direction: column;
+        z-index: 300;
+      }
+
+      .welcome-card-content {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .welcome-card h1 {
+        font-size: 7rem;
+      }
+
+      .welcome-card p {
+        font-size: 4.8rem;
+      }
+
+      .welcome-card .close-btn {
+        position: absolute;
+        bottom: 24px;
+        right: 24px;
+      }
     }
 
     /* Overlay to block interactions when welcome card is open */
@@ -8984,10 +9040,12 @@
 
     <!-- Welcome card -->
     <div class="welcome-card" id="welcome-card">
-      <button class="close-btn" id="close-card" aria-label="Close">✕</button>
-      <h1>🎄 Happy Holidays!</h1>
-      <p>Thank you for all the support, discussions, feedack and appreciation and stay with us to create a world that might just be possible...</p>
-      <p>Xenon team, 2025</p>
+      <div class="welcome-card-content">
+        <h1>🎄 Happy Holidays!</h1>
+        <p>Thank you for all the support, discussions, feedack and appreciation and stay with us to create a world that might just be possible...</p>
+        <p>Xenon team, 2025</p>
+      </div>
+      <button class="close-btn" id="close-card" aria-label="Close">Close</button>
     </div>
 
     <!-- Bob the Dog -->

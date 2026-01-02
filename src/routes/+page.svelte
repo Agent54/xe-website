@@ -206,8 +206,8 @@ Xenon is built in a way to make a move in this direction possible. If you believ
       <ellipse cx="24" cy="24" rx="3" ry="2" fill="#e8a87c" opacity="0.6"/>
       <ellipse cx="46" cy="24" rx="3" ry="2" fill="#e8a87c" opacity="0.6"/>
     </svg>
-  </button>
-</section> -->
+  </button>-->
+</section> 
 
 <section class="section" style="background: #ffffff;">
   <div class="container text-center">

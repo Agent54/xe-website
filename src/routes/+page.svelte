@@ -155,62 +155,59 @@ Xenon is built in a way to make a move in this direction possible. If you believ
   </div>
   
   <!-- Christmas Pfefferkuchenmann Button -->
-  <button 
+  <!-- <button 
     class="xmas-ornament" 
     onmousedown={() => showXmasModal = true}
     aria-label="Open Christmas surprise"
   >
     <svg width="120" height="100" viewBox="-25 -5 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Candy cane behind -->
+
       <path d="M65 75 L50 25 Q50 10 60 10 Q70 10 70 20" stroke="white" stroke-width="8" fill="none" stroke-linecap="round"/>
       <path d="M65 75 L50 25 Q50 10 60 10 Q70 10 70 20" stroke="#c41e3a" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="8 8"/>
       
-      <!-- Holly leaves left -->
+
       <path d="M-5 55 Q-10 50 -5 45 Q-12 42 -8 36 Q-15 35 -10 28 Q-5 32 0 28 Q-2 35 5 36 Q0 42 6 45 Q0 50 5 55 Q-2 52 -5 55Z" fill="#228b22"/>
       <circle cx="-2" cy="42" r="4" fill="#c41e3a"/>
       <circle cx="2" cy="38" r="3" fill="#dc143c"/>
       
-      <!-- Holly leaves right -->
+
       <path d="M75 55 Q80 50 75 45 Q82 42 78 36 Q85 35 80 28 Q75 32 70 28 Q72 35 65 36 Q70 42 64 45 Q70 50 65 55 Q72 52 75 55Z" fill="#228b22"/>
       <circle cx="72" cy="42" r="4" fill="#c41e3a"/>
       <circle cx="68" cy="38" r="3" fill="#dc143c"/>
       
-      <!-- Gingerbread man sitting -->
-      <!-- Body -->
       <ellipse cx="35" cy="45" rx="16" ry="18" fill="#b5651d"/>
-      <!-- Head -->
+
       <circle cx="35" cy="22" r="14" fill="#b5651d"/>
-      <!-- Legs (bent, sitting pose) -->
+
       <ellipse cx="22" cy="68" rx="8" ry="6" fill="#b5651d"/>
       <ellipse cx="48" cy="68" rx="8" ry="6" fill="#b5651d"/>
       <rect x="20" y="55" width="8" height="15" rx="3" fill="#b5651d"/>
       <rect x="42" y="55" width="8" height="15" rx="3" fill="#b5651d"/>
-      <!-- Arms (waving) -->
+
       <ellipse cx="12" cy="38" rx="6" ry="8" fill="#b5651d" transform="rotate(-30 12 38)"/>
       <ellipse cx="58" cy="32" rx="6" ry="8" fill="#b5651d" transform="rotate(20 58 32)"/>
-      <!-- Frosting details -->
-      <!-- Eyes (icing dots) -->
+
       <circle cx="30" cy="19" r="2.5" fill="white"/>
       <circle cx="40" cy="19" r="2.5" fill="white"/>
       <circle cx="30" cy="19" r="1" fill="#3a2010"/>
       <circle cx="40" cy="19" r="1" fill="#3a2010"/>
-      <!-- Smile -->
+
       <path d="M29 27 Q35 32 41 27" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <!-- Bow tie -->
+
       <path d="M28 35 L35 38 L42 35 L35 41 Z" fill="#e74c3c"/>
       <circle cx="35" cy="38" r="2" fill="#c0392b"/>
-      <!-- Buttons -->
+
       <circle cx="35" cy="48" r="2.5" fill="white"/>
       <circle cx="35" cy="55" r="2.5" fill="white"/>
-      <!-- Icing squiggles on body -->
+
       <path d="M24 42 Q27 40 30 43" stroke="white" stroke-width="1.5" fill="none"/>
       <path d="M40 42 Q43 40 46 43" stroke="white" stroke-width="1.5" fill="none"/>
-      <!-- Cheek blush -->
+
       <ellipse cx="24" cy="24" rx="3" ry="2" fill="#e8a87c" opacity="0.6"/>
       <ellipse cx="46" cy="24" rx="3" ry="2" fill="#e8a87c" opacity="0.6"/>
     </svg>
   </button>
-</section>
+</section> -->
 
 <section class="section" style="background: #ffffff;">
   <div class="container text-center">
